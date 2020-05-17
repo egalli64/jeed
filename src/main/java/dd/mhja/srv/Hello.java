@@ -9,11 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dd.mhja.dao.HibUtil;
+import dd.mhja.dao.RegionDao;
 
 @WebServlet("/hello")
 public class Hello extends HttpServlet {
@@ -29,13 +28,8 @@ public class Hello extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         try (PrintWriter writer = response.getWriter()) {
-            try (Session session = HibUtil.getSessionFactory().openSession()) {
-                if(session.isConnected()) {
-                    writer.println("Hello!");       
-                } else {
-                    writer.println("No connection to database");       
-                }
-            }
+            RegionDao dao = new RegionDao();
+            writer.println("regions: " + dao.getAll());
         }
     }
 
