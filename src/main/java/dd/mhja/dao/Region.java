@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="REGIONS")
+@Table(name = "REGIONS")
 public class Region {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,13 @@ public class Region {
 
     @Column(name = "region_name")
     private String name;
+
+    public Region() {
+    }
+
+    public Region(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
