@@ -31,17 +31,17 @@ public class Hello extends HttpServlet {
 
         try (PrintWriter writer = response.getWriter()) {
             RegionDao dao = new RegionDao();
-            writer.println("regions: " + dao.getAll());
+            writer.println("regions: " + dao.readAll());
 
             Region region = new Region("Another region");
             if (dao.create(region)) {
-                List<Region> regions = dao.getAll();
+                List<Region> regions = dao.readAll();
                 writer.println("another region: " + regions);
-                regions.stream().map(Region::getId).filter(pk -> pk > 4).forEach(dao::remove);
+                regions.stream().map(Region::getId).filter(pk -> pk > 4).forEach(dao::delete);
             } else {
                 writer.println("can't create more regions");
             }
-            writer.println("regions: " + dao.getAll());
+            writer.println("regions: " + dao.readAll());
         }
     }
 
