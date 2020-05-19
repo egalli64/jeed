@@ -1,6 +1,7 @@
 package dd.mhja.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -22,6 +23,17 @@ public class RegionDao {
         }
     }
 
+    public Optional<Region> read(int id) {
+        EntityManager em = null;
+
+        try {
+            em = HibUtil.getEntityManager();
+            return Optional.ofNullable(em.find(Region.class, id));
+        } finally {
+            em.close();
+        }
+    }
+
     public boolean create(Region region) {
         EntityManager em = null;
 
@@ -34,6 +46,24 @@ public class RegionDao {
             return true;
         } catch (Exception ex) {
             LOG.warn("Can't persist region", ex);
+            return false;
+        } finally {
+            em.close();
+        }
+    }
+
+    public boolean update(Region region) {
+        EntityManager em = null;
+
+        try {
+            em = HibUtil.getEntityManager();
+            EntityTransaction et = em.getTransaction();
+            et.begin();
+            em.merge(region);
+            et.commit();
+            return true;
+        } catch (Exception ex) {
+            LOG.warn("Can't merge region", ex);
             return false;
         } finally {
             em.close();
