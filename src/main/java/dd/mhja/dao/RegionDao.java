@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class RegionDao {
     static final Logger LOG = LoggerFactory.getLogger(RegionDao.class);
 
-    public List<Region> getAll() {
+    public List<Region> readAll() {
         EntityManager em = null;
 
         try {
@@ -40,7 +40,7 @@ public class RegionDao {
         }
     }
 
-    public boolean remove(Integer id) {
+    public boolean delete(Integer id) {
         EntityManager em = null;
 
         try {
@@ -50,11 +50,13 @@ public class RegionDao {
             Region region = em.find(Region.class, id);
             if (region != null) {
                 em.remove(region);
+                et.commit();
+                return true;
             } else {
                 LOG.info("Can't remove missing region " + id);
+                et.rollback();
+                return false;
             }
-            et.commit();
-            return true;
         } catch (Exception ex) {
             LOG.warn("Can't remove region " + id, ex);
             return false;
