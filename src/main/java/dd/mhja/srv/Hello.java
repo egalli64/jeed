@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import dd.mhja.dao.EmployeeDao;
 import dd.mhja.dao.RegionDao;
 
 @WebServlet("/hello")
@@ -28,8 +29,11 @@ public class Hello extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         try (PrintWriter writer = response.getWriter()) {
-            RegionDao dao = new RegionDao();
-            writer.println("regions: " + dao.readAll());
+            RegionDao regions = new RegionDao();
+            writer.println("regions: " + regions.readAll());
+
+            EmployeeDao employees = new EmployeeDao();
+            writer.println("employees: " + employees.readAll());
         }
     }
 
