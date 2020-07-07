@@ -6,7 +6,6 @@
 		<non-jta-data-source>java:comp/env/jdbc/me</non-jta-data-source>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="update" /> <!-- dev -->
 			<property name="hibernate.show_sql" value="true" /> <!-- dev -->
 			<property name="hibernate.format_sql" value="true" /> <!-- dev -->
 		</properties>
