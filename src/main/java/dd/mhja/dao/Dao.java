@@ -13,12 +13,12 @@ public abstract class Dao<T, U> {
     static final Logger LOG = LoggerFactory.getLogger(Dao.class);
 
     private final Class<T> clazz;
-    
+
     // workaround for template type erasure
     protected Dao(Class<T> clazz) {
         this.clazz = clazz;
     }
-    
+
     public List<T> readAll() {
         EntityManager em = null;
 
@@ -60,6 +60,19 @@ public abstract class Dao<T, U> {
         }
     }
 
+    public boolean contains(T entity) {
+        EntityManager em = null;
+
+        try {
+            em = HibUtil.getEntityManager();
+            em.refresh(entity);
+            return em.contains(entity);
+        } catch (Exception ex) {
+            LOG.warn("Can't check entity", ex);
+            return false;
+        }
+    }
+
     public boolean update(T entity) {
         EntityManager em = null;
 
@@ -85,18 +98,18 @@ public abstract class Dao<T, U> {
             em = HibUtil.getEntityManager();
             EntityTransaction et = em.getTransaction();
             et.begin();
-            T region = em.find(clazz, id);
-            if (region != null) {
-                em.remove(region);
+            T entity = em.find(clazz, id);
+            if (entity != null) {
+                em.remove(entity);
                 et.commit();
                 return true;
             } else {
-                LOG.info("Can't remove missing region " + id);
+                LOG.info("Can't remove missing entity " + id);
                 et.rollback();
                 return false;
             }
         } catch (Exception ex) {
-            LOG.warn("Can't remove region " + id, ex);
+            LOG.warn("Can't remove entity " + id, ex);
             return false;
         } finally {
             em.close();

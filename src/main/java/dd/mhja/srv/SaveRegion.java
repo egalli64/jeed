@@ -15,32 +15,41 @@ import org.slf4j.LoggerFactory;
 import dd.mhja.dao.Region;
 import dd.mhja.dao.RegionDao;
 
-@WebServlet("/region/new")
-public class CreateRegion extends HttpServlet {
+@WebServlet("/region/save")
+public class SaveRegion extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(CreateRegion.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SaveRegion.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         LOG.trace("enter");
-        
+
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
-        
+
+        String param = request.getParameter("id");
+        Integer id = null;
+        try {
+            id = Integer.valueOf(param);
+        } catch (NumberFormatException nfe) {
+            LOG.error("Can't serve request for id " + param);
+        }
+
         try (PrintWriter writer = response.getWriter()) {
             String name = request.getParameter("name");
-            if(name == null || name.isBlank()) {
-                writer.println("please provide a name for the region");
+            if (name == null || name.isBlank() || id == null) {
+                writer.println("please provide an id and a name for the region");
                 return;
             }
 
             RegionDao regions = new RegionDao();
             Region region = new Region(name);
-    
-            if(regions.create(region)) {
-                writer.println("new region created: " + region);
+            region.setId(id);
+
+            if (regions.update(region)) {
+                writer.println("region updated: " + region);
             } else {
-                writer.println("can't create region: " + region);
+                writer.println("can't update region: " + region);
             }
         }
     }

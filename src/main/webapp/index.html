@@ -3,13 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Hibernate JPA with Annotations</title>
+<base href="/mhja/">
 </head>
 <body>
     <h1>Hibernate JPA with Annotations</h1>
     
     <ul>
-    	<li><a href="/mhja/hello">Hello JPA</a></li>
-    	<li><a href="/mhja/region/new?name=Antartica">Create new region</a></li>
+    	<li><a href="hello">Hello JPA</a></li>
+    	<li><a href="region/new?name=X">Create new region</a></li>
+    	<li><a href="region/get?id=1">Get region</a></li>
+    	<li><a href="region/get?id=1024">Get region</a> (missing)</li>
+    	<li><a href="region/save?id=5&name=Antarctica">Update region 5</a> (or create a new one)</li>
+    	<li><a href="region/delete?id=5">Delete region 5</a> (or create a new one)</li>
     </ul>
 </body>
 </html>
