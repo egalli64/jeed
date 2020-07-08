@@ -4,19 +4,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class HibUtil {
-    private static final Logger LOG = LoggerFactory.getLogger(HibUtil.class);
+    private static EntityManagerFactory factory;
 
-    private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("me");
+    static {
+        try {
+            factory = Persistence.createEntityManagerFactory("me");
+        } catch (Throwable th) {
+            throw new IllegalStateException("Can't create EntityManagerFactory", th);
+        }
+    }
 
     public static EntityManager getEntityManager() {
-        LOG.error("enter");
-        EntityManager em = factory.createEntityManager();
-        LOG.error(em.toString());
-        
-        return em;
+        return factory.createEntityManager();
     }
 }
