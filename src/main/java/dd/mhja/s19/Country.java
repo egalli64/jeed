@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "CountryS19")
 @Table(name = "COUNTRIES")
 public class Country {
     @Id
