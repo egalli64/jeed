@@ -2,6 +2,7 @@ package dd.mhja.s19;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +28,8 @@ public class CountryAll extends HttpServlet {
 
         try (PrintWriter writer = response.getWriter()) {
             CountryDao dao = new CountryDao();
-            writer.println(dao.readAll());
+            List<Country> countries = dao.readAll();
+            writer.println(countries);
         }
     }
 

@@ -15,7 +15,7 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "country_id")
-    private int id;
+    private String id;
 
     @Column(name = "country_name")
     private String name;
@@ -31,11 +31,11 @@ public class Country {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,8 +47,16 @@ public class Country {
         this.name = name;
     }
 
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
     @Override
     public String toString() {
-        return "Region [id=" + id + ", name=" + name + "]";
+        return "Country [id=" + id + ", name=" + name + ", region=" + (region != null ? region.getName() : "N/A") + "]";
     }
 }
