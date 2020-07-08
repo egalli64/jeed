@@ -24,7 +24,7 @@ public abstract class Dao<T, U> {
 
         try {
             em = HibUtil.getEntityManager();
-            String jpql = "SELECT e FROM " + clazz.getSimpleName() + " e";
+            String jpql = "SELECT e FROM " + clazz.getName() + " e";
             return em.createQuery(jpql, clazz).getResultList();
         } finally {
             em.close();
