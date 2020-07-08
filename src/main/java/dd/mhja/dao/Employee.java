@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
 @Table(name = "EMPLOYEES")
+@NamedQuery(name = "getTopSalaried", query = "select e from Employee e where e.salary > :low")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +28,12 @@ public class Employee {
 
     @Column(name = "hire_date")
     private LocalDate hireDate;
-   
+
+    private Double salary;
+
     @Transient
     private String transientNote;
-    
+
     public Employee() {
     }
 
@@ -78,9 +82,17 @@ public class Employee {
         this.transientNote = transientNote;
     }
 
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
     @Override
     public String toString() {
         return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
-                + "]";
+                + ", salary=" + salary + ", transientNote=" + transientNote + "]";
     }
 }
