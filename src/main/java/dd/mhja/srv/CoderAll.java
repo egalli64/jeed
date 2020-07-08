@@ -12,14 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dd.mhja.dao.EmployeeDao;
-import dd.mhja.dao.Region;
-import dd.mhja.dao.RegionDao;
+import dd.mhja.dao.CoderDao;
 
-@WebServlet("/hello")
-public class Hello extends HttpServlet {
+@WebServlet("/coder/all")
+public class CoderAll extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(Hello.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CoderAll.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,17 +28,8 @@ public class Hello extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         try (PrintWriter writer = response.getWriter()) {
-            RegionDao regions = new RegionDao();
-            Region region = new Region("X");
-            if (regions.create(region)) {
-                writer.println("New region: " + region);
-                region.setName("Z");
-                regions.update(region);
-                writer.println("Updated region: " + region);
-            }
-
-            EmployeeDao employees = new EmployeeDao();
-            writer.println("employees: " + employees.read(100));
+            CoderDao dao = new CoderDao();
+            writer.println(dao.readAll());
         }
     }
 

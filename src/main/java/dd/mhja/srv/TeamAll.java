@@ -2,6 +2,7 @@ package dd.mhja.srv;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,11 +16,12 @@ import org.slf4j.LoggerFactory;
 import dd.mhja.dao.EmployeeDao;
 import dd.mhja.dao.Region;
 import dd.mhja.dao.RegionDao;
+import dd.mhja.dao.TeamDao;
 
-@WebServlet("/hello")
-public class Hello extends HttpServlet {
+@WebServlet("/team/all")
+public class TeamAll extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(Hello.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TeamAll.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,17 +32,8 @@ public class Hello extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         try (PrintWriter writer = response.getWriter()) {
-            RegionDao regions = new RegionDao();
-            Region region = new Region("X");
-            if (regions.create(region)) {
-                writer.println("New region: " + region);
-                region.setName("Z");
-                regions.update(region);
-                writer.println("Updated region: " + region);
-            }
-
-            EmployeeDao employees = new EmployeeDao();
-            writer.println("employees: " + employees.read(100));
+            TeamDao dao = new TeamDao();
+            writer.println(dao.readAll());
         }
     }
 

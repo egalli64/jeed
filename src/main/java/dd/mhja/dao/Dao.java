@@ -46,6 +46,7 @@ public abstract class Dao<T, U> {
         EntityManager em = null;
 
         try {
+            LOG.trace("enter");
             em = HibUtil.getEntityManager();
             EntityTransaction et = em.getTransaction();
             et.begin();

@@ -7,17 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
-@Table(name = "EMPLOYEES")
-@NamedQuery(name = "getTopSalaried", query = "select e from Employee e where e.salary > :low")
-public class Employee {
+@Table(name = "CODERS")
+public class Coder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id")
+    @Column(name = "coder_id")
     private int id;
 
     @Column(name = "first_name")
@@ -31,10 +29,10 @@ public class Employee {
 
     private Double salary;
 
-    @Transient
-    private String transientNote;
-
-    public Employee() {
+    @OneToOne(optional=true, mappedBy="leader")
+    private Team leadingTeam;
+    
+    public Coder() {
     }
 
     public int getId() {
@@ -69,14 +67,6 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public String getTransientNote() {
-        return transientNote;
-    }
-
-    public void setTransientNote(String transientNote) {
-        this.transientNote = transientNote;
-    }
-
     public Double getSalary() {
         return salary;
     }
@@ -85,9 +75,18 @@ public class Employee {
         this.salary = salary;
     }
 
+    public Team getLeadingTeam() {
+        return leadingTeam;
+    }
+
+    public void setLeadingTeam(Team leadingTeam) {
+        this.leadingTeam = leadingTeam;
+    }
+
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
-                + ", salary=" + salary + ", transientNote=" + transientNote + "]";
+        return "Coder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
+                + ", salary=" + salary +
+                (leadingTeam != null ? ", leadingTeam=" + leadingTeam.getName() : "") + "]";
     }
 }
