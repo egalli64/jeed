@@ -13,10 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/s19/region/all")
-public class RegionAll extends HttpServlet {
+@WebServlet("/s19/region/all/full")
+public class RegionAllFull extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(RegionAll.class);
+    private static final Logger LOG = LoggerFactory.getLogger(RegionAllFull.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
