@@ -2,7 +2,6 @@ package dd.mhja.srv;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dd.mhja.dao.EmployeeDao;
-import dd.mhja.dao.Region;
-import dd.mhja.dao.RegionDao;
 import dd.mhja.dao.TeamDao;
 
 @WebServlet("/team/all")
