@@ -15,9 +15,9 @@ import javax.persistence.Table;
 @Table(name = "CODERS")
 public class Coder {
     @Id
-    // MySQL
+    // MySQL / Oracle DB 12+
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // Oracle
+    // Oracle DB 11 or less
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CodGen")
     @SequenceGenerator(sequenceName = "CODER_SEQ", allocationSize = 1, name = "CodGen")
     @Column(name = "coder_id")
