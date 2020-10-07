@@ -8,13 +8,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CODERS")
 public class Coder {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // MySQL
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // Oracle
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CodGen")
+    @SequenceGenerator(sequenceName = "CODER_SEQ", allocationSize = 1, name = "CodGen")
     @Column(name = "coder_id")
     private int id;
 
@@ -29,9 +34,9 @@ public class Coder {
 
     private Double salary;
 
-    @OneToOne(optional=true, mappedBy="leader")
+    @OneToOne(optional = true, mappedBy = "leader")
     private Team leadingTeam;
-    
+
     public Coder() {
     }
 
@@ -86,7 +91,6 @@ public class Coder {
     @Override
     public String toString() {
         return "Coder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
-                + ", salary=" + salary +
-                (leadingTeam != null ? ", leadingTeam=" + leadingTeam.getName() : "") + "]";
+                + ", salary=" + salary + (leadingTeam != null ? ", leadingTeam=" + leadingTeam.getName() : "") + "]";
     }
 }
