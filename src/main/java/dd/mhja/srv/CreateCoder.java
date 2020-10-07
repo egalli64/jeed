@@ -41,6 +41,7 @@ public class CreateCoder extends HttpServlet {
             coder.setFirstName(first);
             coder.setLastName(last);
             coder.setHireDate(LocalDate.now());
+            coder.setSalary(0.0);
 
             if (dao.create(coder)) {
                 writer.println("new coder created: " + coder);
