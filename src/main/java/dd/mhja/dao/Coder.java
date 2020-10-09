@@ -17,22 +17,22 @@ public class Coder {
     @Id
     // MySQL / Oracle DB 12+
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // Oracle DB 11 or less
+    // Oracle DB 11
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CodGen")
     @SequenceGenerator(sequenceName = "CODER_SEQ", allocationSize = 1, name = "CodGen")
-    @Column(name = "coder_id")
+    @Column(name = "CODER_ID")
     private int id;
 
-    @Column(name = "first_name")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "hire_date")
+    @Column(name = "HIRE_DATE")
     private LocalDate hireDate;
 
-    private Double salary;
+    private double salary;
 
     @OneToOne(optional = true, mappedBy = "leader")
     private Team leadingTeam;
