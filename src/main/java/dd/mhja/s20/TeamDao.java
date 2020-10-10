@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 
 import dd.mhja.dao.Dao;
-import dd.mhja.dao.HibUtil;
+import dd.mhja.dao.JpaUtil;
 
 public class TeamDao extends Dao<Team, Integer> {
     public TeamDao() {
@@ -21,7 +21,7 @@ public class TeamDao extends Dao<Team, Integer> {
         EntityManager em = null;
 
         try {
-            em = HibUtil.getEntityManager();
+            em = JpaUtil.getEntityManager();
             String jpql = "SELECT e FROM TeamS20 e JOIN FETCH e.coders WHERE e.id = " + id;
             List<Team> teams = em.createQuery(jpql, Team.class).getResultList();
             return teams.isEmpty() ? Optional.empty() : Optional.of(teams.get(0));
@@ -34,7 +34,7 @@ public class TeamDao extends Dao<Team, Integer> {
         EntityManager em = null;
 
         try {
-            em = HibUtil.getEntityManager();
+            em = JpaUtil.getEntityManager();
             String jpql = "SELECT DISTINCT e FROM TeamS20 e JOIN FETCH e.coders";
             return em.createQuery(jpql, Team.class).getResultList();
         } finally {

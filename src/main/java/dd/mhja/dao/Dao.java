@@ -15,7 +15,7 @@ public abstract class Dao<T, U> {
     private final Class<T> clazz;
 
     // workaround for template type erasure
-    protected Dao(Class<T> clazz) {
+    public Dao(Class<T> clazz) {
         this.clazz = clazz;
     }
 
@@ -23,11 +23,16 @@ public abstract class Dao<T, U> {
         EntityManager em = null;
 
         try {
-            em = HibUtil.getEntityManager();
+            em = JpaUtil.getEntityManager();
             String jpql = "SELECT e FROM " + clazz.getName() + " e";
             return em.createQuery(jpql, clazz).getResultList();
+        } catch (Exception ex) {
+            LOG.error("Can't create query: " + ex.getMessage());
+            throw ex;
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 
@@ -35,10 +40,16 @@ public abstract class Dao<T, U> {
         EntityManager em = null;
 
         try {
-            em = HibUtil.getEntityManager();
-            return Optional.ofNullable(em.find(clazz, id));
+            em = JpaUtil.getEntityManager();
+            T t = em.find(clazz, id);
+            return Optional.ofNullable(t);
+        } catch (Exception ex) {
+            LOG.error("Can't create query: " + ex.getMessage());
+            throw ex;
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 
@@ -47,7 +58,7 @@ public abstract class Dao<T, U> {
 
         try {
             LOG.trace("enter");
-            em = HibUtil.getEntityManager();
+            em = JpaUtil.getEntityManager();
             EntityTransaction et = em.getTransaction();
             et.begin();
             em.persist(entity);
@@ -57,7 +68,9 @@ public abstract class Dao<T, U> {
             LOG.warn("Can't persist entity", ex);
             return false;
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 
@@ -65,12 +78,16 @@ public abstract class Dao<T, U> {
         EntityManager em = null;
 
         try {
-            em = HibUtil.getEntityManager();
+            em = JpaUtil.getEntityManager();
             em.refresh(entity);
             return em.contains(entity);
         } catch (Exception ex) {
             LOG.warn("Can't check entity", ex);
             return false;
+        } finally {
+            if (em != null) {
+                em.close();
+            }
         }
     }
 
@@ -78,7 +95,7 @@ public abstract class Dao<T, U> {
         EntityManager em = null;
 
         try {
-            em = HibUtil.getEntityManager();
+            em = JpaUtil.getEntityManager();
             EntityTransaction et = em.getTransaction();
             et.begin();
             em.merge(entity);
@@ -88,7 +105,9 @@ public abstract class Dao<T, U> {
             LOG.warn("Can't merge entity", ex);
             return false;
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 
@@ -96,7 +115,7 @@ public abstract class Dao<T, U> {
         EntityManager em = null;
 
         try {
-            em = HibUtil.getEntityManager();
+            em = JpaUtil.getEntityManager();
             EntityTransaction et = em.getTransaction();
             et.begin();
             T entity = em.find(clazz, id);
@@ -113,7 +132,9 @@ public abstract class Dao<T, U> {
             LOG.warn("Can't remove entity " + id, ex);
             return false;
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 }

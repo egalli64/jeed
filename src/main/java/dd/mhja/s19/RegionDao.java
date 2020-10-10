@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import dd.mhja.dao.Dao;
-import dd.mhja.dao.HibUtil;
+import dd.mhja.dao.JpaUtil;
 
 public class RegionDao extends Dao<Region, Integer> {
     public RegionDao() {
@@ -20,7 +20,7 @@ public class RegionDao extends Dao<Region, Integer> {
         EntityManager em = null;
 
         try {
-            em = HibUtil.getEntityManager();
+            em = JpaUtil.getEntityManager();
             String jpql = "SELECT e FROM RegionS19 e JOIN FETCH e.countries";
             return em.createQuery(jpql, Region.class).getResultList();
         } finally {
