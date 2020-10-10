@@ -7,20 +7,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TEAMS")
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "team_id")
+    // OracleDB 12+ / MySQL
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // OracleDB sequence
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TeamGen")
+    @SequenceGenerator(sequenceName = "TEAM_SEQ", allocationSize = 1, name = "TeamGen")
+    @Column(name = "TEAM_ID")
     private int id;
 
+    // annotation not strictly required
+    @Column(name = "NAME")
     private String name;
 
     @OneToOne(optional = false)
-    @JoinColumn(name="leader_id")
+    @JoinColumn(name="LEADER_ID")
     private Coder leader;
     
     public Team() {

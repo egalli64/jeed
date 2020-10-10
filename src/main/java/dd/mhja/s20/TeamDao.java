@@ -25,8 +25,13 @@ public class TeamDao extends Dao<Team, Integer> {
             String jpql = "SELECT e FROM TeamS20 e JOIN FETCH e.coders WHERE e.id = " + id;
             List<Team> teams = em.createQuery(jpql, Team.class).getResultList();
             return teams.isEmpty() ? Optional.empty() : Optional.of(teams.get(0));
+        } catch (Exception ex) {
+            LOG.error("Can't create query: " + ex.getMessage());
+            throw ex;
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 

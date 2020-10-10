@@ -19,8 +19,13 @@ public class EmployeeDao extends Dao<Employee, Integer> {
             query.setParameter(1, low);
             query.setParameter(2, high);
             return query.getResultList();
+        } catch (Exception ex) {
+            LOG.error("Can't create query: " + ex.getMessage());
+            throw ex;
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 
@@ -32,8 +37,13 @@ public class EmployeeDao extends Dao<Employee, Integer> {
             var query = em.createNamedQuery("getTopSalaried", Employee.class);
             query.setParameter("low", low);
             return query.getResultList();
+        } catch (Exception ex) {
+            LOG.error("Can't create query: " + ex.getMessage());
+            throw ex;
         } finally {
-            em.close();
+            if (em != null) {
+                em.close();
+            }
         }
     }
 }

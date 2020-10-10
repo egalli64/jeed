@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.Hibernate;
@@ -19,19 +20,24 @@ import org.hibernate.Hibernate;
 @Table(name = "CODERS")
 public class Coder {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "coder_id")
+    // MySQL / OracleDB 12+
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // OracleDB sequence
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CodGen20")
+    @SequenceGenerator(sequenceName = "CODER_SEQ", allocationSize = 1, name = "CodGen20")
+    @Column(name = "CODER_ID")
     private int id;
 
-    @Column(name = "first_name")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "hire_date")
+    @Column(name = "HIRE_DATE")
     private LocalDate hireDate;
 
+    @Column(name = "SALARY")
     private Double salary;
 
     @OneToOne(optional = true, mappedBy = "leader")

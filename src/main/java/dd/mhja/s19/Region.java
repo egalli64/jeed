@@ -4,8 +4,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,11 +12,12 @@ import javax.persistence.Table;
 @Table(name = "REGIONS")
 public class Region {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "region_id")
+    // MySQL / OracleDB 12+
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "REGION_ID")
     private int id;
 
-    @Column(name = "region_name")
+    @Column(name = "REGION_NAME")
     private String name;
 
     @OneToMany(mappedBy = "region")

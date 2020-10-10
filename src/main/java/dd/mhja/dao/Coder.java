@@ -15,9 +15,9 @@ import javax.persistence.Table;
 @Table(name = "CODERS")
 public class Coder {
     @Id
-    // MySQL / Oracle DB 12+
+    // MySQL / OracleDB 12+
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // Oracle DB 11
+    // OracleDB sequence
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CodGen")
     @SequenceGenerator(sequenceName = "CODER_SEQ", allocationSize = 1, name = "CodGen")
     @Column(name = "CODER_ID")
@@ -32,6 +32,8 @@ public class Coder {
     @Column(name = "HIRE_DATE")
     private LocalDate hireDate;
 
+    // here this annotation is not mandatory
+    @Column(name = "SALARY")
     private double salary;
 
     @OneToOne(optional = true, mappedBy = "leader")
