@@ -2,6 +2,8 @@ package dd.mhja.s19;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,7 +14,7 @@ import javax.persistence.Table;
 public class Country {
     @Id
     // MySQL / OracleDB 12+
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COUNTRY_ID")
     private String id;
 

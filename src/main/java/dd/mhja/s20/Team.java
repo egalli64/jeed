@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.Hibernate;
@@ -21,10 +20,10 @@ import org.hibernate.Hibernate;
 public class Team {
     @Id
     // MySQL / OracleDB 12+
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     // OracleDB sequence
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TeamGen20")
-    @SequenceGenerator(sequenceName = "TEAM_SEQ", allocationSize = 1, name = "TeamGen20")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TeamGen20")
+//    @SequenceGenerator(sequenceName = "TEAM_SEQ", allocationSize = 1, name = "TeamGen20")
     @Column(name = "TEAM_ID")
     private int id;
 

@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -16,10 +15,10 @@ import javax.persistence.Table;
 public class Coder {
     @Id
     // MySQL / OracleDB 12+
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     // OracleDB sequence
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CodGen")
-    @SequenceGenerator(sequenceName = "CODER_SEQ", allocationSize = 1, name = "CodGen")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CodGen")
+//    @SequenceGenerator(sequenceName = "CODER_SEQ", allocationSize = 1, name = "CodGen")
     @Column(name = "CODER_ID")
     private int id;
 
