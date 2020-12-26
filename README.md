@@ -1,2 +1,2 @@
-# mhja
-Maven Hibernate JPA Annotations
+# jed
+Java EE integration with DBMS via JPA
