@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dd.mhja.dao.Region;
-import dd.mhja.dao.RegionDao;
+import dd.mhja.dao.RegionDaoSimple;
+import dd.mhja.dao.RegionSimple;
 
-@WebServlet("/region/save")
-public class SaveRegion extends HttpServlet {
+@WebServlet("/simple/region/new")
+public class CreateRegionSimple extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(SaveRegion.class);
+    private static final Logger log = LoggerFactory.getLogger(CreateRegionSimple.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,29 +27,28 @@ public class SaveRegion extends HttpServlet {
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
 
-        String param = request.getParameter("id");
-        Integer id = null;
-        try {
-            id = Integer.valueOf(param);
-        } catch (NumberFormatException nfe) {
-            log.error("Can't serve request for id " + param);
-        }
-
         try (PrintWriter writer = response.getWriter()) {
+            String param = request.getParameter("id");
+            Integer id = null;
+            try {
+                id = Integer.valueOf(param);
+            } catch (NumberFormatException nfe) {
+                log.error("Can't serve request for id " + param);
+            }
+
             String name = request.getParameter("name");
-            if (name == null || name.isBlank() || id == null) {
+            if (id == null || name == null || name.isBlank()) {
                 writer.println("please provide an id and a name for the region");
                 return;
             }
 
-            RegionDao regions = new RegionDao();
-            Region region = new Region(name);
-            region.setId(id);
+            RegionDaoSimple regions = new RegionDaoSimple();
+            RegionSimple region = new RegionSimple(id, name);
 
-            if (regions.update(region)) {
-                writer.println("region updated: " + region);
+            if (regions.create(region)) {
+                writer.println("new region created: " + region);
             } else {
-                writer.println("can't update region: " + region);
+                writer.println("can't create region: " + region);
             }
         }
     }

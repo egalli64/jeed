@@ -17,11 +17,11 @@ import dd.mhja.dao.RegionDao;
 @WebServlet("/region/delete")
 public class DeleteRegion extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(DeleteRegion.class);
+    private static final Logger log = LoggerFactory.getLogger(DeleteRegion.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LOG.trace("enter");
+        log.trace("enter");
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
@@ -31,7 +31,7 @@ public class DeleteRegion extends HttpServlet {
         try {
             id = Integer.valueOf(param);
         } catch (NumberFormatException nfe) {
-            LOG.error("Can't serve request for id " + param);
+            log.error("Can't serve request for id " + param);
         }
 
         try (PrintWriter writer = response.getWriter()) {

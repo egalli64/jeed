@@ -5,10 +5,15 @@ import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import dd.mhja.dao.Dao;
 import dd.mhja.dao.JpaUtil;
 
 public class TeamDao extends Dao<Team, Integer> {
+    private static final Logger log = LoggerFactory.getLogger(TeamDao.class);
+
     public TeamDao() {
         super(Team.class);
     }
@@ -21,12 +26,12 @@ public class TeamDao extends Dao<Team, Integer> {
         EntityManager em = null;
 
         try {
-            em = JpaUtil.getEntityManager();
+            em = JpaUtil.createEntityManager();
             String jpql = "SELECT e FROM TeamS20 e JOIN FETCH e.coders WHERE e.id = " + id;
             List<Team> teams = em.createQuery(jpql, Team.class).getResultList();
             return teams.isEmpty() ? Optional.empty() : Optional.of(teams.get(0));
         } catch (Exception ex) {
-            LOG.error("Can't create query: " + ex.getMessage());
+            log.error("Can't create query: " + ex.getMessage());
             throw ex;
         } finally {
             if (em != null) {
@@ -39,7 +44,7 @@ public class TeamDao extends Dao<Team, Integer> {
         EntityManager em = null;
 
         try {
-            em = JpaUtil.getEntityManager();
+            em = JpaUtil.createEntityManager();
             String jpql = "SELECT DISTINCT e FROM TeamS20 e JOIN FETCH e.coders";
             return em.createQuery(jpql, Team.class).getResultList();
         } finally {

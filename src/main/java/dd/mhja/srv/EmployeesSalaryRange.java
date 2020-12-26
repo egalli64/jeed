@@ -17,11 +17,11 @@ import dd.mhja.dao.EmployeeDao;
 @WebServlet("/employee/salary/range")
 public class EmployeesSalaryRange extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(EmployeesSalaryRange.class);
+    private static final Logger log = LoggerFactory.getLogger(EmployeesSalaryRange.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LOG.trace("enter");
+        log.trace("enter");
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
@@ -31,7 +31,7 @@ public class EmployeesSalaryRange extends HttpServlet {
         try {
             low = Double.valueOf(param);
         } catch (Exception ex) {
-            LOG.error("Can't serve request for low " + param);
+            log.error("Can't serve request for low " + param);
         }
 
         param = request.getParameter("high");
@@ -39,7 +39,7 @@ public class EmployeesSalaryRange extends HttpServlet {
         try {
             high = Double.valueOf(param);
         } catch (Exception nfe) {
-            LOG.error("Can't serve request for high " + param);
+            log.error("Can't serve request for high " + param);
         }
         
         try (PrintWriter writer = response.getWriter()) {

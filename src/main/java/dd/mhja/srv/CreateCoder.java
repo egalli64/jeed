@@ -19,11 +19,11 @@ import dd.mhja.dao.CoderDao;
 @WebServlet("/coder/new")
 public class CreateCoder extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(CreateCoder.class);
+    private static final Logger log = LoggerFactory.getLogger(CreateCoder.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LOG.trace("enter");
+        log.trace("enter");
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");

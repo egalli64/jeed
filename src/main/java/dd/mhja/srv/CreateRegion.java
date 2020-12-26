@@ -18,11 +18,11 @@ import dd.mhja.dao.RegionDao;
 @WebServlet("/region/new")
 public class CreateRegion extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(CreateRegion.class);
+    private static final Logger log = LoggerFactory.getLogger(CreateRegion.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LOG.trace("enter");
+        log.trace("enter");
         
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");

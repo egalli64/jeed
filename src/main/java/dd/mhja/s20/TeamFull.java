@@ -16,12 +16,12 @@ import org.slf4j.LoggerFactory;
 @WebServlet("/s20/team/full")
 public class TeamFull extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(TeamFull.class);
+    private static final Logger log = LoggerFactory.getLogger(TeamFull.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LOG.trace("enter");
+        log.trace("enter");
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");

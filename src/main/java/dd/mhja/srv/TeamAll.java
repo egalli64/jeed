@@ -17,12 +17,12 @@ import dd.mhja.dao.TeamDao;
 @WebServlet("/team/all")
 public class TeamAll extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(TeamAll.class);
+    private static final Logger log = LoggerFactory.getLogger(TeamAll.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LOG.trace("enter");
+        log.trace("enter");
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");

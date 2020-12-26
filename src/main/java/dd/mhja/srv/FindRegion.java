@@ -19,11 +19,11 @@ import dd.mhja.dao.RegionDao;
 @WebServlet("/region/get")
 public class FindRegion extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(FindRegion.class);
+    private static final Logger log = LoggerFactory.getLogger(FindRegion.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LOG.trace("enter");
+        log.trace("enter");
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
@@ -33,23 +33,30 @@ public class FindRegion extends HttpServlet {
         try {
             id = Integer.valueOf(param);
         } catch (NumberFormatException nfe) {
-            LOG.error("Can't serve request for id " + param);
+            log.error("Can't serve request for id " + param);
         }
 
+        Optional<Region> opt = Optional.empty();
+//        Optional<Region> opt = id == null ? Optional.empty() : new RegionDao().read(id);
+
         try (PrintWriter writer = response.getWriter()) {
-            if (id == null) {
-                writer.println("please provide an id for the region");
-                return;
+            try {
+                if (id != null) {
+                    opt = new RegionDao().read(id);
+                }
+            } catch (Throwable th) {
+                writer.println("Can't get data from database");
+                throw th;
             }
 
-            RegionDao regions = new RegionDao();
-
-            Optional<Region> opt = regions.read(id);
             if (opt.isPresent()) {
                 writer.println("region found: " + opt.get());
             } else {
                 writer.println("can't find region: " + id);
             }
+        } catch (Throwable th) {
+            log.error("!!!");
+            throw th;
         }
     }
 

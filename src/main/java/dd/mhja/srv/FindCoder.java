@@ -19,11 +19,11 @@ import dd.mhja.dao.CoderDao;
 @WebServlet("/coder/get")
 public class FindCoder extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger LOG = LoggerFactory.getLogger(FindCoder.class);
+    private static final Logger log = LoggerFactory.getLogger(FindCoder.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LOG.trace("enter");
+        log.trace("enter");
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
@@ -33,7 +33,7 @@ public class FindCoder extends HttpServlet {
         try {
             id = Integer.valueOf(param);
         } catch (NumberFormatException nfe) {
-            LOG.error("Can't serve request for id " + param);
+            log.error("Can't serve request for id " + param);
         }
 
         try (PrintWriter writer = response.getWriter()) {
