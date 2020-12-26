@@ -3,6 +3,6 @@
 <Context>
     <Resource name="jdbc/me" type="javax.sql.DataSource"
         driverClassName="com.mysql.cj.jdbc.Driver" auth="Container"
-        url="jdbc:mysql://localhost:3306/me?serverTimezone=Europe/Rome"
+        url="jdbc:mysql://localhost:3306/me"
         username="me" password="password" />
 </Context>
