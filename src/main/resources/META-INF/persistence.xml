@@ -8,7 +8,7 @@
             <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" /> -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql" value="true" /> <!-- dev -->
-            <property name="hibernate.format_sql" value="true" /> <!-- dev -->
+            <!-- <property name="hibernate.format_sql" value="true" /> --> <!-- dev -->
         </properties>
     </persistence-unit>
 
@@ -16,8 +16,8 @@
     <!-- <non-jta-data-source>java:comp/env/jdbc/hr</non-jta-data-source> -->
     <!-- <properties> -->
     <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" /> -->
-    <!-- <property name="hibernate.show_sql" value="true" /> dev -->
-    <!-- <property name="hibernate.format_sql" value="true" /> dev -->
+    <!-- <property name="hibernate.show_sql" value="true" /> --> <!-- dev -->
+    <!-- <property name="hibernate.format_sql" value="true" /> --> <!-- dev -->
     <!-- </properties> -->
     <!-- </persistence-unit> -->
 </persistence>
