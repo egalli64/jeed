@@ -1,4 +1,4 @@
-package com.example.jed.s05.dao;
+package com.example.jed.s06;
 
 import java.util.Properties;
 
@@ -8,6 +8,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
+
+import com.example.jed.s05.Coder05;
 
 public abstract class HibernateUtil {
     private static SessionFactory sessionFactory;

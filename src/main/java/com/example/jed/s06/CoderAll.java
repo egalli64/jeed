@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.jed.s06.dao.Coder06;
-import com.example.jed.s06.dao.CoderDao;
+import com.example.jed.s05.Coder05;
 
 @WebServlet("/s06/coder/all")
 public class CoderAll extends HttpServlet {
@@ -25,7 +24,7 @@ public class CoderAll extends HttpServlet {
             throws ServletException, IOException {
         log.trace("enter");
 
-        List<Coder06> coders = new CoderDao().getAll();
+        List<Coder05> coders = new CoderDao().getAll();
         request.setAttribute("coders", coders);
         log.debug(String.format("Found %d coders", coders.size()));
 

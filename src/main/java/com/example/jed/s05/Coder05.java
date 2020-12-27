@@ -1,4 +1,4 @@
-package com.example.jed.s06.dao;
+package com.example.jed.s05;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CODERS")
-public class Coder06 {
+public class Coder05 {
     @Id
     @Column(name = "CODER_ID")
     private long id;
@@ -26,14 +26,14 @@ public class Coder06 {
     @Column(name = "SALARY")
     private double salary;
 
-    public Coder06() {
+    public Coder05() {
     }
 
-    public Coder06(long id, String firstName, String lastName, double salary) {
+    public Coder05(long id, String firstName, String lastName, double salary) {
         this(id, firstName, lastName, LocalDate.now(), salary);
     }
 
-    public Coder06(long id, String firstName, String lastName, LocalDate hireDate, double salary) {
+    public Coder05(long id, String firstName, String lastName, LocalDate hireDate, double salary) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

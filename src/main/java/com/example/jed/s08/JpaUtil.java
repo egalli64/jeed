@@ -1,4 +1,4 @@
-package com.example.jed.s06.dao;
+package com.example.jed.s08;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
