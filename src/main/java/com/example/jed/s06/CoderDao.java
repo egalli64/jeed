@@ -10,6 +10,7 @@ import com.example.jed.s05.Coder05;
 public class CoderDao {
     public List<Coder05> getAll() {
         try (Session session = HibernateUtil.getSession()) {
+            // explicit HQL query is "select c from Coder05 c"
             Query<Coder05> query = session.createQuery("from Coder05", Coder05.class);
             return query.list();
         }
