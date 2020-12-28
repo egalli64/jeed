@@ -41,7 +41,7 @@ public abstract class Dao<T, U> {
 
         try {
             em = JpaUtil.createEntityManager();
-            T t = em.find(clazz, null);
+            T t = em.find(clazz, id);
             return Optional.ofNullable(t);
         } catch (Exception ex) {
             log.error("Can't create query: " + ex.getMessage());
