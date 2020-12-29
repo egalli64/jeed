@@ -6,17 +6,18 @@
 <head>
 <meta charset="utf-8">
 <title>Coders</title>
-<link rel="icon" type="image/x-icon" href="/jes/favicon.ico">
-<link rel="stylesheet" type="text/css" href="/jes/css/simple.css">
+<link rel="icon" type="image/x-icon" href="/jed/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/jed/css/simple.css">
 </head>
 <body>
     <h1>Coder</h1>
     <c:choose>
         <c:when test="${coder eq null}">
-            <p>No coder found with id ${param.id}</p>
+            <p>Failure operating on coder with id ${param.id}</p>
         </c:when>
         <c:otherwise>
             <p>Coder is ${coder.firstName} ${coder.lastName}</p>
+            <p>hired on ${coder.hireDate}, salary is ${coder.salary}</p>
         </c:otherwise>
     </c:choose>
     <p>
