@@ -87,4 +87,28 @@ public class CoderDao {
             }
         }
     }
+
+    public Optional<Coder05> readRefresh(long id) {
+        EntityManager em = null;
+
+        try {
+            em = JpaUtil.createEntityManager();
+            Coder05 coder = em.find(Coder05.class, id);
+
+            coder.setLastName("Something else");
+
+            log.debug("Coder is: " + coder);
+            em.refresh(coder);
+            log.debug("Coder is: " + coder);
+
+            return Optional.ofNullable(coder);
+        } catch (Exception ex) {
+            log.error("Find + refresh failure", ex);
+            return Optional.empty();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
 }
