@@ -13,7 +13,10 @@
     <h1>Coder</h1>
     <c:choose>
         <c:when test="${coder eq null}">
-            <p>Failure operating on coder with id ${param.id}</p>
+            <p>
+                Failure operating on coder
+                <c:if test="${param.id ne null}">with id ${param.id}</c:if>
+            </p>
         </c:when>
         <c:otherwise>
             <p>Coder is ${coder.firstName} ${coder.lastName}</p>
