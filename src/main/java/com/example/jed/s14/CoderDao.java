@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -69,4 +70,33 @@ public class CoderDao {
             }
         }
     }
+
+    public int deleteAllById(long low) {
+        EntityManager em = null;
+        EntityTransaction tx = null;
+
+        try {
+            em = JpaUtil.createEntityManager();
+            tx = em.getTransaction();
+            String jpql = "DELETE FROM Coder05 c WHERE c.id >= :low";
+            Query query = em.createQuery(jpql);
+            query.setParameter("low", low);
+            tx.begin();
+            return query.executeUpdate();
+        } catch (Exception ex) {
+            log.error("Can't delete for " + low, ex);
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            return 0;
+        } finally {
+            if (em != null) {
+                if (tx != null && tx.isActive()) {
+                    tx.commit();
+                }
+                em.close();
+            }
+        }
+    }
+
 }
