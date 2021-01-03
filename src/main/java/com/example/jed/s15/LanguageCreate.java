@@ -21,7 +21,7 @@ public class LanguageCreate extends HttpServlet {
             throws ServletException, IOException {
         log.trace("enter");
 
-        Language15 language = new Language15("Spanish");
+        LanguageGV language = new LanguageGV("Spanish");
         if (new LanguageDao().create(language)) {
             log.debug("Language persisted with id " + language.getId());
         } else {

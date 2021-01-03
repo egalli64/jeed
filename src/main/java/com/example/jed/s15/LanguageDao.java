@@ -11,7 +11,7 @@ import com.example.jed.dao.JpaUtil;
 public class LanguageDao {
     private static final Logger log = LoggerFactory.getLogger(LanguageDao.class);
 
-    public boolean create(Language15 language) {
+    public boolean create(LanguageGV language) {
         EntityManager em = null;
         EntityTransaction tx = null;
         log.trace("enter");

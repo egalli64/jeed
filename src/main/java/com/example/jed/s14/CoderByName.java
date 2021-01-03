@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.jed.s05.Coder05;
+import com.example.jed.s06.CoderPlain;
 
 @WebServlet("/s14/coder/named")
 public class CoderByName extends HttpServlet {
@@ -27,7 +27,7 @@ public class CoderByName extends HttpServlet {
         String first = request.getParameter("first");
         String last = request.getParameter("last");
 
-        Optional<Coder05> coder = new CoderDao().getByName(first, last);
+        Optional<CoderPlain> coder = new CoderDao().getByName(first, last);
         if (coder.isPresent()) {
             request.setAttribute("coder", coder.get());
         }

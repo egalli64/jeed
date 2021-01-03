@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "LANGUAGES")
-public class Language15 {
+public class LanguageGV {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LanGen")
     @SequenceGenerator(sequenceName = "LANGUAGE_SEQ", allocationSize = 1, name = "LanGen")
@@ -20,10 +20,10 @@ public class Language15 {
     @Column(name = "NAME")
     private String name;
 
-    public Language15() {
+    public LanguageGV() {
     }
 
-    public Language15(String name) {
+    public LanguageGV(String name) {
         this.name = name;
     }
 

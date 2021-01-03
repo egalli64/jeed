@@ -24,7 +24,7 @@ public class LanguageCreateBad extends HttpServlet {
         String param = request.getParameter("id");
         long id = Long.parseLong(param);
 
-        Language15 language = new Language15("Greek");
+        LanguageGV language = new LanguageGV("Greek");
 
         // !! ERROR, when id is a GeneratedValue, it should not be set !!
         language.setId(id);

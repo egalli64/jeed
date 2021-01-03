@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.jed.s05.Coder05;
+import com.example.jed.s06.CoderPlain;
 
 @WebServlet("/s14/coder/salary/top")
 public class CoderTopSalary extends HttpServlet {
@@ -26,7 +26,7 @@ public class CoderTopSalary extends HttpServlet {
 
         String param = request.getParameter("lowest");
         double lowest = Double.parseDouble(param);
-        List<Coder05> coders = new CoderDao().getPayedMoreThan(lowest);
+        List<CoderPlain> coders = new CoderDao().getPayedMoreThan(lowest);
         request.setAttribute("coders", coders);
         log.debug(String.format("Found %d coders", coders.size()));
 

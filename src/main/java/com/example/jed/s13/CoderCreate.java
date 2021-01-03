@@ -1,7 +1,6 @@
-package com.example.jed.s08;
+package com.example.jed.s13;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,23 +11,30 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.jed.s05.Coder05;
+import com.example.jed.s06.CoderPlain;
 
-@WebServlet("/s08/coder/all")
-public class CoderAll extends HttpServlet {
+@WebServlet("/s13/coder/create")
+public class CoderCreate extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(CoderAll.class);
+    private static final Logger log = LoggerFactory.getLogger(CoderCreate.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         log.trace("enter");
 
-        List<Coder05> coders = new CoderDao().getAll();
-        request.setAttribute("coders", coders);
-        log.debug(String.format("Found %d coders", coders.size()));
+        String param = request.getParameter("id");
+        long id = Long.parseLong(param);
 
-        request.getRequestDispatcher("/coders.jsp").forward(request, response);
+        CoderPlain coder = new CoderPlain(id, "Jim", "Korn", 1000.0);
+        if (new CoderDao().create(coder)) {
+            log.debug("Coder persisted with id " + coder.getId());
+            request.setAttribute("coder", coder);
+        } else {
+            log.info("Can't create " + coder);
+        }
+
+        request.getRequestDispatcher("/coder.jsp").forward(request, response);
     }
 
     @Override

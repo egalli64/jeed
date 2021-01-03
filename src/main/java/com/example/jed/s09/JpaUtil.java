@@ -1,4 +1,4 @@
-package com.example.jed.s08;
+package com.example.jed.s09;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

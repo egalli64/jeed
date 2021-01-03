@@ -1,4 +1,4 @@
-package com.example.jed.s05;
+package com.example.jed.s06;
 
 import java.time.LocalDate;
 
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CODERS")
-public class Coder05 {
+public class CoderPlain {
     @Id
     @Column(name = "CODER_ID")
     private long id;
@@ -26,14 +26,14 @@ public class Coder05 {
     @Column(name = "SALARY")
     private double salary;
 
-    public Coder05() {
+    public CoderPlain() {
     }
 
-    public Coder05(long id, String firstName, String lastName, double salary) {
+    public CoderPlain(long id, String firstName, String lastName, double salary) {
         this(id, firstName, lastName, LocalDate.now(), salary);
     }
 
-    public Coder05(long id, String firstName, String lastName, LocalDate hireDate, double salary) {
+    public CoderPlain(long id, String firstName, String lastName, LocalDate hireDate, double salary) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -83,7 +83,7 @@ public class Coder05 {
 
     @Override
     public String toString() {
-        return "Coder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
+        return "CoderPlain [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
                 + ", salary=" + salary + "]";
     }
 }

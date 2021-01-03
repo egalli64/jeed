@@ -1,4 +1,4 @@
-package com.example.jed.s11;
+package com.example.jed.s12;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.jed.s05.Coder05;
+import com.example.jed.s06.CoderPlain;
 
-@WebServlet("/s11/coder/get")
-public class CoderGet extends HttpServlet {
+@WebServlet("/s12/coder/refresh/get")
+public class CoderGetRefresh extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(CoderGet.class);
+    private static final Logger log = LoggerFactory.getLogger(CoderGetRefresh.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,7 +27,7 @@ public class CoderGet extends HttpServlet {
         String param = request.getParameter("id");
         long id = Long.parseLong(param);
 
-        Optional<Coder05> opt = new CoderDao().read(id);
+        Optional<CoderPlain> opt = new CoderDao().readRefresh(id);
         if (opt.isPresent()) {
             log.debug("Found coder " + id);
             request.setAttribute("coder", opt.get());

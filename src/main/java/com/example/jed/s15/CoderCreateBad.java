@@ -24,7 +24,7 @@ public class CoderCreateBad extends HttpServlet {
         String param = request.getParameter("id");
         long id = Long.parseLong(param);
 
-        Coder15 coder = new Coder15("Buck", "Roger", 1300.0);
+        CoderGV coder = new CoderGV("Buck", "Roger", 1300.0);
 
         // !! ERROR, when id is a GeneratedValue, it should not be set !!
         coder.setId(id);

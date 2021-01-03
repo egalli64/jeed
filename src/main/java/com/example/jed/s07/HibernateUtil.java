@@ -1,4 +1,4 @@
-package com.example.jed.s06;
+package com.example.jed.s07;
 
 import java.util.Properties;
 
@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import com.example.jed.s05.Coder05;
+import com.example.jed.s06.CoderPlain;
 
 public abstract class HibernateUtil {
     private static SessionFactory sessionFactory;
@@ -21,7 +21,7 @@ public abstract class HibernateUtil {
         settings.put(Environment.DATASOURCE, "java:comp/env/jdbc/me");
         settings.put(Environment.SHOW_SQL, "true");
         configuration.setProperties(settings);
-        configuration.addAnnotatedClass(Coder05.class);
+        configuration.addAnnotatedClass(CoderPlain.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties()).build();

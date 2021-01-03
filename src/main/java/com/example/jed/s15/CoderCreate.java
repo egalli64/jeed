@@ -21,7 +21,7 @@ public class CoderCreate extends HttpServlet {
             throws ServletException, IOException {
         log.trace("enter");
 
-        Coder15 coder = new Coder15("Frank", "Fripp", 1500.0);
+        CoderGV coder = new CoderGV("Frank", "Fripp", 1500.0);
         if (new CoderDao().create(coder)) {
             log.debug("Coder persisted with id " + coder.getId());
             request.setAttribute("coder", coder);

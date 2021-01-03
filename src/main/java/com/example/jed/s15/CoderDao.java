@@ -11,7 +11,7 @@ import com.example.jed.dao.JpaUtil;
 public class CoderDao {
     private static final Logger log = LoggerFactory.getLogger(CoderDao.class);
 
-    public boolean create(Coder15 coder) {
+    public boolean create(CoderGV coder) {
         EntityManager em = null;
         EntityTransaction tx = null;
         log.trace("enter");

@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "CODERS")
-public class Coder15 {
+public class CoderGV {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CODER_ID")
@@ -32,14 +32,14 @@ public class Coder15 {
     @Column(name = "SALARY")
     private double salary;
 
-    public Coder15() {
+    public CoderGV() {
     }
 
-    public Coder15(String firstName, String lastName, double salary) {
+    public CoderGV(String firstName, String lastName, double salary) {
         this(firstName, lastName, LocalDate.now(), salary);
     }
 
-    public Coder15(String firstName, String lastName, LocalDate hireDate, double salary) {
+    public CoderGV(String firstName, String lastName, LocalDate hireDate, double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.hireDate = hireDate;

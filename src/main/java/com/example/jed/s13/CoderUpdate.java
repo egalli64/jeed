@@ -1,4 +1,4 @@
-package com.example.jed.s12;
+package com.example.jed.s13;
 
 import java.io.IOException;
 
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.jed.s05.Coder05;
+import com.example.jed.s06.CoderPlain;
 
-@WebServlet("/s12/coder/update")
+@WebServlet("/s13/coder/update")
 public class CoderUpdate extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final Logger log = LoggerFactory.getLogger(CoderUpdate.class);
@@ -27,7 +27,7 @@ public class CoderUpdate extends HttpServlet {
         long id = Long.parseLong(param);
         String firstName = request.getParameter("first");
 
-        Coder05 coder = new Coder05(id, firstName == null ? "Jimmy" : firstName, "Gorn", 1200.0);
+        CoderPlain coder = new CoderPlain(id, firstName == null ? "Jimmy" : firstName, "Gorn", 1200.0);
         if (new CoderDao().update(coder)) {
             log.debug("Coder merged with id " + coder.getId());
             request.setAttribute("coder", coder);
