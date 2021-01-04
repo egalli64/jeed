@@ -1,11 +1,11 @@
-package com.example.jed.s09;
+package com.example.jed.s08;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import com.example.jed.s06.CoderPlain;
+import com.example.jed.s05.CoderPlain;
 
 public class CoderDao {
     public List<CoderPlain> getAll() {

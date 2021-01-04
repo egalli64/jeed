@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.example.jed.dao.JpaUtil;
-import com.example.jed.s06.CoderPlain;
+import com.example.jed.s05.CoderPlain;
 
 public class CoderDao {
     private static final Logger log = LoggerFactory.getLogger(CoderDao.class);

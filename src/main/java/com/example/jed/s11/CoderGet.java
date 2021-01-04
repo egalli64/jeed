@@ -1,6 +1,7 @@
-package com.example.jed.s13;
+package com.example.jed.s11;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,12 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.jed.s06.CoderPlain;
+import com.example.jed.s05.CoderPlain;
 
-@WebServlet("/s13/coder/update")
-public class CoderUpdate extends HttpServlet {
+@WebServlet("/s11/coder/get")
+public class CoderGet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(CoderUpdate.class);
+    private static final Logger log = LoggerFactory.getLogger(CoderGet.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -25,14 +26,13 @@ public class CoderUpdate extends HttpServlet {
 
         String param = request.getParameter("id");
         long id = Long.parseLong(param);
-        String firstName = request.getParameter("first");
 
-        CoderPlain coder = new CoderPlain(id, firstName == null ? "Jimmy" : firstName, "Gorn", 1200.0);
-        if (new CoderDao().update(coder)) {
-            log.debug("Coder merged with id " + coder.getId());
-            request.setAttribute("coder", coder);
+        Optional<CoderPlain> opt = new CoderDao().read(id);
+        if (opt.isPresent()) {
+            log.debug("Found coder " + id);
+            request.setAttribute("coder", opt.get());
         } else {
-            log.info("Can't merge " + coder);
+            log.info(String.format("Coder %d not found", id));
         }
 
         request.getRequestDispatcher("/coder.jsp").forward(request, response);

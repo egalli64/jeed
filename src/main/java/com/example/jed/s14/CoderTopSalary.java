@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.jed.s06.CoderPlain;
+import com.example.jed.s05.CoderPlain;
 
 @WebServlet("/s14/coder/salary/top")
 public class CoderTopSalary extends HttpServlet {

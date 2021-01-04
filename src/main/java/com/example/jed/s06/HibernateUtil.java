@@ -1,4 +1,4 @@
-package com.example.jed.s07;
+package com.example.jed.s06;
 
 import java.util.Properties;
 
@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import com.example.jed.s06.CoderPlain;
+import com.example.jed.s05.CoderPlain;
 
 public abstract class HibernateUtil {
     private static SessionFactory sessionFactory;

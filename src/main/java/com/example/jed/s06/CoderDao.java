@@ -1,11 +1,11 @@
-package com.example.jed.s07;
+package com.example.jed.s06;
 
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import com.example.jed.s06.CoderPlain;
+import com.example.jed.s05.CoderPlain;
 
 public class CoderDao {
     public List<CoderPlain> getAll() {

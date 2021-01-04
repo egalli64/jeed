@@ -1,4 +1,4 @@
-package com.example.jed.s13;
+package com.example.jed.s12;
 
 import java.io.IOException;
 
@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/s13/coder/delete")
-public class CoderDelete extends HttpServlet {
+import com.example.jed.s05.CoderPlain;
+
+@WebServlet("/s12/coder/update")
+public class CoderUpdate extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(CoderDelete.class);
+    private static final Logger log = LoggerFactory.getLogger(CoderUpdate.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -23,14 +25,17 @@ public class CoderDelete extends HttpServlet {
 
         String param = request.getParameter("id");
         long id = Long.parseLong(param);
+        String firstName = request.getParameter("first");
 
-        if (new CoderDao().delete(id)) {
-            log.debug(String.format("Coder with id %d deleted", id));
-            request.getRequestDispatcher("/").forward(request, response);
+        CoderPlain coder = new CoderPlain(id, firstName == null ? "Jimmy" : firstName, "Gorn", 1200.0);
+        if (new CoderDao().update(coder)) {
+            log.debug("Coder merged with id " + coder.getId());
+            request.setAttribute("coder", coder);
         } else {
-            log.info("Can't delete coder " + id);
-            request.getRequestDispatcher("/coder.jsp").forward(request, response);
+            log.info("Can't merge " + coder);
         }
+
+        request.getRequestDispatcher("/coder.jsp").forward(request, response);
     }
 
     @Override
