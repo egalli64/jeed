@@ -5,22 +5,21 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Coder</title>
+<title>Team</title>
 <link rel="icon" type="image/x-icon" href="/jed/favicon.ico">
 <link rel="stylesheet" type="text/css" href="/jed/css/simple.css">
 </head>
 <body>
-    <h1>Coder</h1>
+    <h1>Team</h1>
     <c:choose>
-        <c:when test="${coder eq null}">
+        <c:when test="${team eq null}">
             <p>
-                Failure operating on coder
+                Failure operating on team
                 <c:if test="${param.id ne null}">with id ${param.id}</c:if>
             </p>
         </c:when>
         <c:otherwise>
-            <p>Coder is ${coder.firstName} ${coder.lastName}</p>
-            <p>hired on ${coder.hireDate}, salary is ${coder.salary}</p>
+            <p>Team ${team.name}, leader is ${team.leader.firstName} ${team.leader.lastName}</p>
         </c:otherwise>
     </c:choose>
     <p>

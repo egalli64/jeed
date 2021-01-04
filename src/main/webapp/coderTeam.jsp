@@ -19,8 +19,12 @@
             </p>
         </c:when>
         <c:otherwise>
-            <p>Coder is ${coder.firstName} ${coder.lastName}</p>
-            <p>hired on ${coder.hireDate}, salary is ${coder.salary}</p>
+            <p>
+                Coder is ${coder.firstName} ${coder.lastName}
+                <c:if test="${coder ne null}">
+                    leader of team ${coder.leadingTeam.name}
+                </c:if>
+            </p>
         </c:otherwise>
     </c:choose>
     <p>
