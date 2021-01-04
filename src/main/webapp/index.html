@@ -12,18 +12,18 @@
 
     <h2>Native vs JPA</h2>
     <ul>
-        <li>Get <a href="s06/coder/all">all coders</a> - native approach</li>
-        <li>Get <a href="s08/coder/all">all coders</a> - JPA approach</li>
+        <li>Get <a href="s06/coder/all">all coders (native approach)</a></li>
+        <li>Get <a href="s08/coder/all">all coders (JPA approach)</a></li>
     </ul>
 
     <h2>EntityManager to read</h2>
     <ul>
         <li>Get <a href="s11/coder/get?id=107">single coder (107)</a></li>
-        <li>Get <a href="s11/coder/get?id=402">single coder</a> (missing)</li>
-        <li>Get <a href="s11/coder/proxy/get?id=107">single coder (107)</a> (proxy)</li>
-        <li>Get <a href="s11/coder/refresh/get?id=107">single coder (107)</a> (refresh)</li>
+        <li>Get <a href="s11/coder/get?id=402">single coder (missing)</a></li>
+        <li>Get <a href="s11/coder/proxy/get?id=107">single coder (proxy)</a></li>
+        <li>Get <a href="s11/coder/refresh/get?id=107">single coder (refresh)</a></li>
     </ul>
-    
+
     <h2>EntityManager to create, update, and delete</h2>
     <ul>
         <li><a href="s12/coder/create?id=222">Create coder (222)</a></li>
@@ -32,41 +32,42 @@
         <li><a href="s12/coder/delete?id=222">Delete coder (222)</a></li>
         <li><a href="s12/coder/delete?id=262">Delete coder (262)</a></li>
     </ul>
-    
+
     <h2>JPQL</h2>
     <ul>
-        <li><a href="s14/coder/salary/top?lowest=4800">Coders w/ salary > 4800</a></li>
+        <li>Get <a href="s14/coder/salary/top?lowest=4800">Coders w/ salary > 4800</a></li>
         <li>Get <a href="s14/coder/named?first=Diana&last=Lorentz">coder by name</a></li>
-        <li>Get <a href="s14/coder/named?first=X&last=X">coder by name</a> (missing)</li>
-        <li>Delete <a href="s14/coder/deleteAll?lower=202">coders by id</a> (from 202 on)</li>
+        <li>Get <a href="s14/coder/named?first=X&last=X">coder by name (missing)</a></li>
+        <li>Delete <a href="s14/coder/deleteAll?lower=202">coders by id (from 202 on)</a></li>
     </ul>
 
     <h2>Id with generated values</h2>
     <ul>
-        <li><a href="s15/coder/create">Create coder</a> (auto increment)</li>
-        <li><a href="s15/coder/createBad?id=251">Create coder</a> (error - auto id expected)</li>
+        <li>Create <a href="s15/coder/create">coder (auto increment)</a></li>
+        <li>Create <a href="s15/coder/createBad?id=251">coder (error - auto id expected)</a></li>
     </ul>
 
     <h3>Id with generated values - using Sequences (not supported by MySQL)</h3>
     <ul>
-        <li><a href="s15/language/create">Create language</a> (auto increment)</li>
-        <li><a href="s15/language/createBad?id=41">Create language</a> (error - auto id expected)</li>
+        <li>Create <a href="s15/language/create">language (auto increment)</a></li>
+        <li>Create <a href="s15/language/createBad?id=41">language (error - auto id expected)</a></li>
     </ul>
 
     <h2>One to one: team - coder as team leader</h2>
     <ul>
-        <li><a href="s17/team?id=1">Get team (1)</a></li>
-        <li><a href="s17/teams">Get all teams</a></li>
-        <li><a href="s17/coder?id=103">Get coder (103)</a> leader</li>
-        <li><a href="s17/coder?id=104">Get coder (104)</a> not a leader</li>
-        <li><a href="s17/coders">Get all coders</a></li>
+        <li>Get <a href="s17/team?id=1">team (1)</a></li>
+        <li>Get <a href="s17/teams">all teams</a></li>
+        <li>Get <a href="s17/coder?id=103">coder (103 - leader)</a></li>
+        <li>Get <a href="s17/coder?id=104">coder (104 - not a leader)</a></li>
+        <li>Get <a href="s17/coders">all coders</a></li>
     </ul>
 
+    <h2>One to many / Many to one - country and region</h2>
     <ul>
-        <li><a href="coder/all">Get all coders</a></li>
-        <li><a href="coder/new?first=X&last=Y">Create new coder</a></li>
-        <li><a href="coder/get?id=103">Get coder</a></li>
-        <li><a href="coder/get?id=1024">Get coder</a> (missing)</li>
+        <li>Get <a href="s18/countries">all countries</a></li>
+        <li>Get <a href="s18/regions">all regions (no countries)</a></li>
+        <li>Get <a href="s18/regions/countries">all regions and countries</a></li>
+        <li>Get <a href="s18/regions/eager">all regions and countries (eager)</a></li>
     </ul>
 </body>
 </html>

@@ -1,7 +1,6 @@
-package com.example.jed.s19;
+package com.example.jed.s18;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,24 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet("/s19/region/all/full")
-public class RegionAllFull extends HttpServlet {
+@WebServlet("/s18/regions")
+public class RegionAll extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(RegionAllFull.class);
+    private static final Logger log = LoggerFactory.getLogger(RegionAll.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         log.trace("enter");
 
-        response.setContentType("text/plain");
-        response.setCharacterEncoding("utf-8");
+        RegionDao dao = new RegionDao();
+        List<Region1ToM> regions = dao.readAllLazy();
+        request.setAttribute("regions", regions);
 
-        try (PrintWriter writer = response.getWriter()) {
-            RegionDao dao = new RegionDao();
-            List<Region> regions = dao.readAllEager();
-            writer.println(regions);
-        }
+        request.getRequestDispatcher("/regions.jsp").forward(request, response);
     }
 
     @Override

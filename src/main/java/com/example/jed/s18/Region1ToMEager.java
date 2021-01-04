@@ -1,20 +1,20 @@
-package com.example.jed.s19;
+package com.example.jed.s18;
 
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity(name = "RegionS19")
+@Entity
 @Table(name = "REGIONS")
-public class Region {
+public class Region1ToMEager {
     @Id
-    // MySQL / OracleDB 12+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "REGION_ID")
     private int id;
@@ -22,13 +22,13 @@ public class Region {
     @Column(name = "REGION_NAME")
     private String name;
 
-    @OneToMany(mappedBy = "region")
-    private Set<Country> countries;
+    @OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
+    private Set<CountryMTo1> countries;
 
-    public Region() {
+    public Region1ToMEager() {
     }
 
-    public Region(String name) {
+    public Region1ToMEager(String name) {
         this.name = name;
     }
 
@@ -48,11 +48,11 @@ public class Region {
         this.name = name;
     }
 
-    public Set<Country> getCountries() {
+    public Set<CountryMTo1> getCountries() {
         return countries;
     }
 
-    public void setCountries(Set<Country> countries) {
+    public void setCountries(Set<CountryMTo1> countries) {
         this.countries = countries;
     }
 

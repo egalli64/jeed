@@ -1,4 +1,4 @@
-package com.example.jed.s19;
+package com.example.jed.s18;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,11 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity(name = "CountryS19")
+@Entity
 @Table(name = "COUNTRIES")
-public class Country {
+public class CountryMTo1 {
     @Id
-    // MySQL / OracleDB 12+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COUNTRY_ID")
     private String id;
@@ -23,12 +22,12 @@ public class Country {
 
     @ManyToOne
     @JoinColumn(name = "REGION_ID")
-    private Region region;
+    private Region1ToM region;
 
-    public Country() {
+    public CountryMTo1() {
     }
 
-    public Country(String name) {
+    public CountryMTo1(String name) {
         this.name = name;
     }
 
@@ -48,16 +47,16 @@ public class Country {
         this.name = name;
     }
 
-    public Region getRegion() {
+    public Region1ToM getRegion() {
         return region;
     }
 
-    public void setRegion(Region region) {
+    public void setRegion(Region1ToM region) {
         this.region = region;
     }
 
     @Override
     public String toString() {
-        return "Country [id=" + id + ", name=" + name + ", region=" + (region != null ? region.getName() : "N/A") + "]";
+        return "Country [id=" + id + ", name=" + name + (region != null ? ", region=" + region.getName() : "") + "]";
     }
 }
