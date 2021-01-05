@@ -1,4 +1,4 @@
-package com.example.jed.s20;
+package com.example.jed.s19;
 
 import java.util.Set;
 
@@ -10,38 +10,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.Hibernate;
 
-@Entity(name = "TeamS20")
+@Entity
 @Table(name = "TEAMS")
-public class Team {
+public class TeamMToM {
     @Id
-    // MySQL / OracleDB 12+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // OracleDB sequence
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TeamGen20")
-//    @SequenceGenerator(sequenceName = "TEAM_SEQ", allocationSize = 1, name = "TeamGen20")
     @Column(name = "TEAM_ID")
     private int id;
 
     @Column(name = "NAME")
     private String name;
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "LEADER_ID")
-    private Coder leader;
-
     @ManyToMany
     @JoinTable(name = "TEAM_CODER", joinColumns = @JoinColumn(name = "TEAM_ID"), inverseJoinColumns = @JoinColumn(name = "CODER_ID"))
-    private Set<Coder> coders;
+    private Set<CoderMToM> coders;
 
-    public Team() {
+    public TeamMToM() {
     }
 
-    public Team(String name) {
+    public TeamMToM(String name) {
         this.name = name;
     }
 
@@ -61,29 +52,22 @@ public class Team {
         this.name = name;
     }
 
-    public Coder getLeader() {
-        return leader;
-    }
-
-    public void setLeader(Coder leader) {
-        this.leader = leader;
-    }
-
-    public Set<Coder> getCoders() {
+    public Set<CoderMToM> getCoders() {
         return coders;
     }
 
-    public void setCoders(Set<Coder> coders) {
+    public void setCoders(Set<CoderMToM> coders) {
         this.coders = coders;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Team [id=" + id + ", name=" + name + ", leader=" + leader);
+        StringBuilder sb = new StringBuilder("Team [id=" + id + ", name=" + name);
         if (Hibernate.isInitialized(coders)) {
             sb.append(", coders=");
             sb.append(coders);
         }
+        sb.append(']');
         return sb.toString();
     }
 }

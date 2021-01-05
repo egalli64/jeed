@@ -11,20 +11,22 @@
 </head>
 <body>
     <h1>Teams</h1>
-    <table>
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>leader</th>
-        </tr>
-        <c:forEach var="team" items="${teams}">
+    <c:forEach var="team" items="${teams}">
+        <h2>${team.id}&nbsp;${team.name}</h2>
+        <table>
             <tr>
-                <td>${team.id}</td>
-                <td>${team.name}</td>
-                <td>${team.leader.firstName}&nbsp;${team.leader.lastName}</td>
+                <th>id</th>
+                <th>name</th>
             </tr>
-        </c:forEach>
-    </table>
+            <c:forEach var="coder" items="${team.coders}">
+                <tr>
+                    <td>${coder.id}</td>
+                    <td>${coder.firstName}&nbsp;${coder.lastName}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:forEach>
+
     <p>
         Back <a href="/jed/index.html">home</a>
     </p>

@@ -1,6 +1,5 @@
-package com.example.jed.s20;
+package com.example.jed.s19;
 
-import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,20 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.Hibernate;
 
-@Entity(name = "CoderS20")
+@Entity
 @Table(name = "CODERS")
-public class Coder {
+public class CoderMToM {
     @Id
-    // MySQL / OracleDB 12+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // OracleDB sequence
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CodGen20")
-//    @SequenceGenerator(sequenceName = "CODER_SEQ", allocationSize = 1, name = "CodGen20")
     @Column(name = "CODER_ID")
     private int id;
 
@@ -33,19 +27,10 @@ public class Coder {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "HIRE_DATE")
-    private LocalDate hireDate;
-
-    @Column(name = "SALARY")
-    private Double salary;
-
-    @OneToOne(optional = true, mappedBy = "leader")
-    private Team leadingTeam;
-
     @ManyToMany(mappedBy = "coders")
-    private Set<Team> teams;
+    private Set<TeamMToM> teams;
 
-    public Coder() {
+    public CoderMToM() {
     }
 
     public int getId() {
@@ -72,35 +57,11 @@ public class Coder {
         this.lastName = lastName;
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
-    }
-
-    public Double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Double salary) {
-        this.salary = salary;
-    }
-
-    public Team getLeadingTeam() {
-        return leadingTeam;
-    }
-
-    public void setLeadingTeam(Team leadingTeam) {
-        this.leadingTeam = leadingTeam;
-    }
-
-    public Set<Team> getTeams() {
+    public Set<TeamMToM> getTeams() {
         return teams;
     }
 
-    public void setTeams(Set<Team> teams) {
+    public void setTeams(Set<TeamMToM> teams) {
         this.teams = teams;
     }
 
@@ -109,15 +70,10 @@ public class Coder {
         StringBuilder sb = new StringBuilder("Coder [id=" + id);
         sb.append(", firstName=" + firstName);
         sb.append(", lastName=" + lastName);
-        sb.append(", hireDate=" + hireDate);
-        sb.append(", salary=" + salary);
 
-        if (leadingTeam != null) {
-            sb.append(", leadingTeam=" + leadingTeam.getName());
-        }
         if (Hibernate.isInitialized(teams)) {
             sb.append(", teams=");
-            String s = teams.stream().map(Team::getName).collect(Collectors.joining(","));
+            String s = teams.stream().map(TeamMToM::getName).collect(Collectors.joining(","));
             sb.append(s);
         }
         sb.append("]");

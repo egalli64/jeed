@@ -15,13 +15,11 @@
         <tr>
             <th>id</th>
             <th>name</th>
-            <th>leader</th>
         </tr>
         <c:forEach var="team" items="${teams}">
             <tr>
                 <td>${team.id}</td>
                 <td>${team.name}</td>
-                <td>${team.leader.firstName}&nbsp;${team.leader.lastName}</td>
             </tr>
         </c:forEach>
     </table>
