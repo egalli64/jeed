@@ -14,11 +14,7 @@ import javax.persistence.Table;
 @Table(name = "CODERS")
 public class Coder {
     @Id
-    // MySQL / OracleDB 12+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // OracleDB sequence
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CodGen")
-//    @SequenceGenerator(sequenceName = "CODER_SEQ", allocationSize = 1, name = "CodGen")
     @Column(name = "CODER_ID")
     private int id;
 
@@ -31,12 +27,11 @@ public class Coder {
     @Column(name = "HIRE_DATE")
     private LocalDate hireDate;
 
-    // here this annotation is not mandatory
     @Column(name = "SALARY")
     private double salary;
 
     @OneToOne(optional = true, mappedBy = "leader")
-    private Team leadingTeam;
+    private Team team;
 
     public Coder() {
     }
@@ -81,17 +76,17 @@ public class Coder {
         this.salary = salary;
     }
 
-    public Team getLeadingTeam() {
-        return leadingTeam;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setLeadingTeam(Team leadingTeam) {
-        this.leadingTeam = leadingTeam;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     @Override
     public String toString() {
         return "Coder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
-                + ", salary=" + salary + (leadingTeam != null ? ", leadingTeam=" + leadingTeam.getName() : "") + "]";
+                + ", salary=" + salary + (team != null ? ", team=" + team.getName() : "") + "]";
     }
 }
