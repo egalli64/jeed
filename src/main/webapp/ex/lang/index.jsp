@@ -41,10 +41,22 @@
         <select name="id">
             <option value="">--Please choose a language--</option>
             <c:forEach var="language" items="${languages}">
-                <option value="${language.id}">${language.name}</option>
+                <option value="${language.id}">${language.id}&nbsp;${language.name}</option>
             </c:forEach>
         </select>
         <button>Remove</button>
+    </form>
+
+    <h2>Edit language</h2>
+    <form action="edit">
+        <select name="id">
+            <option value="">--Please choose a language--</option>
+            <c:forEach var="language" items="${languages}">
+                <option value="${language.id}">${language.id}&nbsp;${language.name}</option>
+            </c:forEach>
+        </select>
+        <input name="name" placeholder="New language name">
+        <button>Modify</button>
     </form>
 
     <%@include file="/ex/footer.html"%>

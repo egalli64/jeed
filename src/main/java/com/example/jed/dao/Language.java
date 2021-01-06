@@ -27,6 +27,11 @@ public class Language {
         this.name = name;
     }
 
+    public Language(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
