@@ -26,9 +26,6 @@ public abstract class Dao<T, U> {
             em = JpaUtil.createEntityManager();
             String jpql = "SELECT e FROM " + clazz.getName() + " e";
             return em.createQuery(jpql, clazz).getResultList();
-        } catch (Exception ex) {
-            log.error("Can't create query: " + ex.getMessage());
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -41,11 +38,7 @@ public abstract class Dao<T, U> {
 
         try {
             em = JpaUtil.createEntityManager();
-            T t = em.find(clazz, id);
-            return Optional.ofNullable(t);
-        } catch (Exception ex) {
-            log.error("Can't create query: " + ex.getMessage());
-            throw ex;
+            return Optional.ofNullable(em.find(clazz, id));
         } finally {
             if (em != null) {
                 em.close();
@@ -55,17 +48,24 @@ public abstract class Dao<T, U> {
 
     public boolean create(T entity) {
         EntityManager em = null;
+        EntityTransaction tx = null;
 
         try {
-            log.trace("enter");
             em = JpaUtil.createEntityManager();
-            EntityTransaction et = em.getTransaction();
-            et.begin();
+            tx = em.getTransaction();
+            tx.begin();
             em.persist(entity);
-            et.commit();
+            tx.commit();
             return true;
         } catch (Exception ex) {
-            log.warn("Can't persist entity", ex);
+            try {
+                if (tx != null && tx.isActive()) {
+                    tx.rollback();
+                }
+            } catch (Exception e) {
+                log.error("Can't rollback transaction", e);
+            }
+            log.error("Can't persist entity", ex);
             return false;
         } finally {
             if (em != null) {
@@ -82,7 +82,7 @@ public abstract class Dao<T, U> {
             em.refresh(entity);
             return em.contains(entity);
         } catch (Exception ex) {
-            log.warn("Can't check entity", ex);
+            log.error("Can't check if entity is contained in current context", ex);
             return false;
         } finally {
             if (em != null) {
@@ -93,16 +93,24 @@ public abstract class Dao<T, U> {
 
     public boolean update(T entity) {
         EntityManager em = null;
+        EntityTransaction tx = null;
 
         try {
             em = JpaUtil.createEntityManager();
-            EntityTransaction et = em.getTransaction();
-            et.begin();
+            tx = em.getTransaction();
+            tx.begin();
             em.merge(entity);
-            et.commit();
+            tx.commit();
             return true;
         } catch (Exception ex) {
-            log.warn("Can't merge entity", ex);
+            try {
+                if (tx != null && tx.isActive()) {
+                    tx.rollback();
+                }
+            } catch (Exception e) {
+                log.error("Can't rollback transaction", e);
+            }
+            log.error("Can't merge entity", ex);
             return false;
         } finally {
             if (em != null) {
@@ -113,23 +121,31 @@ public abstract class Dao<T, U> {
 
     public boolean delete(U id) {
         EntityManager em = null;
+        EntityTransaction tx = null;
 
         try {
             em = JpaUtil.createEntityManager();
-            EntityTransaction et = em.getTransaction();
-            et.begin();
+            tx = em.getTransaction();
+            tx.begin();
             T entity = em.find(clazz, id);
             if (entity != null) {
                 em.remove(entity);
-                et.commit();
+                tx.commit();
                 return true;
             } else {
                 log.info("Can't remove missing entity " + id);
-                et.rollback();
+                tx.rollback();
                 return false;
             }
         } catch (Exception ex) {
-            log.warn("Can't remove entity " + id, ex);
+            try {
+                if (tx != null && tx.isActive()) {
+                    tx.rollback();
+                }
+            } catch (Exception e) {
+                log.error("Can't rollback transaction", e);
+            }
+            log.error("Can't remove entity " + id, ex);
             return false;
         } finally {
             if (em != null) {
