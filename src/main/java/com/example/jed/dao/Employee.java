@@ -13,13 +13,12 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "EMPLOYEES")
-@NamedQuery(name = "getTopSalaried", query = "select e from Employee e where e.salary > :low")
+@NamedQuery(name = "getTopSalaried", query = "SELECT e FROM Employee e WHERE e.salary >= :low ORDER BY e.salary DESC")
 public class Employee {
     @Id
-    // MySQL / OracleDB 12+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYEE_ID")
-    private int id;
+    private Integer id;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -39,11 +38,11 @@ public class Employee {
     public Employee() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

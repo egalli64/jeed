@@ -15,34 +15,23 @@ import org.slf4j.LoggerFactory;
 import com.example.jed.dao.Employee;
 import com.example.jed.dao.EmployeeDao;
 
-@WebServlet("/ex/emp/salaryTop")
-public class EmployeesSalaryTop extends HttpServlet {
+@WebServlet("/ex/emp/all")
+public class EmployeeAll extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(EmployeesSalaryTop.class);
+    private static final Logger log = LoggerFactory.getLogger(EmployeeAll.class);
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String paramLow = request.getParameter("low");
-        Double low = null;
-        try {
-            low = Double.valueOf(paramLow);
-        } catch (Exception ex) {
-            log.error("Can't serve request for low " + paramLow);
-        }
+        log.trace("enter");
 
-        if (low == null) {
-            request.setAttribute("error", String.format("Can't get salary from _%s_ on", paramLow));
-        } else {
-            log.trace("from " + low);
-
-            EmployeeDao dao = new EmployeeDao();
-            List<Employee> employees = dao.readSalaryTop(low);
-            request.setAttribute("employees", employees);
-        }
-
+        EmployeeDao dao = new EmployeeDao();
+        List<Employee> employees = dao.readAllOrderBySalary(false);
+        request.setAttribute("employees", employees);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
