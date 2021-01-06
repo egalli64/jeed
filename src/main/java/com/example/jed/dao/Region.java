@@ -11,10 +11,9 @@ import javax.persistence.Table;
 @Table(name = "REGIONS")
 public class Region {
     @Id
-    // MySQL / OracleDB 12+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "REGION_ID")
-    private int id;
+    private Integer id;
 
     @Column(name = "REGION_NAME")
     private String name;
@@ -26,11 +25,16 @@ public class Region {
         this.name = name;
     }
 
-    public int getId() {
+    public Region(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
