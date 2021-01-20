@@ -1,7 +1,6 @@
 package com.example.jed.s14;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.example.jed.s05.CoderPlain;
 
 @WebServlet("/s14/coder/named")
 public class CoderByName extends HttpServlet {
@@ -27,10 +24,10 @@ public class CoderByName extends HttpServlet {
         String first = request.getParameter("first");
         String last = request.getParameter("last");
 
-        Optional<CoderPlain> coder = new CoderDao().getByName(first, last);
-        if (coder.isPresent()) {
-            request.setAttribute("coder", coder.get());
-        }
+        new CoderDao().getByName(first, last).ifPresent(coder -> {
+            request.setAttribute("coder", coder);
+        });
+
         request.getRequestDispatcher("/coder.jsp").forward(request, response);
     }
 

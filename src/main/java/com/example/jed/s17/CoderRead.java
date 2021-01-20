@@ -1,7 +1,6 @@
 package com.example.jed.s17;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,12 +23,7 @@ public class CoderRead extends HttpServlet {
 
         String param = request.getParameter("id");
         int id = Integer.parseInt(param);
-
-        CoderDao dao = new CoderDao();
-        Optional<Coder1To1> coder = dao.read(id);
-        if (coder.isPresent()) {
-            request.setAttribute("coder", coder.get());
-        }
+        new CoderDao().read(id).ifPresent(coder -> request.setAttribute("coder", coder));
 
         request.getRequestDispatcher("/coderTeam.jsp").forward(request, response);
     }

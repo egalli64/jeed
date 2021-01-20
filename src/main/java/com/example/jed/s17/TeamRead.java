@@ -1,7 +1,6 @@
 package com.example.jed.s17;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,11 +24,7 @@ public class TeamRead extends HttpServlet {
         String param = request.getParameter("id");
         int id = Integer.parseInt(param);
 
-        TeamDao dao = new TeamDao();
-        Optional<Team1To1> team = dao.read(id);
-        if (team.isPresent()) {
-            request.setAttribute("team", team.get());
-        }
+        new TeamDao().read(id).ifPresent(team -> request.setAttribute("team", team));
 
         request.getRequestDispatcher("/team.jsp").forward(request, response);
     }

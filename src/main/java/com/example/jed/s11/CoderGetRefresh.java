@@ -1,7 +1,6 @@
 package com.example.jed.s11;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.example.jed.s05.CoderPlain;
 
 @WebServlet("/s11/coder/refresh/get")
 public class CoderGetRefresh extends HttpServlet {
@@ -27,13 +24,12 @@ public class CoderGetRefresh extends HttpServlet {
         String param = request.getParameter("id");
         long id = Long.parseLong(param);
 
-        Optional<CoderPlain> opt = new CoderDao().readRefresh(id);
-        if (opt.isPresent()) {
+        new CoderDao().readRefresh(id).ifPresentOrElse(coder -> {
             log.debug("Found coder " + id);
-            request.setAttribute("coder", opt.get());
-        } else {
+            request.setAttribute("coder", coder);
+        }, () -> {
             log.info(String.format("Coder %d not found", id));
-        }
+        });
 
         request.getRequestDispatcher("/coder.jsp").forward(request, response);
     }

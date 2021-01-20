@@ -2,7 +2,6 @@ package com.example.jed.srv;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.jed.dao.Coder;
 import com.example.jed.dao.CoderDao;
 
 @WebServlet("/coder/get")
@@ -29,27 +27,17 @@ public class FindCoder extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         String param = request.getParameter("id");
-        Integer id = null;
-        try {
-            id = Integer.valueOf(param);
-        } catch (NumberFormatException nfe) {
-            log.error("Can't serve request for id " + param);
-        }
-
         try (PrintWriter writer = response.getWriter()) {
+            Integer id = Integer.valueOf(param);
             if (id == null) {
                 writer.println("please provide an id for the region");
                 return;
             }
 
-            CoderDao dao = new CoderDao();
-
-            Optional<Coder> opt = dao.read(id);
-            if (opt.isPresent()) {
-                writer.println("Coder found: " + opt.get());
-            } else {
-                writer.println("Can't find coder: " + id);
-            }
+            new CoderDao().read(id).ifPresentOrElse(coder -> writer.println("Coder found: " + coder),
+                    () -> writer.println("Can't find coder: " + id));
+        } catch (Exception ex) {
+            log.error("Can't serve request for id " + param);
         }
     }
 
