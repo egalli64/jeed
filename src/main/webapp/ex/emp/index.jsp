@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Employees</title>
-<link rel="icon" type="image/x-icon" href="/jed/favicon.ico">
-<link rel="stylesheet" type="text/css" href="/jed/css/simple.css">
+<link rel="icon" type="image/x-icon" href="/jeed/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
     <h1>Employees</h1>

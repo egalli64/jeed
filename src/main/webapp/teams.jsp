@@ -6,8 +6,8 @@
 <head>
 <meta charset="utf-8">
 <title>Teams</title>
-<link rel="icon" type="image/x-icon" href="/jed/favicon.ico">
-<link rel="stylesheet" type="text/css" href="/jed/css/simple.css">
+<link rel="icon" type="image/x-icon" href="/jeed/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
     <h1>Teams</h1>
@@ -26,7 +26,7 @@
         </c:forEach>
     </table>
     <p>
-        Back <a href="/jed/index.html">home</a>
+        Back <a href="/jeed/index.html">home</a>
     </p>
 </body>
 </html>
