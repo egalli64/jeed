@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.25.Final</version>
+            <version>5.5.7.Final</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -62,11 +62,18 @@
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
-            <version>9.0.35</version>
+            <version>9.0.53</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+            </plugin>
+        </plugins>
         <finalName>jeed</finalName>
     </build>
 </project>
