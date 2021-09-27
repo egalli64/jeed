@@ -6,15 +6,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceUnitUtil;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.Hibernate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.example.jeed.dao.JpaUtil;
 import com.example.jeed.s05.CoderPlain;
 
 public class CoderDao {
-    private static final Logger log = LoggerFactory.getLogger(CoderDao.class);
+    private static final Logger log = LogManager.getLogger(CoderDao.class);
 
     public Optional<CoderPlain> read(long id) {
         EntityManager em = null;

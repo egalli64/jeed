@@ -6,13 +6,13 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
 
 public class CoderDao {
-    static private final Logger log = LoggerFactory.getLogger(CoderDao.class);
+    static private final Logger log = LogManager.getLogger(CoderDao.class);
 
     public List<Coder1To1> readAll() {
         EntityManager em = null;

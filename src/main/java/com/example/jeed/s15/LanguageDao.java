@@ -3,13 +3,13 @@ package com.example.jeed.s15;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
 
 public class LanguageDao {
-    private static final Logger log = LoggerFactory.getLogger(LanguageDao.class);
+    private static final Logger log = LogManager.getLogger(LanguageDao.class);
 
     public boolean create(LanguageGV language) {
         EntityManager em = null;

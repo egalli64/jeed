@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.s05.CoderPlain;
 
+@SuppressWarnings("serial")
 @WebServlet("/s12/coder/create")
 public class CoderCreate extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(CoderCreate.class);
+    private static final Logger log = LogManager.getLogger(CoderCreate.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

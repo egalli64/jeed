@@ -6,11 +6,11 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public abstract class Dao<T, U> {
-    static private final Logger log = LoggerFactory.getLogger(Dao.class);
+    static private final Logger log = LogManager.getLogger(Dao.class);
 
     private final Class<T> clazz;
 

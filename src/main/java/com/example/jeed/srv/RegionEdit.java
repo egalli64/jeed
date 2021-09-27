@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.Region;
 import com.example.jeed.dao.RegionDao;
 
+@SuppressWarnings("serial")
 @WebServlet("/ex/reg/edit")
 public class RegionEdit extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(RegionEdit.class);
+    private static final Logger log = LogManager.getLogger(RegionEdit.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -3,14 +3,14 @@ package com.example.jeed.s12;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
 import com.example.jeed.s05.CoderPlain;
 
 public class CoderDao {
-    private static final Logger log = LoggerFactory.getLogger(CoderDao.class);
+    private static final Logger log = LogManager.getLogger(CoderDao.class);
 
     public boolean create(CoderPlain coder) {
         EntityManager em = null;
