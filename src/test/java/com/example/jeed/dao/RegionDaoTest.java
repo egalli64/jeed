@@ -1,8 +1,6 @@
 package com.example.jeed.dao;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -40,7 +38,7 @@ class RegionDaoTest {
     @Test
     void readAll() {
         List<Region> regions = dao.readAll();
-        assertThat(regions.size(), is(4));
+        assertThat(regions.size()).isEqualTo(4);
     }
 
     @Test
@@ -70,10 +68,10 @@ class RegionDaoTest {
         assertTrue(dao.create(region));
 
         int id = region.getId();
-        assertThat(id, is(not(0)));
-        assertThat(dao.readAll().size(), is(5));
+        assertThat(id).isNotEqualTo(0);
+        assertThat(dao.readAll().size()).isEqualTo(5);
         assertTrue(dao.delete(id));
-        assertThat(dao.readAll().size(), is(4));
+        assertThat(dao.readAll().size()).isEqualTo(4);
     }
 
     @Test
