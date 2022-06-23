@@ -2,11 +2,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
     version="2.2">
-    <persistence-unit name="me">
-        <non-jta-data-source>java:comp/env/jdbc/me</non-jta-data-source>
+    <persistence-unit name="hron">
+        <non-jta-data-source>java:comp/env/jdbc/hron</non-jta-data-source>
         <properties>
             <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle12cDialect" /> -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <!-- <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />  -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
             <property name="hibernate.show_sql" value="true" />
             <!-- <property name="hibernate.format_sql" value="true" /> -->
         </properties>
