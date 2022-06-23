@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Coders</h1>
+    <h1>Employees</h1>
     <table>
         <tr>
             <th>id</th>
@@ -19,13 +19,13 @@
             <th>hire date</th>
             <th>salary</th>
         </tr>
-        <c:forEach var="coder" items="${coders}">
+        <c:forEach var="employee" items="${employees}">
             <tr>
-                <td>${coder.id}</td>
-                <td>${coder.firstName}</td>
-                <td>${coder.lastName}</td>
-                <td>${coder.hireDate}</td>
-                <td>${coder.salary}</td>
+                <td>${employee.id}</td>
+                <td>${employee.firstName}</td>
+                <td>${employee.lastName}</td>
+                <td>${employee.hired}</td>
+                <td>${employee.salary}</td>
             </tr>
         </c:forEach>
     </table>

@@ -8,10 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CODERS")
-public class CoderPlain {
+@Table(name = "EMPLOYEE")
+public class EmployeePlain {
     @Id
-    @Column(name = "CODER_ID")
+    @Column(name = "EMPLOYEE_ID")
     private long id;
 
     @Column(name = "FIRST_NAME")
@@ -20,24 +20,24 @@ public class CoderPlain {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "HIRE_DATE")
-    private LocalDate hireDate;
+    @Column(name = "HIRED")
+    private LocalDate hired;
 
     @Column(name = "SALARY")
     private double salary;
 
-    public CoderPlain() {
+    public EmployeePlain() {
     }
 
-    public CoderPlain(long id, String firstName, String lastName, double salary) {
+    public EmployeePlain(long id, String firstName, String lastName, double salary) {
         this(id, firstName, lastName, LocalDate.now(), salary);
     }
 
-    public CoderPlain(long id, String firstName, String lastName, LocalDate hireDate, double salary) {
+    public EmployeePlain(long id, String firstName, String lastName, LocalDate hired, double salary) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.hireDate = hireDate;
+        this.hired = hired;
         this.salary = salary;
     }
 
@@ -65,12 +65,12 @@ public class CoderPlain {
         this.lastName = lastName;
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
+    public LocalDate getHired() {
+        return hired;
     }
 
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
+    public void setHired(LocalDate hired) {
+        this.hired = hired;
     }
 
     public double getSalary() {
@@ -83,7 +83,7 @@ public class CoderPlain {
 
     @Override
     public String toString() {
-        return "CoderPlain [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
+        return "EmployeePlain [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hired=" + hired
                 + ", salary=" + salary + "]";
     }
 }
