@@ -13,24 +13,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("serial")
-@WebServlet("/s18/regions/countries")
+@WebServlet("/s18/region/country/all")
 public class RegionCountryAll extends HttpServlet {
     private static final Logger log = LogManager.getLogger(RegionCountryAll.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
-        RegionDao dao = new RegionDao();
-        List<Region1ToM> regions = dao.readAllEager();
+        log.traceEntry();
+        List<Region1ToM> regions = new RegionDao().readAllEager();
         request.setAttribute("regions", regions);
 
         request.getRequestDispatcher("/regionsCountries.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
     }
 }

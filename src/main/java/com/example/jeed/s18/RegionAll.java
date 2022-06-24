@@ -15,28 +15,21 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Hibernate;
 
 @SuppressWarnings("serial")
-@WebServlet("/s18/regions")
+@WebServlet("/s18/region/all")
 public class RegionAll extends HttpServlet {
     private static final Logger log = LogManager.getLogger(RegionAll.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        log.traceEntry();
 
-        RegionDao dao = new RegionDao();
-        List<Region1ToM> regions = dao.readAllLazy();
-
+        List<Region1ToM> regions = new RegionDao().readAllLazy();
+        log.debug(regions.size() + " regions read");
         proxyCheckDemo(regions);
 
         request.setAttribute("regions", regions);
         request.getRequestDispatcher("/regions.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
     }
 
     private void proxyCheckDemo(List<Region1ToM> regions) {

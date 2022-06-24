@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Regions</title>
+<title>Regions and Countries</title>
 <link rel="icon" href="data:;base64,=">
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Regions</h1>
+    <h1>Regions and Countries</h1>
     <c:forEach var="region" items="${regions}">
         <h2>${region.id}&nbsp;${region.name}</h2>
         <table>

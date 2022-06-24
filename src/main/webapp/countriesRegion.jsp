@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Countries</title>
+<title>Countries and Region</title>
 <link rel="icon" href="data:;base64,=">
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Countries</h1>
+    <h1>Countries and Region</h1>
     <table>
         <tr>
             <th>id</th>
@@ -22,9 +22,7 @@
                 <td>${country.id}</td>
                 <td>${country.name}</td>
                 <td>
-                    <c:if test="${country.region ne null}">
-                        ${country.region.name}
-                    </c:if>
+                    <c:if test="${country.region ne null}">${country.region.name}</c:if>
                     <c:if test="${country.region eq null}">-</c:if>
                 </td>
             </tr>

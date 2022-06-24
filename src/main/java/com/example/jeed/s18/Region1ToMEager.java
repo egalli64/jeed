@@ -5,21 +5,18 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "REGIONS")
+@Table(name = "REGION")
 public class Region1ToMEager {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "REGION_ID")
     private int id;
 
-    @Column(name = "REGION_NAME")
+    @Column(name = "NAME")
     private String name;
 
     @OneToMany(mappedBy = "region", fetch = FetchType.EAGER)

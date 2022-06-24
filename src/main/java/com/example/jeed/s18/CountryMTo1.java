@@ -2,22 +2,19 @@ package com.example.jeed.s18;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "COUNTRIES")
+@Table(name = "COUNTRY")
 public class CountryMTo1 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COUNTRY_ID")
     private String id;
 
-    @Column(name = "COUNTRY_NAME")
+    @Column(name = "NAME")
     private String name;
 
     @ManyToOne

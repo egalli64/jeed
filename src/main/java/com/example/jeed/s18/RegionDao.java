@@ -26,7 +26,7 @@ public class RegionDao {
 
         try {
             em = JpaUtil.createEntityManager();
-            String jpql = "SELECT DISTINCT e FROM Region1ToM e JOIN FETCH e.countries";
+            String jpql = "SELECT DISTINCT r FROM Region1ToM r JOIN FETCH r.countries";
             return em.createQuery(jpql, Region1ToM.class).getResultList();
         } finally {
             if (em != null) {
