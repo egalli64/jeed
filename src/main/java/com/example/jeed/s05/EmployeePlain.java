@@ -20,8 +20,14 @@ public class EmployeePlain {
     @Column(name = "LAST_NAME")
     private String lastName;
 
+    @Column(name = "PHONE")
+    private int phone;
+
     @Column(name = "HIRED")
     private LocalDate hired;
+
+    @Column(name = "JOB_ID")
+    private int jobId;
 
     @Column(name = "SALARY")
     private double salary;
@@ -29,15 +35,18 @@ public class EmployeePlain {
     public EmployeePlain() {
     }
 
-    public EmployeePlain(long id, String firstName, String lastName, double salary) {
-        this(id, firstName, lastName, LocalDate.now(), salary);
+    public EmployeePlain(long id, String firstName, String lastName, int phone, double salary) {
+        this(id, firstName, lastName, LocalDate.now(), phone, 15, salary);
     }
 
-    public EmployeePlain(long id, String firstName, String lastName, LocalDate hired, double salary) {
+    public EmployeePlain(long id, String firstName, String lastName, LocalDate hired, int phone, int jobId,
+            double salary) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.phone = phone;
         this.hired = hired;
+        this.jobId = jobId;
         this.salary = salary;
     }
 
@@ -65,12 +74,28 @@ public class EmployeePlain {
         this.lastName = lastName;
     }
 
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
     public LocalDate getHired() {
         return hired;
     }
 
     public void setHired(LocalDate hired) {
         this.hired = hired;
+    }
+
+    public int getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
     }
 
     public double getSalary() {

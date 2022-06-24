@@ -7,12 +7,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
-import com.example.jeed.s05.CoderPlain;
+import com.example.jeed.s05.EmployeePlain;
 
-public class CoderDao {
-    private static final Logger log = LogManager.getLogger(CoderDao.class);
+public class EmployeeDao {
+    private static final Logger log = LogManager.getLogger(EmployeeDao.class);
 
-    public boolean create(CoderPlain coder) {
+    public boolean create(EmployeePlain employee) {
         EntityManager em = null;
         EntityTransaction tx = null;
         log.trace("enter");
@@ -21,7 +21,7 @@ public class CoderDao {
             em = JpaUtil.createEntityManager();
             tx = em.getTransaction();
             tx.begin();
-            em.persist(coder);
+            em.persist(employee);
             tx.commit();
             return true;
         } catch (Exception ex) {
@@ -41,7 +41,7 @@ public class CoderDao {
         }
     }
 
-    public boolean update(CoderPlain coder) {
+    public boolean update(EmployeePlain employee) {
         EntityManager em = null;
         EntityTransaction tx = null;
 
@@ -49,7 +49,7 @@ public class CoderDao {
             em = JpaUtil.createEntityManager();
             tx = em.getTransaction();
             tx.begin();
-            em.merge(coder);
+            em.merge(employee);
             tx.commit();
             return true;
         } catch (Exception ex) {
@@ -75,7 +75,7 @@ public class CoderDao {
 
         try {
             em = JpaUtil.createEntityManager();
-            CoderPlain entity = em.find(CoderPlain.class, id);
+            EmployeePlain entity = em.find(EmployeePlain.class, id);
             if (entity != null) {
                 tx = em.getTransaction();
                 tx.begin();

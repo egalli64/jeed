@@ -12,30 +12,24 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("serial")
-@WebServlet("/s12/coder/delete")
-public class CoderDelete extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(CoderDelete.class);
+@WebServlet("/s12/employee/delete")
+public class EmployeeDelete extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(EmployeeDelete.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        log.traceEntry();
 
         String param = request.getParameter("id");
         long id = Long.parseLong(param);
 
-        if (new CoderDao().delete(id)) {
-            log.debug(String.format("Coder with id %d deleted", id));
+        if (new EmployeeDao().delete(id)) {
+            log.debug(String.format("Employee with id %d deleted", id));
             request.getRequestDispatcher("/").forward(request, response);
         } else {
-            log.info("Can't delete coder " + id);
-            request.getRequestDispatcher("/coder.jsp").forward(request, response);
+            log.info("Can't delete employee " + id);
+            request.getRequestDispatcher("/employee.jsp").forward(request, response);
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
     }
 }
