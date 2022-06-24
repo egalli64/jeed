@@ -12,15 +12,15 @@
 <body>
     <h1>Coder</h1>
     <c:choose>
-        <c:when test="${coder eq null}">
+        <c:when test="${employee eq null}">
             <p>
-                Failure operating on coder
+                Failure operating on employee
                 <c:if test="${param.id ne null}">with id ${param.id}</c:if>
             </p>
         </c:when>
         <c:otherwise>
-            <p>Coder is ${coder.firstName} ${coder.lastName}</p>
-            <p>hired on ${coder.hireDate}, salary is ${coder.salary}</p>
+            <p>Employee is ${employee.firstName} ${employee.lastName}</p>
+            <p>hired on ${employee.hired}, salary is ${employee.salary}</p>
         </c:otherwise>
     </c:choose>
     <p>

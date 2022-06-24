@@ -11,18 +11,18 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Hibernate;
 
 import com.example.jeed.dao.JpaUtil;
-import com.example.jeed.s05.CoderPlain;
+import com.example.jeed.s05.EmployeePlain;
 
-public class CoderDao {
-    private static final Logger log = LogManager.getLogger(CoderDao.class);
+public class EmployeeDao {
+    private static final Logger log = LogManager.getLogger(EmployeeDao.class);
 
-    public Optional<CoderPlain> read(long id) {
+    public Optional<EmployeePlain> read(long id) {
         EntityManager em = null;
 
         try {
             em = JpaUtil.createEntityManager();
-            CoderPlain coder = em.find(CoderPlain.class, id);
-            return Optional.ofNullable(coder);
+            EmployeePlain employee = em.find(EmployeePlain.class, id);
+            return Optional.ofNullable(employee);
         } finally {
             if (em != null) {
                 em.close();
@@ -30,12 +30,12 @@ public class CoderDao {
         }
     }
 
-    public CoderPlain readRaw(long id) {
+    public EmployeePlain readRaw(long id) {
         EntityManager em = null;
 
         try {
             em = JpaUtil.createEntityManager();
-            return em.find(CoderPlain.class, id);
+            return em.find(EmployeePlain.class, id);
         } finally {
             if (em != null) {
                 em.close();
@@ -43,18 +43,18 @@ public class CoderDao {
         }
     }
 
-    public Optional<CoderPlain> readAndIncrease(long id, int delta) {
+    public Optional<EmployeePlain> readAndIncrease(long id, int delta) {
         EntityManager em = null;
         EntityTransaction tx = null;
 
         try {
             em = JpaUtil.createEntityManager();
             tx = em.getTransaction();
-            CoderPlain coder = em.find(CoderPlain.class, id);
+            EmployeePlain employee = em.find(EmployeePlain.class, id);
             tx.begin();
-            coder.setSalary(coder.getSalary() + delta);
+            employee.setSalary(employee.getSalary() + delta);
             tx.commit();
-            return Optional.of(coder);
+            return Optional.of(employee);
         } catch (Exception ex) {
             if (tx != null && tx.isActive()) {
                 tx.rollback();
@@ -67,20 +67,20 @@ public class CoderDao {
         }
     }
 
-    public Optional<CoderPlain> readProxy(long id) {
+    public Optional<EmployeePlain> readProxy(long id) {
         EntityManager em = null;
 
         try {
             em = JpaUtil.createEntityManager();
-            CoderPlain coder = em.getReference(CoderPlain.class, id);
+            EmployeePlain employee = em.getReference(EmployeePlain.class, id);
 
             PersistenceUnitUtil uu = JpaUtil.getPersistenceUnitUtil();
-            if (!uu.isLoaded(coder)) {
-                log.trace("Converting from proxy to real coder");
-                Hibernate.initialize(coder);
+            if (!uu.isLoaded(employee)) {
+                log.trace("Converting from proxy to real employee");
+                Hibernate.initialize(employee);
             }
 
-            return Optional.ofNullable(coder);
+            return Optional.ofNullable(employee);
         } finally {
             if (em != null) {
                 em.close();
@@ -88,20 +88,20 @@ public class CoderDao {
         }
     }
 
-    public Optional<CoderPlain> readRefresh(long id) {
+    public Optional<EmployeePlain> readRefresh(long id) {
         EntityManager em = null;
 
         try {
             em = JpaUtil.createEntityManager();
-            CoderPlain coder = em.find(CoderPlain.class, id);
+            EmployeePlain employee = em.find(EmployeePlain.class, id);
 
-            coder.setLastName("Something else");
+            employee.setLastName("Something else");
 
-            log.debug("Coder is: " + coder);
-            em.refresh(coder);
-            log.debug("Coder is: " + coder);
+            log.debug("Employee is: " + employee);
+            em.refresh(employee);
+            log.debug("Coder is: " + employee);
 
-            return Optional.ofNullable(coder);
+            return Optional.ofNullable(employee);
         } catch (Exception ex) {
             log.error("Find + refresh failure", ex);
             return Optional.empty();
