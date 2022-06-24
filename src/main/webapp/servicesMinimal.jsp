@@ -5,21 +5,21 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Teams</title>
+<title>Services</title>
 <link rel="icon" href="data:;base64,=">
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Teams</h1>
+    <h1>Services</h1>
     <table>
         <tr>
             <th>id</th>
             <th>name</th>
         </tr>
-        <c:forEach var="team" items="${teams}">
+        <c:forEach var="service" items="${services}">
             <tr>
-                <td>${team.id}</td>
-                <td>${team.name}</td>
+                <td>${service.id}</td>
+                <td>${service.name}</td>
             </tr>
         </c:forEach>
     </table>

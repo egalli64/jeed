@@ -5,23 +5,23 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Teams</title>
+<title>Services and Cars</title>
 <link rel="icon" href="data:;base64,=">
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Teams</h1>
-    <c:forEach var="team" items="${teams}">
-        <h2>${team.id}&nbsp;${team.name}</h2>
+    <h1>Services and Cars</h1>
+    <c:forEach var="service" items="${services}">
+        <h2>${service.id}&nbsp;${service.name}</h2>
         <table>
             <tr>
                 <th>id</th>
                 <th>name</th>
             </tr>
-            <c:forEach var="coder" items="${team.coders}">
+            <c:forEach var="car" items="${service.cars}">
                 <tr>
-                    <td>${coder.id}</td>
-                    <td>${coder.firstName}&nbsp;${coder.lastName}</td>
+                    <td>${car.id}</td>
+                    <td>${car.name}</td>
                 </tr>
             </c:forEach>
         </table>
