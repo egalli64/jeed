@@ -25,6 +25,6 @@ public class RegionAllEager extends HttpServlet {
         List<Region1ToMEager> regions = new RegionDaoEager().readAll();
         request.setAttribute("regions", regions);
 
-        request.getRequestDispatcher("/regionsCountries.jsp").forward(request, response);
+        request.getRequestDispatcher("/s18/regionsCountries.jsp").forward(request, response);
     }
 }

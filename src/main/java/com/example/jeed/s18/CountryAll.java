@@ -26,6 +26,6 @@ public class CountryAll extends HttpServlet {
         log.debug(countries.size() + " countries read");
 
         request.setAttribute("countries", countries);
-        request.getRequestDispatcher("/countriesRegion.jsp").forward(request, response);
+        request.getRequestDispatcher("/s18/countriesRegion.jsp").forward(request, response);
     }
 }

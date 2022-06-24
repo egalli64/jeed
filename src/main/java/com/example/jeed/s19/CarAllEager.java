@@ -24,6 +24,6 @@ public class CarAllEager extends HttpServlet {
 
         List<CarMToM> cars = new CarDao().readAllEager();
         request.setAttribute("cars", cars);
-        request.getRequestDispatcher("/carsServices.jsp").forward(request, response);
+        request.getRequestDispatcher("/s19/carsServices.jsp").forward(request, response);
     }
 }

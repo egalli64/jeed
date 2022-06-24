@@ -22,7 +22,7 @@ public class EmployeeAll extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        log.traceEntry();
 
         List<EmployeePlain> employees = new EmployeeDao().getAll();
         request.setAttribute("employees", employees);

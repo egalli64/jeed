@@ -29,7 +29,7 @@ public class RegionAll extends HttpServlet {
         proxyCheckDemo(regions);
 
         request.setAttribute("regions", regions);
-        request.getRequestDispatcher("/regions.jsp").forward(request, response);
+        request.getRequestDispatcher("/s18/regions.jsp").forward(request, response);
     }
 
     private void proxyCheckDemo(List<Region1ToM> regions) {

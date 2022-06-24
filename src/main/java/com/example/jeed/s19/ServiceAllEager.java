@@ -24,6 +24,6 @@ public class ServiceAllEager extends HttpServlet {
 
         List<ServiceMToM> services = new ServiceDao().readAllEager();
         request.setAttribute("services", services);
-        request.getRequestDispatcher("/servicesCars.jsp").forward(request, response);
+        request.getRequestDispatcher("/s19/servicesCars.jsp").forward(request, response);
     }
 }

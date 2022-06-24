@@ -27,7 +27,7 @@ public class ServiceAll extends HttpServlet {
         proxyCheckDemo(services);
 
         request.setAttribute("services", services);
-        request.getRequestDispatcher("/servicesMinimal.jsp").forward(request, response);
+        request.getRequestDispatcher("/s19/servicesMinimal.jsp").forward(request, response);
     }
 
     private void proxyCheckDemo(List<ServiceMToM> services) {

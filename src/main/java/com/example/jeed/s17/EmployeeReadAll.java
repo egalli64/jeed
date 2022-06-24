@@ -26,7 +26,7 @@ public class EmployeeReadAll extends HttpServlet {
         log.debug(employees.size() + " employees read");
         request.setAttribute("employees", employees);
 
-        request.getRequestDispatcher("/employeesCar.jsp").forward(request, response);
+        request.getRequestDispatcher("/s17/employeesCar.jsp").forward(request, response);
     }
 
     @Override

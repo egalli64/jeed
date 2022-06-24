@@ -20,12 +20,12 @@ public class CarReadAll extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        log.traceEntry();
 
         List<Car1To1> cars = new CarDao().readAll();
         log.debug("Found " + cars.size() + " cars");
         request.setAttribute("cars", cars);
-        request.getRequestDispatcher("/carsEmployee.jsp").forward(request, response);
+        request.getRequestDispatcher("/s17/carsEmployee.jsp").forward(request, response);
     }
 
     @Override

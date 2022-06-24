@@ -24,7 +24,7 @@ public class CarRead extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         new CarDao().read(id).ifPresent(car -> request.setAttribute("car", car));
 
-        request.getRequestDispatcher("/carEmployee.jsp").forward(request, response);
+        request.getRequestDispatcher("/s17/carEmployee.jsp").forward(request, response);
     }
 
     @Override

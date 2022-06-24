@@ -24,7 +24,7 @@ public class EmployeeRead extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         new EmployeeDao().read(id).ifPresent(employee -> request.setAttribute("employee", employee));
 
-        request.getRequestDispatcher("/employeeCar.jsp").forward(request, response);
+        request.getRequestDispatcher("/s17/employeeCar.jsp").forward(request, response);
     }
 
     @Override
