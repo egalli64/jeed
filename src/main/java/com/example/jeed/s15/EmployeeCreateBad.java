@@ -12,34 +12,29 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("serial")
-@WebServlet("/s15/language/createBad")
-public class LanguageCreateBad extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(LanguageCreateBad.class);
+@WebServlet("/s15/employee/createBad")
+public class EmployeeCreateBad extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(EmployeeCreateBad.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        log.traceEntry();
 
         String param = request.getParameter("id");
         long id = Long.parseLong(param);
 
-        LanguageGV language = new LanguageGV("Greek");
+        EmployeeGV employee = new EmployeeGV("Buck", "Roger", 2332, 1300.0);
 
         // !! ERROR, when id is a GeneratedValue, it should not be set !!
-        language.setId(id);
-        if (new LanguageDao().create(language)) {
-            log.debug("Language persisted with id " + language.getId());
+        employee.setId(id);
+        if (new EmployeeDao().create(employee)) {
+            log.error("Employee with id " + employee.getId() + " NOT expected to persist!");
+            request.setAttribute("employee", employee);
         } else {
-            log.info("Can't create " + language);
+            log.info("Can't create " + employee);
         }
 
-        request.getRequestDispatcher("/index.html").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
+        request.getRequestDispatcher("/employee.jsp").forward(request, response);
     }
 }

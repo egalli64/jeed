@@ -8,19 +8,20 @@ import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
 
-public class LanguageDao {
-    private static final Logger log = LogManager.getLogger(LanguageDao.class);
+public class EmployeeDao {
+    private static final Logger log = LogManager.getLogger(EmployeeDao.class);
 
-    public boolean create(LanguageGV language) {
+    public boolean create(EmployeeGV coder) {
+        log.traceEntry();
+
         EntityManager em = null;
         EntityTransaction tx = null;
-        log.trace("enter");
 
         try {
             em = JpaUtil.createEntityManager();
             tx = em.getTransaction();
             tx.begin();
-            em.persist(language);
+            em.persist(coder);
             tx.commit();
             return true;
         } catch (Exception ex) {

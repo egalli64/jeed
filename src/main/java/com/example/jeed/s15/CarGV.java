@@ -9,21 +9,21 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "LANGUAGES")
-public class LanguageGV {
+@Table(name = "CAR")
+public class CarGV {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LanGen")
-    @SequenceGenerator(sequenceName = "LANGUAGE_SEQ", allocationSize = 1, name = "LanGen")
-    @Column(name = "LANGUAGE_ID")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CarGen")
+    @SequenceGenerator(sequenceName = "CAR_SEQ", allocationSize = 1, name = "CarGen")
+    @Column(name = "CAR_ID")
+    private int id;
 
     @Column(name = "NAME")
     private String name;
 
-    public LanguageGV() {
+    public CarGV() {
     }
 
-    public LanguageGV(String name) {
+    public CarGV(String name) {
         this.name = name;
     }
 
@@ -31,7 +31,7 @@ public class LanguageGV {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -45,6 +45,6 @@ public class LanguageGV {
 
     @Override
     public String toString() {
-        return "Language15 [id=" + id + ", name=" + name + "]";
+        return "CarGV [id=" + id + ", name=" + name + "]";
     }
 }

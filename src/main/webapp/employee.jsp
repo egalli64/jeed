@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Coder</title>
+<title>Employee</title>
 <link rel="icon" href="data:;base64,=">
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Coder</h1>
+    <h1>Employee</h1>
     <c:choose>
         <c:when test="${employee eq null}">
             <p>

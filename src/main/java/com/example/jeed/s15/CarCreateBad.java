@@ -12,28 +12,26 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("serial")
-@WebServlet("/s15/language/create")
-public class LanguageCreate extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(LanguageCreate.class);
+@WebServlet("/s15/car/createBad")
+public class CarCreateBad extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(CarCreateBad.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        log.traceEntry();
 
-        LanguageGV language = new LanguageGV("Spanish");
-        if (new LanguageDao().create(language)) {
-            log.debug("Language persisted with id " + language.getId());
+        int id = Integer.parseInt(request.getParameter("id"));
+        CarGV car = new CarGV("Tzatziki");
+
+        // !! ERROR, when id is a GeneratedValue, it should not be set !!
+        car.setId(id);
+        if (new CarDao().create(car)) {
+            log.error("This car is not exptected to persist with id " + car.getId());
         } else {
-            log.info("Can't create " + language);
+            log.info("Can't create " + car);
         }
 
         request.getRequestDispatcher("/index.html").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
     }
 }

@@ -8,10 +8,10 @@ import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
 
-public class CoderDao {
-    private static final Logger log = LogManager.getLogger(CoderDao.class);
+public class CarDao {
+    private static final Logger log = LogManager.getLogger(CarDao.class);
 
-    public boolean create(CoderGV coder) {
+    public boolean create(CarGV car) {
         EntityManager em = null;
         EntityTransaction tx = null;
         log.trace("enter");
@@ -20,7 +20,7 @@ public class CoderDao {
             em = JpaUtil.createEntityManager();
             tx = em.getTransaction();
             tx.begin();
-            em.persist(coder);
+            em.persist(car);
             tx.commit();
             return true;
         } catch (Exception ex) {

@@ -10,14 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * JavaBean for CODERS, using identity - feature supported in MySQL and Oracle 12+
+ * JavaBean for EMPLOYEE, using identity - feature supported in PostgreSQL, MySQL and Oracle 12+
  */
 @Entity
-@Table(name = "CODERS")
-public class CoderGV {
+@Table(name = "EMPLOYEE")
+public class EmployeeGV {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CODER_ID")
+    @Column(name = "EMPLOYEE_ID")
     private long id;
 
     @Column(name = "FIRST_NAME")
@@ -26,23 +26,31 @@ public class CoderGV {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "HIRE_DATE")
-    private LocalDate hireDate;
+    @Column(name = "PHONE")
+    private int phone;
+
+    @Column(name = "HIRED")
+    private LocalDate hired;
+
+    @Column(name = "JOB_ID")
+    private int jobId;
 
     @Column(name = "SALARY")
     private double salary;
 
-    public CoderGV() {
+    public EmployeeGV() {
     }
 
-    public CoderGV(String firstName, String lastName, double salary) {
-        this(firstName, lastName, LocalDate.now(), salary);
+    public EmployeeGV(String firstName, String lastName, int phone, double salary) {
+        this(firstName, lastName, LocalDate.now(), phone, 15, salary);
     }
 
-    public CoderGV(String firstName, String lastName, LocalDate hireDate, double salary) {
+    public EmployeeGV(String firstName, String lastName, LocalDate hired, int phone, int jobId, double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.hireDate = hireDate;
+        this.phone = phone;
+        this.hired = hired;
+        this.jobId = jobId;
         this.salary = salary;
     }
 
@@ -70,12 +78,28 @@ public class CoderGV {
         this.lastName = lastName;
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
+    public int getPhone() {
+        return phone;
     }
 
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public LocalDate getHired() {
+        return hired;
+    }
+
+    public void setHireDate(LocalDate hired) {
+        this.hired = hired;
+    }
+
+    public int getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
     }
 
     public double getSalary() {
@@ -88,7 +112,7 @@ public class CoderGV {
 
     @Override
     public String toString() {
-        return "Coder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
+        return "EmployeeGV [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hired=" + hired
                 + ", salary=" + salary + "]";
     }
 }
