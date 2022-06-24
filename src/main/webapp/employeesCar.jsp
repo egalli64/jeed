@@ -5,27 +5,27 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Coders</title>
+<title>Employees and car</title>
 <link rel="icon" href="data:;base64,=">
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Coders</h1>
+    <h1>Employees and car</h1>
     <table>
         <tr>
             <th>id</th>
-            <th>name</th>
-            <th>leading team</th>
+            <th>first name</th>
+            <th>last name</th>
+            <th>car</th>
         </tr>
-        <c:forEach var="coder" items="${coders}">
+        <c:forEach var="employee" items="${employees}">
             <tr>
-                <td>${coder.id}</td>
-                <td>${coder.firstName} ${coder.lastName}</td>
+                <td>${employee.id}</td>
+                <td>${employee.firstName}</td>
+                <td>${employee.lastName}</td>
                 <td>
-                    <c:if test="${coder.leadingTeam ne null}">
-                        ${coder.leadingTeam.name}
-                    </c:if>
-                    <c:if test="${coder.leadingTeam eq null}">-</c:if>
+                    <c:if test="${employee.car ne null}">${employee.car.name}</c:if>
+                    <c:if test="${employee.car eq null}">-</c:if>
                 </td>
             </tr>
         </c:forEach>

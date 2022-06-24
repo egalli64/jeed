@@ -2,18 +2,15 @@ package com.example.jeed.s17;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CODERS")
-public class Coder1To1 {
+@Table(name = "EMPLOYEE")
+public class Employee1To1 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CODER_ID")
+    @Column(name = "EMPLOYEE_ID")
     private int id;
 
     @Column(name = "FIRST_NAME")
@@ -22,10 +19,10 @@ public class Coder1To1 {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @OneToOne(optional = true, mappedBy = "leader")
-    private Team1To1 leadingTeam;
+    @OneToOne(optional = true, mappedBy = "employee")
+    private Car1To1 car;
 
-    public Coder1To1() {
+    public Employee1To1() {
     }
 
     public int getId() {
@@ -52,17 +49,16 @@ public class Coder1To1 {
         this.lastName = lastName;
     }
 
-    public Team1To1 getLeadingTeam() {
-        return leadingTeam;
+    public Car1To1 getCar() {
+        return car;
     }
 
-    public void setLeadingTeam(Team1To1 leadingTeam) {
-        this.leadingTeam = leadingTeam;
+    public void setCar(Car1To1 car) {
+        this.car = car;
     }
 
     @Override
     public String toString() {
-        return "Coder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName
-                + (leadingTeam != null ? ", leadingTeam=" + leadingTeam.getName() : "") + "]";
+        return "Employee1To1Car [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
     }
 }

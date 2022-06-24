@@ -53,13 +53,13 @@
         <li>Create <a href="s15/car/createBad?id=41">car (error - auto id expected)</a></li>
     </ul>
 
-    <h2>One to one: team - coder as team leader</h2>
+    <h2>One to one: car - assigned employee</h2>
     <ul>
-        <li>Get <a href="s17/team?id=1">team (1)</a></li>
-        <li>Get <a href="s17/teams">all teams</a></li>
-        <li>Get <a href="s17/coder?id=103">coder (103 - leader)</a></li>
-        <li>Get <a href="s17/coder?id=104">coder (104 - not a leader)</a></li>
-        <li>Get <a href="s17/coders">all coders</a></li>
+        <li>Get <a href="s17/car/read?id=1">car and employee</a> (1)</li>
+        <li>Get <a href="s17/car/all">all cars</a></li>
+        <li>Get <a href="s17/employee/read?id=103">employee</a> (103 - with car)</li>
+        <li>Get <a href="s17/employee/read?id=107">employee</a> (107 - without a car)</li>
+        <li>Get <a href="s17/employee/all">all employees</a></li>
     </ul>
 
     <h2>One to many / Many to one - country and region</h2>

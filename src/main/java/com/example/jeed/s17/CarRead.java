@@ -1,7 +1,6 @@
 package com.example.jeed.s17;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,20 +12,19 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("serial")
-@WebServlet("/s17/teams")
-public class TeamAll extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(TeamAll.class);
+@WebServlet("/s17/car/read")
+public class CarRead extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(CarRead.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        log.traceEntry();
 
-        TeamDao dao = new TeamDao();
-        List<Team1To1> teams = dao.readAll();
-        request.setAttribute("teams", teams);
+        int id = Integer.parseInt(request.getParameter("id"));
+        new CarDao().read(id).ifPresent(car -> request.setAttribute("car", car));
 
-        request.getRequestDispatcher("/teams.jsp").forward(request, response);
+        request.getRequestDispatcher("/carEmployee.jsp").forward(request, response);
     }
 
     @Override
