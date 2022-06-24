@@ -26,19 +26,19 @@
 
     <h2>EntityManager to create, update, and delete</h2>
     <ul>
-        <li><a href="s12/employee/create?id=222">Create coder (222)</a></li>
-        <li><a href="s12/employee/update?id=222">Update coder (222)</a></li>
-        <li><a href="s12/employee/update?id=262&first=Tom">Update coder (262)</a></li>
-        <li><a href="s12/employee/delete?id=222">Delete coder (222)</a></li>
-        <li><a href="s12/employee/delete?id=262">Delete coder (262)</a></li>
+        <li><a href="s12/employee/create?id=222">Create employee (222)</a></li>
+        <li><a href="s12/employee/update?id=222">Update employee (222)</a></li>
+        <li><a href="s12/employee/update?id=262&first=Tom">Update employee (262)</a></li>
+        <li><a href="s12/employee/delete?id=222">Delete employee (222)</a></li>
+        <li><a href="s12/employee/delete?id=262">Delete employee (262)</a></li>
     </ul>
 
     <h2>JPQL</h2>
     <ul>
-        <li>Get <a href="s14/coder/salary/top?lowest=4800">Coders w/ salary > 4800</a></li>
-        <li>Get <a href="s14/coder/named?first=Diana&last=Lorentz">coder by name</a></li>
-        <li>Get <a href="s14/coder/named?first=X&last=X">coder by name (missing)</a></li>
-        <li>Delete <a href="s14/coder/deleteAll?lower=202">coders by id (from 202 on)</a></li>
+        <li>Get <a href="s14/employee/salary/top?lowest=12000">employee w/ salary > 12000</a></li>
+        <li>Get <a href="s14/employee/named?first=Diana&last=Lorentz">employee by name (Diana Lorentz)</a></li>
+        <li>Get <a href="s14/employee/named?first=X&last=X">employee by name (missing)</a></li>
+        <li>Delete <a href="s14/employee/deleteBetween?low=220&high=230">employees by id (220 ... 230)</a></li>
     </ul>
 
     <h2>Id with generated values</h2>

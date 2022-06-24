@@ -12,23 +12,21 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @SuppressWarnings("serial")
-@WebServlet("/s14/coder/named")
-public class CoderByName extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(CoderByName.class);
+@WebServlet("/s14/employee/deleteBetween")
+public class EmployeeDeleteBetween extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(EmployeeDeleteBetween.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        log.traceEntry();
 
-        String first = request.getParameter("first");
-        String last = request.getParameter("last");
+        long low = Long.parseLong(request.getParameter("low"));
+        long high = Long.parseLong(request.getParameter("high"));
+        int result = new EmployeeDao().deleteBetween(low, high);
+        log.debug(String.format("Deleted %d elements from coders", result));
 
-        new CoderDao().getByName(first, last).ifPresent(coder -> {
-            request.setAttribute("coder", coder);
-        });
-
-        request.getRequestDispatcher("/coder.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.html").forward(request, response);
     }
 
     @Override

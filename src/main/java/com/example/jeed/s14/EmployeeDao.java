@@ -13,18 +13,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
-import com.example.jeed.s05.CoderPlain;
+import com.example.jeed.s05.EmployeePlain;
 
-public class CoderDao {
-    private static final Logger log = LogManager.getLogger(CoderDao.class);
+public class EmployeeDao {
+    private static final Logger log = LogManager.getLogger(EmployeeDao.class);
 
-    public List<CoderPlain> getPayedMoreThan(double low) {
+    public List<EmployeePlain> getPayedMoreThan(double low) {
         EntityManager em = null;
 
         try {
             em = JpaUtil.createEntityManager();
-            String jpql = "FROM CoderPlain c WHERE c.salary > :low ORDER BY salary DESC";
-            TypedQuery<CoderPlain> query = em.createQuery(jpql, CoderPlain.class);
+            String jpql = "FROM EmployeePlain e WHERE e.salary > :low ORDER BY salary DESC";
+            TypedQuery<EmployeePlain> query = em.createQuery(jpql, EmployeePlain.class);
             query.setParameter("low", low);
             return query.getResultList();
         } finally {
@@ -35,15 +35,15 @@ public class CoderDao {
     }
 
     @SuppressWarnings("unchecked")
-    public List<CoderPlain> getUntypedPayedMoreThan(double low) {
+    public List<EmployeePlain> getUntypedPayedMoreThan(double low) {
         EntityManager em = null;
 
         try {
             em = JpaUtil.createEntityManager();
-            String jpql = "FROM CoderPlain c WHERE c.salary > :low ORDER BY salary DESC";
+            String jpql = "FROM EmployeePlain e WHERE e.salary > :low ORDER BY salary DESC";
             Query query = em.createQuery(jpql);
             query.setParameter("low", low);
-            return (List<CoderPlain>) query.getResultList();
+            return (List<EmployeePlain>) query.getResultList();
         } finally {
             if (em != null) {
                 em.close();
@@ -51,13 +51,13 @@ public class CoderDao {
         }
     }
 
-    public Optional<CoderPlain> getByName(String first, String last) {
+    public Optional<EmployeePlain> getByName(String first, String last) {
         EntityManager em = null;
 
         try {
             em = JpaUtil.createEntityManager();
-            String jpql = "FROM CoderPlain c WHERE c.firstName = :first and c.lastName = :last";
-            TypedQuery<CoderPlain> query = em.createQuery(jpql, CoderPlain.class);
+            String jpql = "FROM EmployeePlain e WHERE e.firstName = :first and e.lastName = :last";
+            TypedQuery<EmployeePlain> query = em.createQuery(jpql, EmployeePlain.class);
             query.setParameter("first", first);
             query.setParameter("last", last);
             return Optional.of(query.getSingleResult());
@@ -71,16 +71,17 @@ public class CoderDao {
         }
     }
 
-    public int deleteAllById(long low) {
+    public int deleteBetween(long low, long high) {
         EntityManager em = null;
         EntityTransaction tx = null;
 
         try {
             em = JpaUtil.createEntityManager();
             tx = em.getTransaction();
-            String jpql = "DELETE FROM CoderPlain c WHERE c.id >= :low";
+            String jpql = "DELETE FROM EmployeePlain e WHERE e.id BETWEEN :low AND :high";
             Query query = em.createQuery(jpql);
             query.setParameter("low", low);
+            query.setParameter("high", high);
             tx.begin();
             return query.executeUpdate();
         } catch (Exception ex) {
@@ -98,5 +99,4 @@ public class CoderDao {
             }
         }
     }
-
 }
