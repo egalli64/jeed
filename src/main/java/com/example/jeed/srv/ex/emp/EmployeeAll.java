@@ -1,4 +1,4 @@
-package com.example.jeed.srv;
+package com.example.jeed.srv.ex.emp;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,33 +16,21 @@ import com.example.jeed.dao.Employee;
 import com.example.jeed.dao.EmployeeDao;
 
 @SuppressWarnings("serial")
-@WebServlet("/ex/emp/salaryTop")
-public class EmployeesSalaryTop extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(EmployeesSalaryTop.class);
+@WebServlet("/ex/emp/all")
+public class EmployeeAll extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(EmployeeAll.class);
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String paramLow = request.getParameter("low");
-        Double low = null;
-        try {
-            low = Double.valueOf(paramLow);
-        } catch (Exception ex) {
-            log.error("Can't serve request for low " + paramLow);
-        }
+        log.traceEntry();
 
-        if (low == null) {
-            request.setAttribute("error", String.format("Can't get salary from _%s_ on", paramLow));
-        } else {
-            log.trace("from " + low);
-
-            EmployeeDao dao = new EmployeeDao();
-            List<Employee> employees = dao.readSalaryTop(low);
-            request.setAttribute("employees", employees);
-        }
-
+        List<Employee> employees = new EmployeeDao().readAllOrderBySalary(false);
+        request.setAttribute("employees", employees);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);

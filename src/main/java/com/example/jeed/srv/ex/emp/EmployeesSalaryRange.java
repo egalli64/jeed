@@ -1,4 +1,4 @@
-package com.example.jeed.srv;
+package com.example.jeed.srv.ex.emp;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,29 +22,26 @@ public class EmployeesSalaryRange extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String paramLow = request.getParameter("low");
-        Double low = null;
+        double low = -1;
         try {
-            low = Double.valueOf(paramLow);
+            low = Double.parseDouble(request.getParameter("low"));
         } catch (Exception ex) {
-            log.error("Can't serve request for low " + paramLow);
+            log.error("Bad low parameter");
         }
 
-        String paramHigh = request.getParameter("high");
-        Double high = null;
+        double high = -1;
         try {
-            high = Double.valueOf(paramHigh);
+            high = Double.parseDouble(request.getParameter("high"));
         } catch (Exception nfe) {
-            log.error("Can't serve request for high " + paramHigh);
+            log.error("Bad high parameter");
         }
 
-        if (low == null || high == null) {
-            request.setAttribute("error", String.format("Can't get salary in range [%s, %s]", paramLow, paramHigh));
+        if (low < 0 || high < 0) {
+            request.setAttribute("error", "Please, specify an acceptable range");
         } else {
             log.trace(String.format("range [%.2f .. %.2f]", low, high));
 
-            EmployeeDao dao = new EmployeeDao();
-            List<Employee> employees = dao.readSalaryRange(low, high);
+            List<Employee> employees = new EmployeeDao().readSalaryRange(low, high);
             request.setAttribute("employees", employees);
         }
 

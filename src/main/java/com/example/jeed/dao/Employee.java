@@ -4,19 +4,16 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "EMPLOYEES")
+@Table(name = "EMPLOYEE")
 @NamedQuery(name = "getTopSalaried", query = "SELECT e FROM Employee e WHERE e.salary >= :low ORDER BY e.salary DESC")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYEE_ID")
     private Integer id;
 
@@ -26,11 +23,11 @@ public class Employee {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "HIRE_DATE")
-    private LocalDate hireDate;
+    @Column(name = "HIRED")
+    private LocalDate hired;
 
     @Column(name = "SALARY")
-    private Double salary;
+    private double salary;
 
     @Transient
     private String transientNote;
@@ -62,12 +59,12 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
+    public LocalDate getHired() {
+        return hired;
     }
 
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
+    public void setHired(LocalDate hired) {
+        this.hired = hired;
     }
 
     public String getTransientNote() {
@@ -78,17 +75,17 @@ public class Employee {
         this.transientNote = transientNote;
     }
 
-    public Double getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
+        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hired=" + hired
                 + ", salary=" + salary + ", transientNote=" + transientNote + "]";
     }
 }

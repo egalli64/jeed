@@ -7,15 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CODERS")
+@Table(name = "EMPLOYEE")
 public class Coder {
+    public static final int JOB_ID = 15;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CODER_ID")
+    @Column(name = "EMPLOYEE_ID")
     private int id;
 
     @Column(name = "FIRST_NAME")
@@ -24,16 +25,29 @@ public class Coder {
     @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name = "HIRE_DATE")
-    private LocalDate hireDate;
+    @Column(name = "PHONE")
+    private int phone;
+
+    @Column(name = "HIRED")
+    private LocalDate hired;
 
     @Column(name = "SALARY")
     private double salary;
 
-    @OneToOne(optional = true, mappedBy = "leader")
-    private Team team;
+    @Column(name = "JOB_ID")
+    private int jobId;
 
     public Coder() {
+        this.jobId = JOB_ID;
+        this.hired = LocalDate.now();
+    }
+
+    public Coder(String firstName, String lastName, int phone, double salary) {
+        this();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.salary = salary;
     }
 
     public int getId() {
@@ -60,33 +74,33 @@ public class Coder {
         this.lastName = lastName;
     }
 
-    public LocalDate getHireDate() {
-        return hireDate;
+    public int getPhone() {
+        return phone;
     }
 
-    public void setHireDate(LocalDate hireDate) {
-        this.hireDate = hireDate;
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 
-    public Double getSalary() {
-        return salary;
+    public LocalDate getHired() {
+        return hired;
     }
 
-    public void setSalary(Double salary) {
+    public void setHired(LocalDate hired) {
+        this.hired = hired;
+    }
+
+    public double getSalary() {
+        return this.salary;
+    }
+
+    public void setSalary(double salary) {
         this.salary = salary;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public void setTeam(Team team) {
-        this.team = team;
     }
 
     @Override
     public String toString() {
-        return "Coder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hireDate=" + hireDate
-                + ", salary=" + salary + (team != null ? ", team=" + team.getName() : "") + "]";
+        return "Coder [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone
+                + ", hired=" + hired + ", salary=" + salary + "]";
     }
 }

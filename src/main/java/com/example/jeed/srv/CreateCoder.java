@@ -2,7 +2,6 @@ package com.example.jeed.srv;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,13 +16,13 @@ import com.example.jeed.dao.Coder;
 import com.example.jeed.dao.CoderDao;
 
 @SuppressWarnings("serial")
-@WebServlet("/coder/new")
+@WebServlet("/coder/create")
 public class CreateCoder extends HttpServlet {
     private static final Logger log = LogManager.getLogger(CreateCoder.class);
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        log.traceEntry();
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("utf-8");
@@ -31,28 +30,20 @@ public class CreateCoder extends HttpServlet {
         try (PrintWriter writer = response.getWriter()) {
             String first = request.getParameter("first");
             String last = request.getParameter("last");
-            if (first == null || first.isBlank() || last == null || last.isBlank()) {
-                writer.println("please provide a name for the coder");
+            String param = request.getParameter("phone");
+            int phone = param == null || param.isBlank() ? 0 : Integer.parseInt(param);
+            if (first == null || first.isBlank() || last == null || last.isBlank() || phone < 1) {
+                writer.println("please provide first, last and phone for the coder");
                 return;
             }
 
-            CoderDao dao = new CoderDao();
-            Coder coder = new Coder();
-            coder.setFirstName(first);
-            coder.setLastName(last);
-            coder.setHireDate(LocalDate.now());
-            coder.setSalary(0.0);
+            Coder coder = new Coder(first, last, phone, 3_000);
 
-            if (dao.create(coder)) {
+            if (new CoderDao().create(coder)) {
                 writer.println("new coder created: " + coder);
             } else {
                 writer.println("can't create coder: " + coder);
             }
         }
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
     }
 }

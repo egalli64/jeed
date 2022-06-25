@@ -1,4 +1,4 @@
-package com.example.jeed.srv;
+package com.example.jeed.srv.ex.emp;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,22 +16,31 @@ import com.example.jeed.dao.Employee;
 import com.example.jeed.dao.EmployeeDao;
 
 @SuppressWarnings("serial")
-@WebServlet("/ex/emp/all")
-public class EmployeeAll extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(EmployeeAll.class);
+@WebServlet("/ex/emp/salaryTop")
+public class EmployeesSalaryTop extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(EmployeesSalaryTop.class);
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.trace("enter");
+        double low = -1;
+        try {
+            low = Double.valueOf(request.getParameter("low"));
+        } catch (Exception ex) {
+            log.error("Bad low parameter");
+        }
 
-        EmployeeDao dao = new EmployeeDao();
-        List<Employee> employees = dao.readAllOrderBySalary(false);
-        request.setAttribute("employees", employees);
+        if (low < 0) {
+            request.setAttribute("error", "Please, specify an acceptable lower limit");
+        } else {
+            log.trace("from " + low);
+
+            List<Employee> employees = new EmployeeDao().readSalaryTop(low);
+            request.setAttribute("employees", employees);
+        }
+
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
