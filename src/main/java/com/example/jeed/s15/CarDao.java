@@ -1,12 +1,12 @@
 package com.example.jeed.s15;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 
 public class CarDao {
     private static final Logger log = LogManager.getLogger(CarDao.class);

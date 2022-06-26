@@ -2,9 +2,9 @@ package com.example.jeed.s18;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import com.example.jeed.dao.JpaUtil;
+
+import jakarta.persistence.EntityManager;
 
 public class RegionDao {
     public List<Region1ToM> readAllLazy() {
@@ -34,5 +34,4 @@ public class RegionDao {
             }
         }
     }
-
 }

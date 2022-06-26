@@ -1,13 +1,13 @@
 package com.example.jeed.s12;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
 import com.example.jeed.s05.EmployeePlain;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 
 public class EmployeeDao {
     private static final Logger log = LogManager.getLogger(EmployeeDao.class);

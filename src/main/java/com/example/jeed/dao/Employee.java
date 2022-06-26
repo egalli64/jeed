@@ -2,15 +2,15 @@ package com.example.jeed.dao;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
-@Table(name = "EMPLOYEE")
+@Table
 @NamedQuery(name = "getTopSalaried", query = "SELECT e FROM Employee e WHERE e.salary >= :low ORDER BY e.salary DESC")
 public class Employee {
     @Id

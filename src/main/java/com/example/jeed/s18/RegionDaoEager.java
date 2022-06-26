@@ -2,7 +2,7 @@ package com.example.jeed.s18;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import com.example.jeed.dao.JpaUtil;
 

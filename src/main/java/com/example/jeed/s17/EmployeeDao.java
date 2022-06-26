@@ -3,12 +3,12 @@ package com.example.jeed.s17;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.JpaUtil;
+
+import jakarta.persistence.EntityManager;
 
 public class EmployeeDao {
     static private final Logger log = LogManager.getLogger(EmployeeDao.class);

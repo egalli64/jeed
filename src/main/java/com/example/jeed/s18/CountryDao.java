@@ -2,9 +2,9 @@ package com.example.jeed.s18;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import com.example.jeed.dao.JpaUtil;
+
+import jakarta.persistence.EntityManager;
 
 public class CountryDao {
     public List<CountryMTo1> readAll() {

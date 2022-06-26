@@ -2,7 +2,7 @@ package com.example.jeed.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 public class EmployeeDao extends Dao<Employee, Integer> {
     public EmployeeDao() {

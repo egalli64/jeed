@@ -3,7 +3,7 @@ package com.example.jeed.s19;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 import com.example.jeed.dao.JpaUtil;
 

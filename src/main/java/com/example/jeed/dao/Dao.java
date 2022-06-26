@@ -3,11 +3,11 @@ package com.example.jeed.dao;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 
 public abstract class Dao<T, U> {
     static private final Logger log = LogManager.getLogger(Dao.class);

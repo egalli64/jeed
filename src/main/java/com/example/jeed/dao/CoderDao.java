@@ -2,7 +2,7 @@ package com.example.jeed.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 public class CoderDao extends Dao<Coder, Integer> {
     public CoderDao() {
@@ -22,5 +22,4 @@ public class CoderDao extends Dao<Coder, Integer> {
             }
         }
     }
-
 }
