@@ -1,7 +1,18 @@
-@charset "UTF-8";
+/* 
+    Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+    https://github.com/egalli64/jeed
+ */
 
 body {
-    background-color: gray;
+    background-color: #fafaee;
+}
+
+h1 {
+  text-align: center;
+}
+
+header {
+    margin-bottom: 20px;
 }
 
 .right {
