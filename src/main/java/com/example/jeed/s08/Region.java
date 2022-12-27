@@ -3,7 +3,7 @@
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s07;
+package com.example.jeed.s08;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,7 +14,7 @@ import jakarta.persistence.Transient;
 /**
  * Named entity for region
  */
-@Entity(name = "s07.Region")
+@Entity(name = "s08.Region")
 @Table(name = "REGION")
 public class Region {
     @Id

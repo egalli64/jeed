@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.example.jeed.s08.Region;
+
 import jakarta.persistence.EntityManager;
 
 /**
@@ -40,6 +42,7 @@ public class RegionServlet extends HttpServlet {
 
         EntityManager em = service.createEntityManager();
         try {
+            // region defined in package s08 is used!
             Region region = em.find(Region.class, Integer.parseInt(parameter));
             request.setAttribute("region", region);
         } catch (Exception ex) {
