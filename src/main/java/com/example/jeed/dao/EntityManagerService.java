@@ -3,7 +3,7 @@
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s07;
+package com.example.jeed.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -16,12 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.example.jeed.dao.ContextListener;
+import com.example.jeed.dao.EntityManagerService;
 import com.example.jeed.s08.Region;
 
 import jakarta.persistence.EntityManager;
 
 /**
  * Get region by id using entity manager
+ * 
+ * EntityManagerService and ContextListener are defined in the dao package
  */
 @SuppressWarnings("serial")
 @WebServlet("/s07/region")
@@ -31,7 +35,7 @@ public class RegionServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        service = (EntityManagerService) getServletContext().getAttribute(ContextListener.HRON_EM);
+        service = (EntityManagerService) getServletContext().getAttribute(ContextListener.DAO_EMS);
     }
 
     @Override
