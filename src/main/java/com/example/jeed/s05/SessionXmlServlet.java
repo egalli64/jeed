@@ -21,14 +21,14 @@ import org.hibernate.Session;
  * Check connection on a hibernate native session
  */
 @SuppressWarnings("serial")
-@WebServlet("/s05/connect")
-public class ConnectServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(ConnectServlet.class);
-    private static SessionService service;
+@WebServlet("/s05/sessionXml")
+public class SessionXmlServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(SessionXmlServlet.class);
+    private static SessionXmlService service;
 
     @Override
     public void init() throws ServletException {
-        service = (SessionService) getServletContext().getAttribute(ContextListener.HRON_SESSION);
+        service = (SessionXmlService) getServletContext().getAttribute(ContextListener.XML_SESSION);
     }
 
     @Override

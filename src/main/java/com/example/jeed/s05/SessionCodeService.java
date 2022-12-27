@@ -19,12 +19,12 @@ import org.hibernate.service.ServiceRegistry;
 /**
  * Hibernate Native Session Manager
  */
-public final class SessionService {
-    private static final Logger log = LogManager.getLogger(SessionService.class);
+public final class SessionCodeService {
+    private static final Logger log = LogManager.getLogger(SessionCodeService.class);
 
     private SessionFactory sessionFactory;
 
-    public SessionService() {
+    public SessionCodeService() {
         log.traceEntry();
         Configuration configuration = new Configuration();
         Properties settings = new Properties();

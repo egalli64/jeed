@@ -18,23 +18,26 @@ import org.apache.logging.log4j.Logger;
 @WebListener
 public class ContextListener implements ServletContextListener {
     private static final Logger log = LogManager.getLogger(ContextListener.class);
-    public static final String HRON_SESSION = "nativeSessionManager";
+    public static final String CODE_SESSION = "sessionCodeManager";
+    public static final String XML_SESSION = "sessionXmlManager";
 
     /**
-     * Store a session service in a servlet context attribute
+     * Store session services in servlet context attributes
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         log.traceEntry();
-        sce.getServletContext().setAttribute(HRON_SESSION, new SessionService());
+        sce.getServletContext().setAttribute(CODE_SESSION, new SessionCodeService());
+        sce.getServletContext().setAttribute(XML_SESSION, new SessionXmlService());
     }
 
     /**
-     * Close the session service
+     * Close the session services
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        ((SessionService) sce.getServletContext().getAttribute(HRON_SESSION)).close();
+        ((SessionCodeService) sce.getServletContext().getAttribute(CODE_SESSION)).close();
+        ((SessionXmlService) sce.getServletContext().getAttribute(XML_SESSION)).close();
         log.traceExit();
     }
 }
