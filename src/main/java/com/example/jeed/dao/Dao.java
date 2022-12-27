@@ -1,3 +1,8 @@
+/*
+ * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * 
+ * https://github.com/egalli64/jeed
+ */
 package com.example.jeed.dao;
 
 import java.util.List;
@@ -9,57 +14,76 @@ import org.apache.logging.log4j.Logger;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+/**
+ * CRUD operations for the entities in DAO
+ */
 public abstract class Dao<T, U> {
     static private final Logger log = LogManager.getLogger(Dao.class);
 
     private final Class<T> clazz;
+    protected final EntityManagerService service;
 
-    // workaround for template type erasure
-    public Dao(Class<T> clazz) {
+    /**
+     * Ctor
+     * 
+     * @param clazz   workaround for template type erasure
+     * @param factory an entity manager factory
+     */
+    protected Dao(Class<T> clazz, EntityManagerService service) {
         this.clazz = clazz;
+        this.service = service;
     }
 
+    /**
+     * Get all the entities by JPQL
+     * 
+     * @return all the entities
+     */
     public List<T> readAll() {
-        EntityManager em = null;
+        EntityManager em = service.createEntityManager();
 
         try {
-            em = JpaUtil.createEntityManager();
             String jpql = "SELECT e FROM " + clazz.getName() + " e";
             return em.createQuery(jpql, clazz).getResultList();
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
     }
 
+    /**
+     * Ask the entity manager to find an entity by id
+     * 
+     * @param id the entity identity
+     * @return the optional entity, possibly empty
+     */
     public Optional<T> read(U id) {
-        EntityManager em = null;
+        EntityManager em = service.createEntityManager();
 
         try {
-            em = JpaUtil.createEntityManager();
             return Optional.ofNullable(em.find(clazz, id));
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
     }
 
+    /**
+     * Persist the passed entity
+     * 
+     * @param entity the entity to persist
+     * @return true if persisted
+     */
     public boolean create(T entity) {
-        EntityManager em = null;
-        EntityTransaction tx = null;
+        EntityManager em = service.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
 
         try {
-            em = JpaUtil.createEntityManager();
-            tx = em.getTransaction();
             tx.begin();
             em.persist(entity);
             tx.commit();
             return true;
         } catch (Exception ex) {
             try {
-                if (tx != null && tx.isActive()) {
+                if (tx.isActive()) {
                     tx.rollback();
                 }
             } catch (Exception e) {
@@ -68,43 +92,48 @@ public abstract class Dao<T, U> {
             log.error("Can't persist entity", ex);
             return false;
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
     }
 
+    /**
+     * Check for existence in the current context
+     * 
+     * @param entity the entity to be checked
+     * @return true if it is a managed entity instance in the persistence context
+     */
     public boolean contains(T entity) {
-        EntityManager em = null;
+        EntityManager em = service.createEntityManager();
 
         try {
-            em = JpaUtil.createEntityManager();
             em.refresh(entity);
             return em.contains(entity);
         } catch (Exception ex) {
             log.error("Can't check if entity is contained in current context", ex);
             return false;
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
     }
 
+    /**
+     * Merge the passed entity in the persistence context
+     * 
+     * @param entity the entity to be merged
+     * @return true if the merging succeed
+     */
     public boolean update(T entity) {
-        EntityManager em = null;
-        EntityTransaction tx = null;
+        EntityManager em = service.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
 
         try {
-            em = JpaUtil.createEntityManager();
-            tx = em.getTransaction();
             tx.begin();
             em.merge(entity);
             tx.commit();
             return true;
         } catch (Exception ex) {
             try {
-                if (tx != null && tx.isActive()) {
+                if (tx.isActive()) {
                     tx.rollback();
                 }
             } catch (Exception e) {
@@ -113,19 +142,21 @@ public abstract class Dao<T, U> {
             log.error("Can't merge entity", ex);
             return false;
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
     }
 
+    /**
+     * Remove the entity from the persistence context
+     * 
+     * @param id the entity identity
+     * @return true if removed correctly
+     */
     public boolean delete(U id) {
-        EntityManager em = null;
-        EntityTransaction tx = null;
+        EntityManager em = service.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
 
         try {
-            em = JpaUtil.createEntityManager();
-            tx = em.getTransaction();
             tx.begin();
             T entity = em.find(clazz, id);
             if (entity != null) {
@@ -139,7 +170,7 @@ public abstract class Dao<T, U> {
             }
         } catch (Exception ex) {
             try {
-                if (tx != null && tx.isActive()) {
+                if (tx.isActive()) {
                     tx.rollback();
                 }
             } catch (Exception e) {
@@ -148,9 +179,7 @@ public abstract class Dao<T, U> {
             log.error("Can't remove entity " + id, ex);
             return false;
         } finally {
-            if (em != null) {
-                em.close();
-            }
+            em.close();
         }
     }
 }

@@ -1,4 +1,11 @@
+/*
+ * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * 
+ * https://github.com/egalli64/jeed
+ */
 package com.example.jeed.dao;
+
+import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,6 +14,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+/**
+ * The standard region JavaBean used in the web app
+ */
 @Entity
 @Table
 public class Region {
@@ -44,6 +54,23 @@ public class Region {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Region other = (Region) obj;
+        return Objects.equals(id, other.id) && Objects.equals(name, other.name);
     }
 
     @Override
