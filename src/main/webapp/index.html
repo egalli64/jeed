@@ -24,16 +24,10 @@
 
     <h2>CRUD by EntityManager</h2>
     <ul>
-        <li>Find a <a href="s11/region/get?id=1">single region</a> (should work)</li>
-        <li>Find a <a href="s11/region/get?id=402">single region</a> (should be missing)</li>
-    </ul>
-
-    <ul>
-        <li>Persist a <a href="s12/employee/create?id=222">region</a> (Antarctica)</li>
-        <li><a href="s12/employee/update?id=222">Update employee (222)</a></li>
-        <li><a href="s12/employee/update?id=262&first=Tom">Update employee (262)</a></li>
-        <li><a href="s12/employee/delete?id=222">Delete employee (222)</a></li>
-        <li><a href="s12/employee/delete?id=262">Delete employee (262)</a></li>
+        <li><a href="s11/region/get?id=1">Find a region</a> (read Europe)</li>
+        <li><a href="s11/region/create?name=Antarctica">Persist a region</a> (create Antarctica)</li>
+        <li><a href="s11/region/update?id=5&name=Oceania">Merge a region</a> (update/create 5, Oceania)</li>
+        <li>Find and <a href="s11/region/delete?id=5">remove a region</a> (delete 5)</li>
     </ul>
 
     <h2>JPQL</h2>
