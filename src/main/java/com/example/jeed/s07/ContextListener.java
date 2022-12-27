@@ -3,7 +3,7 @@
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s06;
+package com.example.jeed.s07;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -13,28 +13,28 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Manage a session service for the web app
+ * Manage the NativeSessionManager for the web app
  */
 @WebListener
 public class ContextListener implements ServletContextListener {
     private static final Logger log = LogManager.getLogger(ContextListener.class);
-    public static final String SESSION_6 = "sessionManager6";
+    public static final String HRON_EM = "JpaEntityManager";
 
     /**
-     * Store a session service in a servlet context attribute
+     * Store an entity manager service in a servlet context attribute
      */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         log.traceEntry();
-        sce.getServletContext().setAttribute(SESSION_6, new SessionService());
+        sce.getServletContext().setAttribute(HRON_EM, new EntityManagerService());
     }
 
     /**
-     * Close the session service
+     * Close the entity manager service
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        ((SessionService) sce.getServletContext().getAttribute(SESSION_6)).close();
+        ((EntityManagerService) sce.getServletContext().getAttribute(HRON_EM)).close();
         log.traceExit();
     }
 }

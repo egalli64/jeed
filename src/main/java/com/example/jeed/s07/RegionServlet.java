@@ -3,7 +3,7 @@
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s06;
+package com.example.jeed.s07;
 
 import java.io.IOException;
 
@@ -15,20 +15,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Session;
+
+import jakarta.persistence.EntityManager;
 
 /**
  * Get region by id
  */
 @SuppressWarnings("serial")
-@WebServlet("/s06/region")
+@WebServlet("/s07/region")
 public class RegionServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(RegionServlet.class);
-    private SessionService service;
+    private static EntityManagerService service;
 
     @Override
     public void init() throws ServletException {
-        service = (SessionService) getServletContext().getAttribute(ContextListener.SESSION_6);
+        service = (EntityManagerService) getServletContext().getAttribute(ContextListener.HRON_EM);
     }
 
     @Override
@@ -37,11 +38,15 @@ public class RegionServlet extends HttpServlet {
         String parameter = request.getParameter("id");
         log.traceEntry(parameter);
 
-        try (Session session = service.getSession()) {
-            Region region = session.get(Region.class, Integer.parseInt(parameter));
+        EntityManager em = service.createEntityManager();
+        try {
+            Region region = em.find(Region.class, Integer.parseInt(parameter));
             request.setAttribute("region", region);
         } catch (Exception ex) {
             log.error("Can't get region", ex);
+        } finally {
+            // each EM created should be closed
+            em.close();
         }
 
         request.getRequestDispatcher("/region.jsp").forward(request, response);

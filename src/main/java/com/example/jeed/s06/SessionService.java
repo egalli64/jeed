@@ -17,7 +17,7 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 /**
- * Hibernate Native Session Manager with an annotated class
+ * Hibernate Session service keeping track of an annotated class
  */
 public final class SessionService {
     private static final Logger log = LogManager.getLogger(SessionService.class);
