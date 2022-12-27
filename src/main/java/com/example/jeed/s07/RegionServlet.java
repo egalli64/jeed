@@ -21,13 +21,13 @@ import com.example.jeed.s08.Region;
 import jakarta.persistence.EntityManager;
 
 /**
- * Get region by id
+ * Get region by id using entity manager
  */
 @SuppressWarnings("serial")
 @WebServlet("/s07/region")
 public class RegionServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(RegionServlet.class);
-    private static EntityManagerService service;
+    private EntityManagerService service;
 
     @Override
     public void init() throws ServletException {

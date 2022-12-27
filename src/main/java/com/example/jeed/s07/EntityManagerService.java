@@ -13,7 +13,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 /**
- * Hibernate Native Session Manager with an annotated class
+ * Service for Entity Manager
  */
 public final class EntityManagerService {
     private static final Logger log = LogManager.getLogger(EntityManagerService.class);

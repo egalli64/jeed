@@ -13,7 +13,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Manage the NativeSessionManager for the web app
+ * Manage the Entity Manager for the web app
  */
 @WebListener
 public class ContextListener implements ServletContextListener {
