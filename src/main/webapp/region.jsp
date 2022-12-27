@@ -20,6 +20,16 @@
         </nav>
     </header>
 
-    <p>Found ${region}</p>
+    <c:choose>
+        <c:when test="${empty region}">
+            <p>
+                Failure operating on region
+                <c:if test="${param.id ne null}">with id ${param.id}</c:if>
+            </p>
+        </c:when>
+        <c:otherwise>
+            <p>Region is ${region.id} ${region.name}</p>
+        </c:otherwise>
+    </c:choose>
 </body>
 </html>

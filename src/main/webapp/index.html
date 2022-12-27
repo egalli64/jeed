@@ -22,17 +22,14 @@
         <li>Get <a href="s07/region?id=1">region 1</a> (JPA approach)</li>
     </ul>
 
-    <h2>EntityManager to read</h2>
+    <h2>CRUD by EntityManager</h2>
     <ul>
-        <li>Get <a href="s11/employee/get?id=107">single employee (107)</a></li>
-        <li>Get <a href="s11/employee/get?id=402">single employee (missing)</a></li>
-        <li>Get <a href="s11/employee/proxy/get?id=107">single employee (proxy)</a></li>
-        <li>Get <a href="s11/employee/refresh/get?id=107">single employee (refresh)</a></li>
+        <li>Find a <a href="s11/region/get?id=1">single region</a> (should work)</li>
+        <li>Find a <a href="s11/region/get?id=402">single region</a> (should be missing)</li>
     </ul>
 
-    <h2>EntityManager to create, update, and delete</h2>
     <ul>
-        <li><a href="s12/employee/create?id=222">Create employee (222)</a></li>
+        <li>Persist a <a href="s12/employee/create?id=222">region</a> (Antarctica)</li>
         <li><a href="s12/employee/update?id=222">Update employee (222)</a></li>
         <li><a href="s12/employee/update?id=262&first=Tom">Update employee (262)</a></li>
         <li><a href="s12/employee/delete?id=222">Delete employee (222)</a></li>
