@@ -7,15 +7,18 @@
 <meta charset="utf-8">
 <title>Regions</title>
 <link rel="icon" href="data:;base64,=">
-<link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
+<link rel="stylesheet" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Regions</h1>
+    <header>
+        <h1>Regions</h1>
+        <nav>
+            <a href="/jeed/index.html#1toM">Home</a>
+        </nav>
+    </header>
+
     <c:forEach var="region" items="${regions}">
         <h2>${region.id}&nbsp;${region.name}</h2>
     </c:forEach>
-    <p>
-        Back <a href="/jeed/index.html">home</a>
-    </p>
 </body>
 </html>

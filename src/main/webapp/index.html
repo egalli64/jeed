@@ -50,6 +50,13 @@
         <li><a href="s15/employee/all">Get all employees</a> (w/ car or not)</li>
     </ul>
 
+    <h2 id="1toM">Many to one / one to many - country and region</h2>
+    <ul>
+        <li><a href="s16/country/all">Get all countries with region</a> (many to one)</li>
+        <li><a href="s16/region/all">Get all regions</a> (lazy one to many, no country)</li>
+        <li><a href="s16/region/allEager">Get all regions and countries</a> (eager on request - preferred)</li>
+        <li><a href="s16/regionEager/all">Get all regions and countries</a> (always eager)</li>
+    </ul>
 
     <h2>Id with generated values</h2>
     <ul>
@@ -61,14 +68,6 @@
     <ul>
         <li>Create <a href="s15/car/create">car (auto increment)</a></li>
         <li>Create <a href="s15/car/createBad?id=41">car (error - auto id expected)</a></li>
-    </ul>
-
-    <h2>One to many / Many to one - country and region</h2>
-    <ul>
-        <li>Get <a href="s18/country/all">all countries</a></li>
-        <li>Get <a href="s18/region/all">all regions</a> (no country)</li>
-        <li>Get <a href="s18/region/country/all">all regions and countries</a></li>
-        <li>Get <a href="s18/region/all/eager">all regions and countries</a> (eager)</li>
     </ul>
 
     <h2>Many to many - service and car</h2>

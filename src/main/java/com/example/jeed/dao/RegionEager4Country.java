@@ -1,4 +1,9 @@
-package com.example.jeed.s18;
+/*
+ * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * 
+ * https://github.com/egalli64/jeed
+ */
+package com.example.jeed.dao;
 
 import java.util.Set;
 
@@ -9,23 +14,27 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+/**
+ * JPA entity for region in one to many EAGER relation with country
+ * 
+ * Are you really sure you want it?
+ */
 @Entity
-@Table(name = "REGION")
-public class Region1ToMEager {
+@Table(name = "Region")
+public class RegionEager4Country {
     @Id
     @Column(name = "REGION_ID")
     private int id;
 
-    @Column(name = "NAME")
     private String name;
 
     @OneToMany(mappedBy = "region", fetch = FetchType.EAGER)
-    private Set<CountryMTo1> countries;
+    private Set<Country> countries;
 
-    public Region1ToMEager() {
+    public RegionEager4Country() {
     }
 
-    public Region1ToMEager(String name) {
+    public RegionEager4Country(String name) {
         this.name = name;
     }
 
@@ -45,11 +54,11 @@ public class Region1ToMEager {
         this.name = name;
     }
 
-    public Set<CountryMTo1> getCountries() {
+    public Set<Country> getCountries() {
         return countries;
     }
 
-    public void setCountries(Set<CountryMTo1> countries) {
+    public void setCountries(Set<Country> countries) {
         this.countries = countries;
     }
 

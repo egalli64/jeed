@@ -1,4 +1,9 @@
-package com.example.jeed.s18;
+/*
+ * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * 
+ * https://github.com/egalli64/jeed
+ */
+package com.example.jeed.dao;
 
 import java.util.Set;
 
@@ -8,23 +13,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+/**
+ * JPA entity for region in one to many relation with country
+ */
 @Entity
-@Table(name = "REGION")
-public class Region1ToM {
+@Table(name = "Region")
+public class Region4Country {
     @Id
     @Column(name = "REGION_ID")
     private int id;
 
-    @Column(name = "NAME")
     private String name;
 
     @OneToMany(mappedBy = "region")
-    private Set<CountryMTo1> countries;
+    private Set<Country> countries;
 
-    public Region1ToM() {
+    public Region4Country() {
     }
 
-    public Region1ToM(String name) {
+    public Region4Country(String name) {
         this.name = name;
     }
 
@@ -44,11 +51,11 @@ public class Region1ToM {
         this.name = name;
     }
 
-    public Set<CountryMTo1> getCountries() {
+    public Set<Country> getCountries() {
         return countries;
     }
 
-    public void setCountries(Set<CountryMTo1> countries) {
+    public void setCountries(Set<Country> countries) {
         this.countries = countries;
     }
 

@@ -1,15 +1,24 @@
-package com.example.jeed.s18;
+/*
+ * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * 
+ * https://github.com/egalli64/jeed
+ */
+package com.example.jeed.dao;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
+/**
+ * JPA entity for the COUNTRY table in a many to one relation with REGION by
+ * REGION_ID
+ * 
+ * @see Region4Country the "one" side of the relation
+ */
 @Entity
-@Table(name = "COUNTRY")
-public class CountryMTo1 {
+public class Country {
     @Id
     @Column(name = "COUNTRY_ID")
     private String id;
@@ -19,12 +28,12 @@ public class CountryMTo1 {
 
     @ManyToOne
     @JoinColumn(name = "REGION_ID")
-    private Region1ToM region;
+    private Region4Country region;
 
-    public CountryMTo1() {
+    public Country() {
     }
 
-    public CountryMTo1(String name) {
+    public Country(String name) {
         this.name = name;
     }
 
@@ -44,16 +53,16 @@ public class CountryMTo1 {
         this.name = name;
     }
 
-    public Region1ToM getRegion() {
+    public Region4Country getRegion() {
         return region;
     }
 
-    public void setRegion(Region1ToM region) {
+    public void setRegion(Region4Country region) {
         this.region = region;
     }
 
     @Override
     public String toString() {
-        return "Country [id=" + id + ", name=" + name + (region != null ? ", region=" + region.getName() : "") + "]";
+        return "Country [id=" + id + ", name=" + name + "]";
     }
 }

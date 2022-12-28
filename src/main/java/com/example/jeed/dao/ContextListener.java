@@ -23,6 +23,9 @@ public class ContextListener implements ServletContextListener {
     public static final String EMPLOYEE_DAO = "EmployeeDao";
     public static final String CAR_DAO = "CarDao";
     public static final String EMPLOYEE4CAR_DAO = "Employee4CarDao";
+    public static final String COUNTRY_DAO = "CountryDao";
+    public static final String REGION4COUNTRY_DAO = "Region4CountryDao";
+    public static final String REGION_EAGER4COUNTRY_DAO = "RegionEager4CountryDao";
 
     /**
      * Store DAOs in servlet context attributes
@@ -36,6 +39,9 @@ public class ContextListener implements ServletContextListener {
         sce.getServletContext().setAttribute(EMPLOYEE_DAO, new EmployeeDao(ems));
         sce.getServletContext().setAttribute(CAR_DAO, new CarDao(ems));
         sce.getServletContext().setAttribute(EMPLOYEE4CAR_DAO, new Employee4CarDao(ems));
+        sce.getServletContext().setAttribute(COUNTRY_DAO, new CountryDao(ems));
+        sce.getServletContext().setAttribute(REGION4COUNTRY_DAO, new Region4CountryDao(ems));
+        sce.getServletContext().setAttribute(REGION_EAGER4COUNTRY_DAO, new RegionEager4CountryDao(ems));
     }
 
     /**

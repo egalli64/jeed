@@ -7,10 +7,16 @@
 <meta charset="utf-8">
 <title>Countries and Region</title>
 <link rel="icon" href="data:;base64,=">
-<link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
+<link rel="stylesheet" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Countries and Region</h1>
+    <header>
+        <h1>Countries and Region</h1>
+        <nav>
+            <a href="/jeed/index.html#1toM">Home</a>
+        </nav>
+    </header>
+
     <table>
         <tr>
             <th>id</th>
@@ -22,14 +28,11 @@
                 <td>${country.id}</td>
                 <td>${country.name}</td>
                 <td>
-                    <c:if test="${country.region ne null}">${country.region.name}</c:if>
-                    <c:if test="${country.region eq null}">-</c:if>
+                    <c:if test="${not empty country.region}">${country.region.name}</c:if>
+                    <c:if test="${empty country.region}">-</c:if>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <p>
-        Back <a href="/jeed/index.html">home</a>
-    </p>
 </body>
 </html>

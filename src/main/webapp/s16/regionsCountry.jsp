@@ -5,12 +5,18 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Regions and Countries</title>
+<title>Regions with Country</title>
 <link rel="icon" href="data:;base64,=">
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Regions and Countries</h1>
+    <header>
+        <h1>Regions with associated country</h1>
+        <nav>
+            <a href="/jeed/index.html#1toM">Home</a>
+        </nav>
+    </header>
+
     <c:forEach var="region" items="${regions}">
         <h2>${region.id}&nbsp;${region.name}</h2>
         <table>
@@ -26,8 +32,5 @@
             </c:forEach>
         </table>
     </c:forEach>
-    <p>
-        Back <a href="/jeed/index.html">home</a>
-    </p>
 </body>
 </html>
