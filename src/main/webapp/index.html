@@ -41,6 +41,15 @@
         <li><a href="s13/employee/delete/range?low=207&high=220">Delete employees in range</a> [207, 230]</li>
     </ul>
 
+    <h2>One to one: car - employee</h2>
+    <ul>
+        <li><a href="s15/car/get?id=1">Get car</a> (w/ employee)</li>
+        <li><a href="s15/car/get/all">Get all cars</a> (w/ employee)</li>
+        <li><a href="s15/employee/get?id=103">Get employee</a> (103 - with car)</li>
+        <li><a href="s15/employee/get?id=107">Get employee</a> (107 - without a car)</li>
+    </ul>
+
+
     <h2>Id with generated values</h2>
     <ul>
         <li>Create <a href="s15/employee/create">employee (auto increment)</a></li>
@@ -51,15 +60,6 @@
     <ul>
         <li>Create <a href="s15/car/create">car (auto increment)</a></li>
         <li>Create <a href="s15/car/createBad?id=41">car (error - auto id expected)</a></li>
-    </ul>
-
-    <h2>One to one: car - assigned employee</h2>
-    <ul>
-        <li>Get <a href="s17/car/read?id=1">car and employee</a> (1)</li>
-        <li>Get <a href="s17/car/all">all cars</a></li>
-        <li>Get <a href="s17/employee/read?id=103">employee</a> (103 - with car)</li>
-        <li>Get <a href="s17/employee/read?id=107">employee</a> (107 - without a car)</li>
-        <li>Get <a href="s17/employee/all">all employees</a></li>
     </ul>
 
     <h2>One to many / Many to one - country and region</h2>
