@@ -10,7 +10,13 @@
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Employee</h1>
+    <header>
+        <h1>Employee</h1>
+        <nav>
+            <a href="/jeed/index.html">Home</a>
+        </nav>
+    </header>
+
     <c:choose>
         <c:when test="${employee eq null}">
             <p>
@@ -23,8 +29,5 @@
             <p>hired on ${employee.hired}, salary is ${employee.salary}</p>
         </c:otherwise>
     </c:choose>
-    <p>
-        Back <a href="/jeed/index.html">home</a>
-    </p>
 </body>
 </html>

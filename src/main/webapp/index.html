@@ -18,8 +18,8 @@
     <ul>
         <li><a href="s05/sessionCode">Check native session</a> (code setup)</li>
         <li><a href="s05/sessionXml">Check native session</a> (XML setup)</li>
-        <li>Get <a href="s06/region?id=1">region 1</a> (native approach)</li>
-        <li>Get <a href="s07/region?id=1">region 1</a> (JPA approach)</li>
+        <li><a href="s06/region?id=1">Get region 1</a> (native approach)</li>
+        <li><a href="s07/region?id=1">Get region 1</a> (JPA approach)</li>
     </ul>
 
     <h2>CRUD by EntityManager</h2>
@@ -32,10 +32,13 @@
 
     <h2>JPQL</h2>
     <ul>
-        <li>Get <a href="s14/employee/salary/top?lowest=12000">employee w/ salary > 12000</a></li>
-        <li>Get <a href="s14/employee/named?first=Diana&last=Lorentz">employee by name (Diana Lorentz)</a></li>
-        <li>Get <a href="s14/employee/named?first=X&last=X">employee by name (missing)</a></li>
-        <li>Delete <a href="s14/employee/deleteBetween?low=220&high=230">employees by id (220 ... 230)</a></li>
+        <li><a href="s13/employee/salary/bottom?limit=2400">Get employees w/ salary &lt;= 2400</a> (untyped query)</li>
+        <li><a href="s13/employee/salary/range?low=3500&high=4000">Get employees in [3500, 4000]</a> (typed query)</li>
+        <li><a href="s13/employee/salary/top?limit=13000">Get employees w/ salary &gt; 13000</a> (named query)</li>
+        <li><a href="s13/employee/lastName?name=Lorentz">Get employees by last name</a> (Lorentz, single)</li>
+        <li>Don't <a href="s13/employee/lastName?name=Grant">get employee by last name</a> (duplicated)</li>
+        <li>Don't <a href="s13/employee/lastName?name=Missing">get employee by last name</a> (missing)</li>
+        <li><a href="s13/employee/delete/range?low=207&high=220">Delete employees in range</a> [207, 230]</li>
     </ul>
 
     <h2>Id with generated values</h2>

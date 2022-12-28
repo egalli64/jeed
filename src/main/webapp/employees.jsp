@@ -10,7 +10,13 @@
 <link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Employees</h1>
+    <header>
+        <h1>Employees</h1>
+        <nav>
+            <a href="/jeed/index.html">Home</a>
+        </nav>
+    </header>
+
     <table>
         <tr>
             <th>id</th>
@@ -29,8 +35,5 @@
             </tr>
         </c:forEach>
     </table>
-    <p>
-        Back <a href="/jeed/index.html">home</a>
-    </p>
 </body>
 </html>
