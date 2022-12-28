@@ -1,19 +1,30 @@
+/*
+ * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * 
+ * https://github.com/egalli64/jeed
+ */
 package com.example.jeed.dao;
 
 import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
+/**
+ * JavaBean as DTO for the EMPLOYEE table
+ */
 @Entity
 @Table
 @NamedQuery(name = "getTopSalaried", query = "SELECT e FROM Employee e WHERE e.salary >= :low ORDER BY e.salary DESC")
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYEE_ID")
     private Integer id;
 
@@ -30,9 +41,16 @@ public class Employee {
     private double salary;
 
     @Transient
-    private String transientNote;
+    private String note;
 
     public Employee() {
+    }
+
+    public Employee(int id, String firstName, String lastName, double salary) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
     }
 
     public Integer getId() {
@@ -67,12 +85,12 @@ public class Employee {
         this.hired = hired;
     }
 
-    public String getTransientNote() {
-        return transientNote;
+    public String getNote() {
+        return note;
     }
 
-    public void setTransientNote(String transientNote) {
-        this.transientNote = transientNote;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public double getSalary() {
@@ -86,6 +104,6 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", hired=" + hired
-                + ", salary=" + salary + ", transientNote=" + transientNote + "]";
+                + ", salary=" + salary + ", note=" + note + "]";
     }
 }

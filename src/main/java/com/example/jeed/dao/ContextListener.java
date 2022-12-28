@@ -20,6 +20,7 @@ public class ContextListener implements ServletContextListener {
     private static final Logger log = LogManager.getLogger(ContextListener.class);
     public static final String DAO_EMS = "DaoEntityManagerService";
     public static final String REGION_DAO = "RegionDao";
+    public static final String EMPLOYEE_DAO = "EmployeeDao";
 
     /**
      * Store DAOs in servlet context attributes
@@ -30,6 +31,7 @@ public class ContextListener implements ServletContextListener {
         EntityManagerService ems = new EntityManagerService();
         sce.getServletContext().setAttribute(DAO_EMS, ems);
         sce.getServletContext().setAttribute(REGION_DAO, new RegionDao(ems));
+        sce.getServletContext().setAttribute(EMPLOYEE_DAO, new EmployeeDao(ems));
     }
 
     /**
