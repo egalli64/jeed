@@ -46,6 +46,6 @@ public class CarGetServlet extends HttpServlet {
         dao.read(Integer.valueOf(param)).ifPresentOrElse(car -> request.setAttribute("car", car),
                 () -> log.info(String.format("Car %d not found", param)));
 
-        request.getRequestDispatcher("/carEmployee.jsp").forward(request, response);
+        request.getRequestDispatcher("/s15/carEmployee.jsp").forward(request, response);
     }
 }

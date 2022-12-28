@@ -6,6 +6,7 @@
 package com.example.jeed.s15;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,15 +22,15 @@ import com.example.jeed.dao.Employee4Car;
 import com.example.jeed.dao.Employee4CarDao;
 
 /**
- * Get a single entity using OneToOne JPA annotation
+ * Get all entities using OneToOne JPA annotation
  * 
  * @see Employee4Car the associated JPA entity
  * @see Employee4CarDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s15/employee/get")
-public class EmployeeGetServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(EmployeeGetServlet.class);
+@WebServlet("/s15/employee/all")
+public class EmployeeGetAllServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(EmployeeGetAllServlet.class);
     private Employee4CarDao dao;
 
     @Override
@@ -40,12 +41,12 @@ public class EmployeeGetServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String param = request.getParameter("id");
-        log.traceEntry(param);
+        log.traceEntry();
 
-        dao.read(Integer.valueOf(param)).ifPresentOrElse(emp -> request.setAttribute("employee", emp),
-                () -> log.info(String.format("Employee %d not found", param)));
+        List<Employee4Car> employees = dao.readAll();
+        log.debug(employees.size() + " employees read");
+        request.setAttribute("employees", employees);
 
-        request.getRequestDispatcher("/s15/employeeCar.jsp").forward(request, response);
+        request.getRequestDispatcher("/s15/employeesCar.jsp").forward(request, response);
     }
 }

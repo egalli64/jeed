@@ -27,7 +27,7 @@ import com.example.jeed.dao.ContextListener;
  * @see CarDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s15/car/get/all")
+@WebServlet("/s15/car/all")
 public class CarGetAllServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(CarGetAllServlet.class);
     private CarDao dao;
@@ -43,6 +43,6 @@ public class CarGetAllServlet extends HttpServlet {
         log.traceEntry();
 
         request.setAttribute("cars", dao.readAll());
-        request.getRequestDispatcher("/cars.jsp").forward(request, response);
+        request.getRequestDispatcher("/s15/carsEmployee.jsp").forward(request, response);
     }
 }

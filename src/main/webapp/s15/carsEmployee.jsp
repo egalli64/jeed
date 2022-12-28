@@ -1,3 +1,7 @@
+<%-- 
+    Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+    https://github.com/egalli64/jeed
+ --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -5,29 +9,32 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Cars</title>
+<title>Cars and Employee</title>
 <link rel="icon" href="data:;base64,=">
 <link rel="stylesheet" href="/jeed/css/simple.css">
 </head>
 <body>
     <header>
-        <h1>Cars</h1>
+        <h1>Cars and Employee</h1>
         <nav>
-            <a href="/jeed/index.html">Home</a>
+            <a href="/jeed/index.html#1to1">Home</a>
         </nav>
     </header>
 
     <table>
         <tr>
             <th>id</th>
-            <th>name</th>
-            <th>employee</th>
+            <th>car name</th>
+            <th>employee name</th>
         </tr>
         <c:forEach var="car" items="${cars}">
             <tr>
                 <td>${car.id}</td>
                 <td>${car.name}</td>
-                <td>${car.employee.firstName}&nbsp;${car.employee.lastName}</td>
+                <td>
+                    <c:if test="${car.employee ne null}">${car.employee.firstName} ${car.employee.lastName}</c:if>
+                    <c:if test="${car.employee eq null}">-</c:if>
+                </td>
             </tr>
         </c:forEach>
     </table>

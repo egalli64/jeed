@@ -1,3 +1,7 @@
+<%-- 
+    Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+    https://github.com/egalli64/jeed
+ --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -7,12 +11,18 @@
 <meta charset="utf-8">
 <title>Car and Employee</title>
 <link rel="icon" href="data:;base64,=">
-<link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
+<link rel="stylesheet" href="/jeed/css/simple.css">
 </head>
 <body>
-    <h1>Car and Employee</h1>
+    <header>
+        <h1>Car and Employee</h1>
+        <nav>
+            <a href="/jeed/index.html#1to1">Home</a>
+        </nav>
+    </header>
+
     <c:choose>
-        <c:when test="${car eq null}">
+        <c:when test="${empty car}">
             <p>
                 Failure operating on car
                 <c:if test="${param.id ne null}">with id ${param.id}</c:if>
@@ -26,8 +36,5 @@
             </p>
         </c:otherwise>
     </c:choose>
-    <p>
-        Back <a href="/jeed/index.html">home</a>
-    </p>
 </body>
 </html>
