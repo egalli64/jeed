@@ -27,7 +27,8 @@
         <li><a href="s11/region/get?id=1">Find a region</a> (read Europe)</li>
         <li><a href="s11/region/create?name=Antarctica">Persist a region</a> (create Antarctica)</li>
         <li><a href="s11/region/update?id=5&name=Oceania">Merge a region</a> (update/create 5, Oceania)</li>
-        <li>Find and <a href="s11/region/delete?id=5">remove a region</a> (delete 5)</li>
+        <li>Find and <a href="s11/region/delete?id=5">remove a region</a> (delete 5)
+        </li>
     </ul>
 
     <h2>JPQL</h2>
@@ -36,8 +37,10 @@
         <li><a href="s13/employee/salary/range?low=3500&high=4000">Get employees in [3500, 4000]</a> (typed query)</li>
         <li><a href="s13/employee/salary/top?limit=13000">Get employees w/ salary &gt; 13000</a> (named query)</li>
         <li><a href="s13/employee/lastName?name=Lorentz">Get employees by last name</a> (Lorentz, single)</li>
-        <li>Don't <a href="s13/employee/lastName?name=Grant">get employee by last name</a> (duplicated)</li>
-        <li>Don't <a href="s13/employee/lastName?name=Missing">get employee by last name</a> (missing)</li>
+        <li>Don't <a href="s13/employee/lastName?name=Grant">get employee by last name</a> (duplicated)
+        </li>
+        <li>Don't <a href="s13/employee/lastName?name=Missing">get employee by last name</a> (missing)
+        </li>
         <li><a href="s13/employee/delete/range?low=207&high=220">Delete employees in range</a> [207, 230]</li>
     </ul>
 
@@ -58,6 +61,13 @@
         <li><a href="s16/regionEager/all">Get all regions and countries</a> (always eager)</li>
     </ul>
 
+    <h2 id="MtoM">Many to many - team and employee</h2>
+    <ul>
+        <li><a href="s17/team/all">Get all team</a> (lazy - no employee)</li>
+        <li><a href="s17/team/allEager">Get all teams and employees</a> (eager on request)</li>
+        <li><a href="s17/employee/allEager">Get all employees and teams</a> (eager on request)</li>
+    </ul>
+
     <h2>Id with generated values</h2>
     <ul>
         <li>Create <a href="s15/employee/create">employee (auto increment)</a></li>
@@ -68,13 +78,6 @@
     <ul>
         <li>Create <a href="s15/car/create">car (auto increment)</a></li>
         <li>Create <a href="s15/car/createBad?id=41">car (error - auto id expected)</a></li>
-    </ul>
-
-    <h2>Many to many - service and car</h2>
-    <ul>
-        <li>Get <a href="s19/service/all">all services</a> (no car)</li>
-        <li>Get <a href="s19/service/all/eager">all services and cars</a></li>
-        <li>Get <a href="s19/car/all/eager">all cars and services</a></li>
     </ul>
 </body>
 </html>
