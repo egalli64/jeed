@@ -11,9 +11,10 @@ import org.apache.logging.log4j.Logger;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceUnitUtil;
 
 /**
- * Service for Entity Manager
+ * Service to create entity managers and access to the persistence unit utility
  */
 public final class EntityManagerService {
     private static final Logger log = LogManager.getLogger(EntityManagerService.class);
@@ -35,10 +36,19 @@ public final class EntityManagerService {
     }
 
     /**
+     * Access to utility methods for the persistence unit
+     * 
+     * @return reference to the persistence unit utility
+     */
+    public PersistenceUnitUtil getPersistenceUnitUtil() {
+        return factory.getPersistenceUnitUtil();
+    }
+
+    /**
      * Close the factory
      */
     public void close() {
-        log.traceEntry();
         factory.close();
+        log.traceExit();
     }
 }
