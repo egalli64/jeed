@@ -12,8 +12,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 /**
- * JPA entity for the COUNTRY table in a many to one relation with REGION by
- * REGION_ID
+ * JPA entity for the COUNTRY table in a many to one relation with REGION. Id
+ * should be provided by caller.
  * 
  * @see Region4Country the "one" side of the relation
  */
@@ -33,7 +33,8 @@ public class Country {
     public Country() {
     }
 
-    public Country(String name) {
+    public Country(String id, String name) {
+        this.id = id;
         this.name = name;
     }
 
