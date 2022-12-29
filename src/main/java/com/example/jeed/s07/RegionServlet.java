@@ -18,14 +18,19 @@ import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.ContextListener;
 import com.example.jeed.dao.EntityManagerService;
-import com.example.jeed.s08.Region;
+import com.example.jeed.dao.Region;
 
 import jakarta.persistence.EntityManager;
 
 /**
- * Get region by id using entity manager
+ * Use of EntityManager::find() to get a region by id. The code here to manage
+ * the entity should be part of a DAO. Actually, the support classes used here
+ * are defined in the dao package.
  * 
- * EntityManagerService and ContextListener are defined in the dao package
+ * @see ContextListener ServletContextListener to get the EntityManagerService
+ * @see EntityManagerService Single access point to the EntityManagerFactory to
+ *      get an EntityManager
+ * @see Region JPA entity
  */
 @SuppressWarnings("serial")
 @WebServlet("/s07/region")
@@ -46,7 +51,6 @@ public class RegionServlet extends HttpServlet {
 
         EntityManager em = service.createEntityManager();
         try {
-            // region defined in package s08 is used!
             Region region = em.find(Region.class, Integer.parseInt(parameter));
             request.setAttribute("region", region);
         } catch (Exception ex) {
