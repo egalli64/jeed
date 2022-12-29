@@ -32,11 +32,15 @@
 
     <h2>CRUD by EntityManager</h2>
     <ul>
-        <li><a href="s11/region/get?id=1">Find a region</a> (read Europe)</li>
+        <li><a href="s11/region/get?id=1">Find a region</a> (read Europe)
+            <ul>
+                <li>Find and <a href="s11/region/refresh?id=1">refresh a region</a> (Europe)</li>
+                <li><a href="s11/region/reference?id=1">Get a reference to a region</a> (and initialize it)</li>
+            </ul>
+        </li>
         <li><a href="s08/region/create?name=Antarctica">Persist a region</a> (create Antarctica)</li>
         <li><a href="s11/region/update?id=5&name=Oceania">Merge a region</a> (update/create 5, Oceania)</li>
-        <li>Find and <a href="s11/region/delete?id=5">remove a region</a> (delete 5)
-        </li>
+        <li>Find and <a href="s11/region/delete?id=5">remove a region</a> (delete 5)</li>
     </ul>
 
     <h2>JPQL</h2>
