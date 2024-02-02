@@ -2,11 +2,13 @@
 ## Introduction to Jakarta Enterprise Edition - JPA (Hibernate)
 
 ### Used technologies
+- Java 21
 - Apache Tomcat 10.1
-- Hibernate ORM 6
+- Hibernate ORM 6.4
 - Maven 3
-  - See pom.xml for details
-- Eclipse IDE 2022-12
+    - See pom.xml for details
+- Eclipse IDE 2023-12
+    - Set Project Properties, Facets, Runtime to Tomcat 10.1
 
 ### As JDBC resource, access to PostgreSQL is assumed
 - _Almost any other RDBMS should do_
