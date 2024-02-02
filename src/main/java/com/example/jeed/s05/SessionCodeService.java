@@ -29,7 +29,7 @@ public final class SessionCodeService {
         Configuration configuration = new Configuration();
         Properties settings = new Properties();
 
-        settings.put(Environment.DATASOURCE, "java:comp/env/jdbc/hron");
+        settings.put(Environment.JAKARTA_JTA_DATASOURCE, "java:comp/env/jdbc/hron");
         settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
         settings.put(Environment.SHOW_SQL, "true");
         configuration.setProperties(settings);
