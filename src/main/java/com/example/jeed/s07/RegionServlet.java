@@ -49,15 +49,12 @@ public class RegionServlet extends HttpServlet {
         String parameter = request.getParameter("id");
         log.traceEntry(parameter);
 
-        EntityManager em = service.createEntityManager();
-        try {
+        // each EM created should be closed
+        try (EntityManager em = service.createEntityManager()) {
             Region region = em.find(Region.class, Integer.parseInt(parameter));
             request.setAttribute("region", region);
         } catch (Exception ex) {
             log.error("Can't get region", ex);
-        } finally {
-            // each EM created should be closed
-            em.close();
         }
 
         request.getRequestDispatcher("/region.jsp").forward(request, response);
