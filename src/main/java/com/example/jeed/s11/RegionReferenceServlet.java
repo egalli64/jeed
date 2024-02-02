@@ -51,8 +51,7 @@ public class RegionReferenceServlet extends HttpServlet {
         String parameter = request.getParameter("id");
         log.traceEntry(parameter);
 
-        EntityManager em = service.createEntityManager();
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             Region region = em.getReference(Region.class, Integer.parseInt(parameter));
             log.trace("Got reference for entity");
 
@@ -65,8 +64,6 @@ public class RegionReferenceServlet extends HttpServlet {
             request.setAttribute("region", region);
         } catch (Exception ex) {
             log.error("Can't get region", ex);
-        } finally {
-            em.close();
         }
 
         request.getRequestDispatcher("/region.jsp").forward(request, response);
