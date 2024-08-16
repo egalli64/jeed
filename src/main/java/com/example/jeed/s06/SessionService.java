@@ -30,7 +30,6 @@ public final class SessionService {
         Properties settings = new Properties();
 
         settings.put(Environment.JAKARTA_JTA_DATASOURCE, "java:comp/env/jdbc/hron");
-        settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
         settings.put(Environment.SHOW_SQL, "true");
         configuration.setProperties(settings);
         configuration.addAnnotatedClass(Region.class);

@@ -4,6 +4,5 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.datasource">java:comp/env/jdbc/hron</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     </session-factory>
 </hibernate-configuration>
