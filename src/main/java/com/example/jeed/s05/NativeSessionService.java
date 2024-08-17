@@ -16,16 +16,18 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.example.jeed.dao.Region;
+
 /**
  * Hibernate Native Session Manager
  */
-public final class SessionService {
-    private static final Logger log = LogManager.getLogger(SessionService.class);
+public final class NativeSessionService {
+    private static final Logger log = LogManager.getLogger(NativeSessionService.class);
 
     private SessionFactory sessionFactory;
     public final InitializationType type;
 
-    public SessionService(InitializationType type) {
+    public NativeSessionService(InitializationType type) {
         this.type = type;
         log.traceEntry("Initialization in {} mode", type);
 
@@ -37,6 +39,7 @@ public final class SessionService {
             settings.put(Environment.JAKARTA_JTA_DATASOURCE, "java:comp/env/jdbc/hron");
             settings.put(Environment.SHOW_SQL, "true");
             configuration.setProperties(settings);
+            configuration.addAnnotatedClass(Region.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();

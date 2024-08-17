@@ -22,13 +22,13 @@ import org.hibernate.Session;
  */
 @SuppressWarnings("serial")
 @WebServlet("/s05/session")
-public class SessionServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(SessionServlet.class);
-    private static SessionService service;
+public class NativeSessionServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(NativeSessionServlet.class);
+    private static NativeSessionService service;
 
     @Override
     public void init() throws ServletException {
-        service = (SessionService) getServletContext().getAttribute(ContextListener.NATIVE_SESSION);
+        service = (NativeSessionService) getServletContext().getAttribute(ContextListener.NATIVE_SESSION);
     }
 
     @Override

@@ -4,5 +4,6 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.datasource">java:comp/env/jdbc/hron</property>
+        <mapping class="com.example.jeed.dao.Region"/>
     </session-factory>
 </hibernate-configuration>

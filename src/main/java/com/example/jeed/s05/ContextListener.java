@@ -27,7 +27,7 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         log.traceEntry();
-        sce.getServletContext().setAttribute(NATIVE_SESSION, new SessionService(TYPE));
+        sce.getServletContext().setAttribute(NATIVE_SESSION, new NativeSessionService(TYPE));
     }
 
     /**
@@ -35,7 +35,7 @@ public class ContextListener implements ServletContextListener {
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        ((SessionService) sce.getServletContext().getAttribute(NATIVE_SESSION)).close();
+        ((NativeSessionService) sce.getServletContext().getAttribute(NATIVE_SESSION)).close();
         log.traceExit();
     }
 }
