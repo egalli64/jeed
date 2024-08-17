@@ -21,14 +21,14 @@ import org.hibernate.Session;
  * Check connection on a hibernate native session
  */
 @SuppressWarnings("serial")
-@WebServlet("/s05/sessionCode")
-public class SessionCodeServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(SessionCodeServlet.class);
-    private static SessionCodeService service;
+@WebServlet("/s05/session")
+public class SessionServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(SessionServlet.class);
+    private static SessionService service;
 
     @Override
     public void init() throws ServletException {
-        service = (SessionCodeService) getServletContext().getAttribute(ContextListener.CODE_SESSION);
+        service = (SessionService) getServletContext().getAttribute(ContextListener.NATIVE_SESSION);
     }
 
     @Override
@@ -36,8 +36,10 @@ public class SessionCodeServlet extends HttpServlet {
             throws ServletException, IOException {
         log.traceEntry();
 
-        try (Session session = service.getSession()) {
-            request.setAttribute("connected", session.isConnected());
+        if (service.type != InitializationType.DISABLED) {
+            try (Session session = service.getSession()) {
+                request.setAttribute("connected", session.isConnected());
+            }
         }
 
         request.getRequestDispatcher("connect.jsp").forward(request, response);

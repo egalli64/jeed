@@ -18,8 +18,8 @@ import org.apache.logging.log4j.Logger;
 @WebListener
 public class ContextListener implements ServletContextListener {
     private static final Logger log = LogManager.getLogger(ContextListener.class);
-    public static final String CODE_SESSION = "sessionCodeManager";
-    public static final String XML_SESSION = "sessionXmlManager";
+    public static final String NATIVE_SESSION = "nativeSessionManager";
+    private static final InitializationType TYPE = InitializationType.XML;
 
     /**
      * Store session services in servlet context attributes
@@ -27,8 +27,7 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         log.traceEntry();
-        sce.getServletContext().setAttribute(CODE_SESSION, new SessionCodeService());
-        sce.getServletContext().setAttribute(XML_SESSION, new SessionXmlService());
+        sce.getServletContext().setAttribute(NATIVE_SESSION, new SessionService(TYPE));
     }
 
     /**
@@ -36,8 +35,7 @@ public class ContextListener implements ServletContextListener {
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        ((SessionCodeService) sce.getServletContext().getAttribute(CODE_SESSION)).close();
-        ((SessionXmlService) sce.getServletContext().getAttribute(XML_SESSION)).close();
+        ((SessionService) sce.getServletContext().getAttribute(NATIVE_SESSION)).close();
         log.traceExit();
     }
 }
