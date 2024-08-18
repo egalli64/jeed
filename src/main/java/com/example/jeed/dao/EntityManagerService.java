@@ -23,7 +23,7 @@ public final class EntityManagerService {
     private EntityManagerFactory factory;
 
     public EntityManagerService() {
-        log.traceEntry();
+        log.traceEntry("EMF for {}", PERSISTENCE_UNIT);
         this.factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     }
 
@@ -50,6 +50,6 @@ public final class EntityManagerService {
      */
     public void close() {
         factory.close();
-        log.traceExit();
+        log.traceExit("EMF for {}", PERSISTENCE_UNIT);
     }
 }
