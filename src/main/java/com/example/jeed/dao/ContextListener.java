@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 @WebListener
 public class ContextListener implements ServletContextListener {
     private static final Logger log = LogManager.getLogger(ContextListener.class);
-    public static final String DAO_EMS = "DaoEntityManagerService";
+    public static final String EMS = "EntityManagerService";
     public static final String REGION_DAO = "RegionDao";
     public static final String EMPLOYEE_DAO = "EmployeeDao";
     public static final String CAR_DAO = "CarDao";
@@ -36,7 +36,7 @@ public class ContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         log.traceEntry();
         EntityManagerService ems = new EntityManagerService();
-        sce.getServletContext().setAttribute(DAO_EMS, ems);
+        sce.getServletContext().setAttribute(EMS, ems);
         sce.getServletContext().setAttribute(REGION_DAO, new RegionDao(ems));
         sce.getServletContext().setAttribute(EMPLOYEE_DAO, new EmployeeDao(ems));
         sce.getServletContext().setAttribute(CAR_DAO, new CarDao(ems));
@@ -53,7 +53,7 @@ public class ContextListener implements ServletContextListener {
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        ((EntityManagerService) sce.getServletContext().getAttribute(DAO_EMS)).close();
+        ((EntityManagerService) sce.getServletContext().getAttribute(EMS)).close();
         log.traceExit();
     }
 }

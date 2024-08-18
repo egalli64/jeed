@@ -42,7 +42,7 @@ public class RegionReferenceServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        service = (EntityManagerService) getServletContext().getAttribute(ContextListener.DAO_EMS);
+        service = (EntityManagerService) getServletContext().getAttribute(ContextListener.EMS);
     }
 
     @Override

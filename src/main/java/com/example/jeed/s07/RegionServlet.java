@@ -40,7 +40,7 @@ public class RegionServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        service = (EntityManagerService) getServletContext().getAttribute(ContextListener.DAO_EMS);
+        service = (EntityManagerService) getServletContext().getAttribute(ContextListener.EMS);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class RegionServlet extends HttpServlet {
         String parameter = request.getParameter("id");
         log.traceEntry(parameter);
 
-        // each EM created should be closed
+        // each EM should be closed at its termination
         try (EntityManager em = service.createEntityManager()) {
             Region region = em.find(Region.class, Integer.parseInt(parameter));
             request.setAttribute("region", region);
