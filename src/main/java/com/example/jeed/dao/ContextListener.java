@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class ContextListener implements ServletContextListener {
     private static final Logger log = LogManager.getLogger(ContextListener.class);
     public static final String EMS = "EntityManagerService";
+    public static final String DB_INFO = "DBInfoService";
     public static final String REGION_DAO = "RegionDao";
     public static final String EMPLOYEE_DAO = "EmployeeDao";
     public static final String CAR_DAO = "CarDao";
@@ -37,6 +38,7 @@ public class ContextListener implements ServletContextListener {
         log.traceEntry();
         EntityManagerService ems = new EntityManagerService();
         sce.getServletContext().setAttribute(EMS, ems);
+        sce.getServletContext().setAttribute(DB_INFO, new DBInfoService(ems));
         sce.getServletContext().setAttribute(REGION_DAO, new RegionDao(ems));
         sce.getServletContext().setAttribute(EMPLOYEE_DAO, new EmployeeDao(ems));
         sce.getServletContext().setAttribute(CAR_DAO, new CarDao(ems));
