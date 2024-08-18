@@ -21,11 +21,11 @@
     </header>
 
     <p>
-        The connection has
+        The session has
         <c:if test="${not connected}">
             <b>NOT</b>
         </c:if>
-        worked correctly
+        been connected correctly
     </p>
 </body>
 </html>
