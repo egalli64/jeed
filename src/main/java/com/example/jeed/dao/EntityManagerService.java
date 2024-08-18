@@ -18,12 +18,13 @@ import jakarta.persistence.PersistenceUnitUtil;
  */
 public final class EntityManagerService {
     private static final Logger log = LogManager.getLogger(EntityManagerService.class);
+    private static final String PERSISTENCE_UNIT = "hron";
 
     private EntityManagerFactory factory;
 
     public EntityManagerService() {
         log.traceEntry();
-        this.factory = Persistence.createEntityManagerFactory("hron");
+        this.factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
     }
 
     /**
