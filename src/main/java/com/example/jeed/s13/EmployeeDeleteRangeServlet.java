@@ -45,8 +45,9 @@ public class EmployeeDeleteRangeServlet extends HttpServlet {
         log.traceEntry("[{}...{}]", low, high);
 
         int count = dao.deleteByIdBetween(Integer.parseInt(low), Integer.parseInt(high));
+        request.setAttribute("count", count);
         log.debug("{} employee(s) deleted", count);
 
-        request.getRequestDispatcher("/index.html").forward(request, response);
+        request.getRequestDispatcher("/s13/deletedEmployees.jsp").forward(request, response);
     }
 }
