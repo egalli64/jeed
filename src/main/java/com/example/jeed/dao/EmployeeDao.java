@@ -66,16 +66,13 @@ public class EmployeeDao extends Dao<Employee, Integer> {
      */
     public List<Employee> readBySalaryRange(double low, double high) {
         log.traceEntry();
-        EntityManager em = service.createEntityManager();
 
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             String jpql = "SELECT e FROM Employee e WHERE e.salary BETWEEN :min AND :max ORDER BY e.salary DESC";
             TypedQuery<Employee> query = em.createQuery(jpql, Employee.class);
             query.setParameter("min", low);
             query.setParameter("max", high);
             return query.getResultList();
-        } finally {
-            em.close();
         }
     }
 
@@ -89,13 +86,10 @@ public class EmployeeDao extends Dao<Employee, Integer> {
      */
     public List<Employee> readBySalaryTop(double limit) {
         log.traceEntry();
-        EntityManager em = service.createEntityManager();
 
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             return em.createNamedQuery("getTopSalaried", Employee.class) //
                     .setParameter("low", limit).getResultList();
-        } finally {
-            em.close();
         }
     }
 
@@ -107,9 +101,8 @@ public class EmployeeDao extends Dao<Employee, Integer> {
      */
     public Optional<Employee> readByLastName(String name) {
         log.traceEntry();
-        EntityManager em = service.createEntityManager();
 
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             String jpql = "FROM Employee e WHERE e.lastName = :name";
             TypedQuery<Employee> query = em.createQuery(jpql, Employee.class);
             query.setParameter("name", name);
@@ -117,32 +110,31 @@ public class EmployeeDao extends Dao<Employee, Integer> {
         } catch (NonUniqueResultException | NoResultException ex) {
             log.warn(name, ex);
             return Optional.empty();
-        } finally {
-            em.close();
         }
     }
 
     public int deleteByIdBetween(int low, int high) {
         log.traceEntry();
-        EntityManager em = service.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
 
-        try {
+        EntityTransaction tx = null;
+
+        try (EntityManager em = service.createEntityManager()) {
+            tx = em.getTransaction();
+
             String jpql = "DELETE FROM Employee e WHERE e.id BETWEEN :low AND :high";
             Query query = em.createQuery(jpql).setParameter("low", low).setParameter("high", high);
             tx.begin();
             return query.executeUpdate();
         } catch (Exception ex) {
             log.error(String.format("[%d, %d]", low, high), ex);
-            if (tx.isActive()) {
+            if (tx != null && tx.isActive()) {
                 tx.rollback();
             }
             return 0;
         } finally {
-            if (tx.isActive()) {
+            if (tx != null && tx.isActive()) {
                 tx.commit();
             }
-            em.close();
         }
     }
 }
