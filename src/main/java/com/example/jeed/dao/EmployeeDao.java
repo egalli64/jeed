@@ -43,9 +43,8 @@ public class EmployeeDao extends Dao<Employee, Integer> {
      */
     public List<Employee> readBySalaryBottom(double limit) {
         log.traceEntry();
-        EntityManager em = service.createEntityManager();
 
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             String jpql = "SELECT e FROM Employee e WHERE e.salary <= ?1 ORDER BY e.salary DESC";
             Query query = em.createQuery(jpql);
             query.setParameter(1, limit);
@@ -53,8 +52,6 @@ public class EmployeeDao extends Dao<Employee, Integer> {
             @SuppressWarnings("unchecked")
             List<Employee> result = (List<Employee>) query.getResultList();
             return result;
-        } finally {
-            em.close();
         }
     }
 

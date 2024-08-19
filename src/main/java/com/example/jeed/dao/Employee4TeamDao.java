@@ -28,13 +28,9 @@ public class Employee4TeamDao extends Dao<Employee4Team, Integer> {
      * @return a list of employees each of them with all the associated teams
      */
     public List<Employee4Team> readAllEager() {
-        EntityManager em = service.createEntityManager();
-
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             String jpql = "SELECT DISTINCT e FROM Employee4Team e JOIN FETCH e.teams";
             return em.createQuery(jpql, Employee4Team.class).getResultList();
-        } finally {
-            em.close();
         }
     }
 }

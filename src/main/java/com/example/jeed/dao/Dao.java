@@ -33,20 +33,16 @@ public abstract class Dao<T, U> {
         this.clazz = clazz;
         this.service = service;
     }
-
+    
     /**
      * Get all the entities by JPQL
      * 
      * @return all the entities
      */
     public List<T> readAll() {
-        EntityManager em = service.createEntityManager();
-
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             String jpql = "SELECT e FROM " + clazz.getName() + " e";
             return em.createQuery(jpql, clazz).getResultList();
-        } finally {
-            em.close();
         }
     }
 
@@ -57,15 +53,11 @@ public abstract class Dao<T, U> {
      * @return the optional entity, possibly empty
      */
     public Optional<T> read(U id) {
-        EntityManager em = service.createEntityManager();
-
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             return Optional.ofNullable(em.find(clazz, id));
-        } finally {
-            em.close();
         }
     }
-
+    
     /**
      * Persist the passed entity
      * 
@@ -73,17 +65,17 @@ public abstract class Dao<T, U> {
      * @return true if persisted
      */
     public boolean create(T entity) {
-        EntityManager em = service.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
+        EntityTransaction tx = null;
+        try (EntityManager em = service.createEntityManager()) {
+            tx = em.getTransaction();
 
-        try {
             tx.begin();
             em.persist(entity);
             tx.commit();
             return true;
         } catch (Exception ex) {
             try {
-                if (tx.isActive()) {
+                if (tx != null && tx.isActive()) {
                     tx.rollback();
                 }
             } catch (Exception e) {
@@ -91,8 +83,6 @@ public abstract class Dao<T, U> {
             }
             log.error("Can't persist entity", ex);
             return false;
-        } finally {
-            em.close();
         }
     }
 
@@ -103,16 +93,12 @@ public abstract class Dao<T, U> {
      * @return true if it is a managed entity instance in the persistence context
      */
     public boolean contains(T entity) {
-        EntityManager em = service.createEntityManager();
-
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             em.refresh(entity);
             return em.contains(entity);
         } catch (Exception ex) {
             log.error("Can't check if entity is contained in current context", ex);
             return false;
-        } finally {
-            em.close();
         }
     }
 
@@ -123,17 +109,17 @@ public abstract class Dao<T, U> {
      * @return true if the merging succeed
      */
     public boolean update(T entity) {
-        EntityManager em = service.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
+        EntityTransaction tx = null;
 
-        try {
+        try (EntityManager em = service.createEntityManager()) {
+            tx = em.getTransaction();
             tx.begin();
             em.merge(entity);
             tx.commit();
             return true;
         } catch (Exception ex) {
             try {
-                if (tx.isActive()) {
+                if (tx != null && tx.isActive()) {
                     tx.rollback();
                 }
             } catch (Exception e) {
@@ -141,8 +127,6 @@ public abstract class Dao<T, U> {
             }
             log.error("Can't merge entity", ex);
             return false;
-        } finally {
-            em.close();
         }
     }
 
@@ -153,10 +137,10 @@ public abstract class Dao<T, U> {
      * @return true if removed correctly
      */
     public boolean delete(U id) {
-        EntityManager em = service.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
+        EntityTransaction tx = null;
 
-        try {
+        try (EntityManager em = service.createEntityManager()) {
+            tx = em.getTransaction();
             tx.begin();
             T entity = em.find(clazz, id);
             if (entity != null) {
@@ -170,7 +154,7 @@ public abstract class Dao<T, U> {
             }
         } catch (Exception ex) {
             try {
-                if (tx.isActive()) {
+                if (tx != null && tx.isActive()) {
                     tx.rollback();
                 }
             } catch (Exception e) {
@@ -178,8 +162,6 @@ public abstract class Dao<T, U> {
             }
             log.error("Can't remove entity " + id, ex);
             return false;
-        } finally {
-            em.close();
         }
     }
 }

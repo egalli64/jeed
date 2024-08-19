@@ -28,13 +28,9 @@ public class Region4CountryDao extends Dao<Region4Country, Integer> {
      * @return a list of region each of them with all the associated countries
      */
     public List<Region4Country> readAllEager() {
-        EntityManager em = service.createEntityManager();
-
-        try {
+        try (EntityManager em = service.createEntityManager()) {
             String jpql = "SELECT DISTINCT r FROM Region4Country r JOIN FETCH r.countries";
             return em.createQuery(jpql, Region4Country.class).getResultList();
-        } finally {
-            em.close();
         }
     }
 }
