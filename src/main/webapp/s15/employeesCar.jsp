@@ -10,8 +10,7 @@
 <head>
 <meta charset="utf-8">
 <title>Employees and car</title>
-<link rel="icon" href="data:;base64,=">
-<link rel="stylesheet" type="text/css" href="/jeed/css/simple.css">
+<%@include file="/include/link.html"%>
 </head>
 <body>
     <header>

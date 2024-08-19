@@ -9,8 +9,7 @@
 <head>
 <meta charset="utf-8">
 <title>Get region</title>
-<link rel="icon" href="data:;base64,=">
-<link rel="stylesheet" href="/jeed/css/simple.css">
+<%@include file="/include/link.html"%>
 </head>
 <body>
     <header>

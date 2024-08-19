@@ -9,15 +9,12 @@
 <head>
 <meta charset="utf-8">
 <title>JPA Entity Manager</title>
-<link rel="icon" href="data:;base64,=">
-<link rel="stylesheet" href="/jeed/css/simple.css">
+<%@include file="/include/link.html"%>
 </head>
 <body>
     <header>
         <h1>Check JPA Entity Manager</h1>
-        <nav>
-            <a href="/jeed/index.html">Home</a>
-        </nav>
+        <%@include file="/include/navHome.html"%>
     </header>
 
     <p>

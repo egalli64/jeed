@@ -9,15 +9,12 @@
 <head>
 <meta charset="utf-8">
 <title>Hibernate Session</title>
-<link rel="icon" href="data:;base64,=">
-<link rel="stylesheet" href="/jeed/css/simple.css">
+<%@include file="/include/link.html"%>
 </head>
 <body>
     <header>
         <h1>Check Hibernate session</h1>
-        <nav>
-            <a href="/jeed/index.html">Home</a>
-        </nav>
+        <%@include file="/include/navHome.html"%>
     </header>
 
     <p>
