@@ -1,14 +1,14 @@
 # jeed
-## Introduction to Jakarta Enterprise Edition - JPA (Hibernate)
+## Introduction to ORM for JEE
 
 ### Used technologies
 - Java 21
-- Apache Tomcat 10.1
-- Hibernate ORM 6.6
+- Apache Tomcat 11
+- Hibernate ORM 7
 - Maven 3
     - See pom.xml for details
 - Eclipse IDE
-    - Set Project Properties, Facets, Runtime to Tomcat 10.1
+    - Set Project Properties, Facets, Runtime to Tomcat 11
 
 ### As JDBC resource almost any other RDBMS should do
 - For setup see [hron](https://github.com/egalli64/hron)
