@@ -1,5 +1,6 @@
-# jeed
-## Introduction to ORM for JEE
+# jeed - Introduction to Hibernate
+
+## ORM for JEE
 
 ### Used technologies
 - Java 21
