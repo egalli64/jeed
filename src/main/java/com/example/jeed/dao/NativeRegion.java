@@ -7,35 +7,23 @@ package com.example.jeed.dao;
 
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
 /**
- * A plain region entity
+ * A region JavaBean-like meant for classic Hibernate mapping
+ * <p>
+ * See the matching hbm.xml file for the mapping rules
  */
-@Entity
-@Table
-public class Region {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "REGION_ID")
+public class NativeRegion {
     private Integer id;
-
-    @Column(name = "NAME")
     private String name;
 
-    public Region() {
+    public NativeRegion() {
     }
 
-    public Region(String name) {
+    public NativeRegion(String name) {
         this.name = name;
     }
 
-    public Region(Integer id, String name) {
+    public NativeRegion(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -69,7 +57,7 @@ public class Region {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Region other = (Region) obj;
+        NativeRegion other = (NativeRegion) obj;
         return Objects.equals(id, other.id) && Objects.equals(name, other.name);
     }
 
