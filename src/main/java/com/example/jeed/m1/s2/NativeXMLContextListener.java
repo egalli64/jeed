@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s05;
+package com.example.jeed.m1.s2;
 
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -13,13 +13,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Manage the NativeSessionManager for the web app
+ * Manage the SessionManager (native, XML-based) for the application
  */
 @WebListener
-public class ContextListener implements ServletContextListener {
-    private static final Logger log = LogManager.getLogger(ContextListener.class);
-    public static final String NATIVE_SESSION = "nativeSessionManager";
-    private static final InitializationType TYPE = InitializationType.XML;
+public class NativeXMLContextListener implements ServletContextListener {
+    private static final Logger log = LogManager.getLogger(NativeXMLContextListener.class);
+    public static final String NATIVE_XML_SESSION = "nativeXMLSessionManager";
 
     /**
      * Store session services in servlet context attributes
@@ -27,7 +26,7 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         log.traceEntry();
-        sce.getServletContext().setAttribute(NATIVE_SESSION, new NativeSessionService(TYPE));
+        sce.getServletContext().setAttribute(NATIVE_XML_SESSION, new NativeXMLSessionService());
     }
 
     /**
@@ -35,7 +34,7 @@ public class ContextListener implements ServletContextListener {
      */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        ((NativeSessionService) sce.getServletContext().getAttribute(NATIVE_SESSION)).close();
+        ((NativeXMLSessionService) sce.getServletContext().getAttribute(NATIVE_XML_SESSION)).close();
         log.traceExit();
     }
 }

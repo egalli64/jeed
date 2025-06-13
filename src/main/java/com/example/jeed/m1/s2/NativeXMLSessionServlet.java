@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s05;
+package com.example.jeed.m1.s2;
 
 import java.io.IOException;
 
@@ -18,17 +18,17 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 
 /**
- * Check connection on a hibernate native session
+ * Check connection on a Hibernate native session
  */
 @SuppressWarnings("serial")
-@WebServlet("/s05/session")
-public class NativeSessionServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(NativeSessionServlet.class);
-    private static NativeSessionService service;
+@WebServlet("/m1/s2/session")
+public class NativeXMLSessionServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(NativeXMLSessionServlet.class);
+    private static NativeXMLSessionService service;
 
     @Override
     public void init() throws ServletException {
-        service = (NativeSessionService) getServletContext().getAttribute(ContextListener.NATIVE_SESSION);
+        service = (NativeXMLSessionService) getServletContext().getAttribute(NativeXMLContextListener.NATIVE_XML_SESSION);
     }
 
     @Override
@@ -36,10 +36,8 @@ public class NativeSessionServlet extends HttpServlet {
             throws ServletException, IOException {
         log.traceEntry();
 
-        if (service.type != InitializationType.DISABLED) {
-            try (Session session = service.getSession()) {
-                request.setAttribute("connected", session.isConnected());
-            }
+        try (Session session = service.getSession()) {
+            request.setAttribute("connected", session.isConnected());
         }
 
         request.getRequestDispatcher("connect.jsp").forward(request, response);
