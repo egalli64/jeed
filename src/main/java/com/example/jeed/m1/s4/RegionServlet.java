@@ -43,14 +43,23 @@ public class RegionServlet extends HttpServlet {
         log.traceEntry(parameter);
 
         try (Session session = service.getSession()) {
-            Transaction tx = session.beginTransaction();
+            // robust but painful - a framework could take care of it for us
+            Transaction tx = null;
             try {
+                tx = session.beginTransaction();
                 Region region = session.find(Region.class, Integer.parseInt(parameter));
                 request.setAttribute("region", region);
+
                 tx.commit();
             } catch (Exception ex) {
+                try {
+                    if (tx != null && tx.isActive()) {
+                        tx.rollback();
+                    }
+                } catch (Exception e) {
+                    ex.addSuppressed(e);
+                }
                 log.error("Can't get region", ex);
-                tx.rollback();
             }
         }
 
