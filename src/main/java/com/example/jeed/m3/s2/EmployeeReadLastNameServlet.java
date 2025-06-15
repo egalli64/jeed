@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s13;
+package com.example.jeed.m3.s2;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ import com.example.jeed.dao.EmployeeDao;
  * @see Employee the associated DTO
  */
 @SuppressWarnings("serial")
-@WebServlet("/s13/employee/lastName")
+@WebServlet("/m3/s2/employee/lastName")
 public class EmployeeReadLastNameServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(EmployeeReadLastNameServlet.class);
     private EmployeeDao dao;

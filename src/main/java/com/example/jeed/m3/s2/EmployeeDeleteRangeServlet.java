@@ -1,12 +1,11 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s13;
+package com.example.jeed.m3.s2;
 
 import java.io.IOException;
-import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,15 +21,15 @@ import com.example.jeed.dao.Employee;
 import com.example.jeed.dao.EmployeeDao;
 
 /**
- * Use of EntityManager::createQuery() - "typed" overload 
+ * Use of Query::executeUpdate() - DML commands
  * 
  * @see EmployeeDao the DAO that actually does the job
  * @see Employee the associated DTO
  */
 @SuppressWarnings("serial")
-@WebServlet("/s13/employee/salary/range")
-public class EmployeeRangeSalaryServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(EmployeeRangeSalaryServlet.class);
+@WebServlet("/m3/s2/employee/delete/range")
+public class EmployeeDeleteRangeServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(EmployeeDeleteRangeServlet.class);
     private EmployeeDao dao;
 
     @Override
@@ -45,9 +44,10 @@ public class EmployeeRangeSalaryServlet extends HttpServlet {
         String high = request.getParameter("high");
         log.traceEntry("[{}...{}]", low, high);
 
-        List<Employee> employees = dao.readBySalaryRange(Double.parseDouble(low), Double.parseDouble(high));
-        request.setAttribute("employees", employees);
+        int count = dao.deleteByIdBetween(Integer.parseInt(low), Integer.parseInt(high));
+        request.setAttribute("count", count);
+        log.debug("{} employee(s) deleted", count);
 
-        request.getRequestDispatcher("/employees.jsp").forward(request, response);
+        request.getRequestDispatcher("/m3/s2/deletedEmployees.jsp").forward(request, response);
     }
 }

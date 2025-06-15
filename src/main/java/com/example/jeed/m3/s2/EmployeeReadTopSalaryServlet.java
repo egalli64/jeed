@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s13;
+package com.example.jeed.m3.s2;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,15 +22,15 @@ import com.example.jeed.dao.Employee;
 import com.example.jeed.dao.EmployeeDao;
 
 /**
- * Use of EntityManager::createQuery()
+ * Use of EntityManager::createNamedQuery()
  * 
  * @see EmployeeDao the DAO that actually does the job
  * @see Employee the associated DTO
  */
 @SuppressWarnings("serial")
-@WebServlet("/s13/employee/salary/bottom")
-public class EmployeeReadBottomSalaryServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(EmployeeReadBottomSalaryServlet.class);
+@WebServlet("/m3/s2/employee/salary/top")
+public class EmployeeReadTopSalaryServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(EmployeeReadTopSalaryServlet.class);
     private EmployeeDao dao;
 
     @Override
@@ -44,7 +44,7 @@ public class EmployeeReadBottomSalaryServlet extends HttpServlet {
         String param = request.getParameter("limit");
         log.traceEntry(param);
 
-        List<Employee> employees = dao.readBySalaryBottom(Double.parseDouble(param));
+        List<Employee> employees = dao.readBySalaryTop(Double.parseDouble(param));
         request.setAttribute("employees", employees);
 
         request.getRequestDispatcher("/employees.jsp").forward(request, response);
