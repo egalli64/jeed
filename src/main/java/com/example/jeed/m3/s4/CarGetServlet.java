@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s15;
+package com.example.jeed.m3.s4;
 
 import java.io.IOException;
 
@@ -21,15 +21,15 @@ import com.example.jeed.dao.CarDao;
 import com.example.jeed.dao.ContextListener;
 
 /**
- * Get entities using OneToOne JPA annotation
+ * Get a single entity using OneToOne JPA annotation
  * 
- * @see Car the associated JPA entity
- * @see CarDao the DAO that actually does the job
+ * @see Car the associated JPA entity 
+ * @see CarDao the DAO that actually does the job 
  */
 @SuppressWarnings("serial")
-@WebServlet("/s15/car/all")
-public class CarGetAllServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(CarGetAllServlet.class);
+@WebServlet("/m3/s4/car/get")
+public class CarGetServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(CarGetServlet.class);
     private CarDao dao;
 
     @Override
@@ -40,9 +40,12 @@ public class CarGetAllServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log.traceEntry();
+        String param = request.getParameter("id");
+        log.traceEntry(param);
 
-        request.setAttribute("cars", dao.readAll());
-        request.getRequestDispatcher("/s15/carsEmployee.jsp").forward(request, response);
+        dao.read(Integer.valueOf(param)).ifPresentOrElse(car -> request.setAttribute("car", car),
+                () -> log.info(String.format("Car %d not found", param)));
+
+        request.getRequestDispatcher("/m3/s4/carEmployee.jsp").forward(request, response);
     }
 }
