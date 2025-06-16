@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s17;
+package com.example.jeed.m3.s6;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,7 +29,7 @@ import com.example.jeed.dao.TeamDao;
  * @see TeamDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s17/team/all")
+@WebServlet("/m3/s6/team/all")
 public class TeamGetAllServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(TeamGetAllServlet.class);
     private TeamDao dao;
@@ -48,7 +48,7 @@ public class TeamGetAllServlet extends HttpServlet {
         proxyCheckDemo(teams);
 
         request.setAttribute("teams", teams);
-        request.getRequestDispatcher("/s17/teams.jsp").forward(request, response);
+        request.getRequestDispatcher("/m3/s6/teams.jsp").forward(request, response);
     }
 
     /**

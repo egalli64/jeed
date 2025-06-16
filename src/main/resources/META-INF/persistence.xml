@@ -9,9 +9,11 @@
         <class>com.example.jeed.dao.Country</class>
         <class>com.example.jeed.dao.Employee</class>
         <class>com.example.jeed.dao.Employee4Car</class>
+        <class>com.example.jeed.dao.Employee4Team</class>
         <class>com.example.jeed.dao.Region</class>
         <class>com.example.jeed.dao.Region4Country</class>
         <class>com.example.jeed.dao.RegionEager4Country</class>
+        <class>com.example.jeed.dao.Team</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.provider"

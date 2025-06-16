@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s17;
+package com.example.jeed.m3.s6;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ import com.example.jeed.dao.Employee4TeamDao;
  * @see Employee4TeamDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s17/employee/allEager")
+@WebServlet("/m3/s6/employee/allEager")
 public class EmployeeGetAllEagerServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(EmployeeGetAllEagerServlet.class);
     private Employee4TeamDao dao;
@@ -43,6 +43,6 @@ public class EmployeeGetAllEagerServlet extends HttpServlet {
         log.traceEntry();
 
         request.setAttribute("employees", dao.readAllEager());
-        request.getRequestDispatcher("/s17/employeesTeams.jsp").forward(request, response);
+        request.getRequestDispatcher("/m3/s6/employeesTeams.jsp").forward(request, response);
     }
 }
