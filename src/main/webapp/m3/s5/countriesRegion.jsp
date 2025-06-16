@@ -1,5 +1,5 @@
 <%-- 
-    Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+    Introduction to Hibernate - JEE ORM
     https://github.com/egalli64/jeed
  --%>
  <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>

@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s16;
+package com.example.jeed.m3.s5;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ import com.example.jeed.dao.Region4CountryDao;
  * @see Region4CountryDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s16/region/allEager")
+@WebServlet("/m3/s5/region/allEager")
 public class RegionGetAllEagerServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(RegionGetAllEagerServlet.class);
     private Region4CountryDao dao;
@@ -43,6 +43,6 @@ public class RegionGetAllEagerServlet extends HttpServlet {
         log.traceEntry();
 
         request.setAttribute("regions", dao.readAllEager());
-        request.getRequestDispatcher("/s16/regionsCountry.jsp").forward(request, response);
+        request.getRequestDispatcher("/m3/s5/regionsCountry.jsp").forward(request, response);
     }
 }
