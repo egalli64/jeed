@@ -5,6 +5,9 @@
              https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
     <persistence-unit name="hron" transaction-type="RESOURCE_LOCAL">
         <non-jta-data-source>java:comp/env/jdbc/hron</non-jta-data-source>
+        <class>com.example.jeed.dao.Employee</class>
+        <class>com.example.jeed.dao.Region</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.provider"
                 value="org.hibernate.orm.jpa.HibernatePersistenceProvider" />
