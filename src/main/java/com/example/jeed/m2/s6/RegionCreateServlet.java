@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s11;
+package com.example.jeed.m2.s6;
 
 import java.io.IOException;
 
@@ -21,14 +21,14 @@ import com.example.jeed.dao.Region;
 import com.example.jeed.dao.RegionDao;
 
 /**
- * Use of EntityManager::remove()
+ * Use of EntityManager::persist()
  * 
  * @see RegionDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s11/region/delete")
-public class RegionDeleteServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(RegionDeleteServlet.class);
+@WebServlet("/m2/s6/region/create")
+public class RegionCreateServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(RegionCreateServlet.class);
     private RegionDao dao;
 
     @Override
@@ -39,15 +39,16 @@ public class RegionDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String param = request.getParameter("id");
-        log.traceEntry(param);
+        String name = request.getParameter("name");
+        log.traceEntry(name);
 
-        Integer id = Integer.valueOf(param);
-        if (dao.delete(id)) {
-            request.setAttribute("region", new Region(id, "deleted"));
+        Region region = new Region(name);
+        if (dao.create(region)) {
+            request.setAttribute("region", region);
         } else {
-            log.debug("Can't delete region {}", param);
+            log.debug("Can't create region {}", name);
         }
+
         request.getRequestDispatcher("/region.jsp").forward(request, response);
     }
 }

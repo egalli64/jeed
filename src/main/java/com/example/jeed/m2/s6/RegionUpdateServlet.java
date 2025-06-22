@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s11;
+package com.example.jeed.m2.s6;
 
 import java.io.IOException;
 
@@ -17,17 +17,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.ContextListener;
+import com.example.jeed.dao.Region;
 import com.example.jeed.dao.RegionDao;
 
 /**
- * Use of EntityManager::find()
+ * Use of EntityManager::merge()
  * 
- * @see RegionDao the DAO that actually does the job 
+ * @see RegionDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s11/region/get")
-public class RegionGetServlet extends HttpServlet {
-    private static final Logger log = LogManager.getLogger(RegionGetServlet.class);
+@WebServlet("/m2/s6/region/update")
+public class RegionUpdateServlet extends HttpServlet {
+    private static final Logger log = LogManager.getLogger(RegionUpdateServlet.class);
     private RegionDao dao;
 
     @Override
@@ -38,11 +39,16 @@ public class RegionGetServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String param = request.getParameter("id");
-        log.traceEntry(param);
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        log.traceEntry("{} {}", id, name);
 
-        dao.read(Integer.valueOf(param)).ifPresentOrElse(region -> request.setAttribute("region", region),
-                () -> log.info(String.format("Employee %d not found", param)));
+        Region region = new Region(Integer.valueOf(id), name);
+        if (dao.update(region)) {
+            request.setAttribute("region", region);
+        } else {
+            log.debug("Can't update region {} {}", id, name);
+        }
 
         request.getRequestDispatcher("/region.jsp").forward(request, response);
     }
