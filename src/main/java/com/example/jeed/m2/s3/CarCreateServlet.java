@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s08;
+package com.example.jeed.m2.s3;
 
 import java.io.IOException;
 
@@ -28,7 +28,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * @see CarDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s08/car/create")
+@WebServlet("/m2/s3/car/create")
 public class CarCreateServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(CarCreateServlet.class);
     private DBInfoService dbInfo;
@@ -51,6 +51,6 @@ public class CarCreateServlet extends HttpServlet {
             throw new IllegalStateException("Only call for MySQL expected here");
         }
 
-        request.getRequestDispatcher("/s08/newEntity.jsp").forward(request, response);
+        request.getRequestDispatcher("/m2/s3/newEntity.jsp").forward(request, response);
     }
 }

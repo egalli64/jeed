@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s08;
+package com.example.jeed.m2.s3;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ import com.example.jeed.dao.CountryDao;
  * @see CountryDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s08/country/create")
+@WebServlet("/m2/s3/country/create")
 public class CountryCreateServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(CountryCreateServlet.class);
     private CountryDao dao;
@@ -48,6 +48,6 @@ public class CountryCreateServlet extends HttpServlet {
         request.setAttribute("message", dao.create(country) ? country : //
                 String.format("Can't create country with id %s and name %s", id, name));
 
-        request.getRequestDispatcher("/s08/newEntity.jsp").forward(request, response);
+        request.getRequestDispatcher("/m2/s3/newEntity.jsp").forward(request, response);
     }
 }

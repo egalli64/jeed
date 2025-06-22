@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s08;
+package com.example.jeed.m2.s3;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ import com.example.jeed.dao.RegionDao;
  * @see RegionDao the DAO that actually does the job
  */
 @SuppressWarnings("serial")
-@WebServlet("/s08/region/create")
+@WebServlet("/m2/s3/region/create")
 public class RegionCreateServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(RegionCreateServlet.class);
     private RegionDao dao;
@@ -45,6 +45,6 @@ public class RegionCreateServlet extends HttpServlet {
 
         Region region = new Region(name);
         request.setAttribute("message", dao.create(region) ? region : "Can't create region with name " + name);
-        request.getRequestDispatcher("/s08/newEntity.jsp").forward(request, response);
+        request.getRequestDispatcher("/m2/s3/newEntity.jsp").forward(request, response);
     }
 }
