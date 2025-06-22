@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s07;
+package com.example.jeed.m2.s2;
 
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * Check connection on a JPA entity manager
  */
 @SuppressWarnings("serial")
-@WebServlet("/s07/em")
+@WebServlet("/m2/s2/em")
 public class EntityManagerServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(EntityManagerServlet.class);
     private EntityManagerService service;

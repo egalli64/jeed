@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.s07;
+package com.example.jeed.m2.s2;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ import jakarta.persistence.EntityManager;
  * @see Region JPA entity
  */
 @SuppressWarnings("serial")
-@WebServlet("/s07/region")
+@WebServlet("/m2/s2/region")
 public class RegionServlet extends HttpServlet {
     private static final Logger log = LogManager.getLogger(RegionServlet.class);
     private EntityManagerService service;
