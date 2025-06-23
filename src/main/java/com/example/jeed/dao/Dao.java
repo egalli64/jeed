@@ -1,5 +1,5 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
@@ -24,7 +24,7 @@ public abstract class Dao<T, U> {
     protected final EntityManagerService service;
 
     /**
-     * Ctor
+     * Constructor
      * 
      * @param clazz   workaround for template type erasure
      * @param factory an entity manager factory
@@ -33,13 +33,15 @@ public abstract class Dao<T, U> {
         this.clazz = clazz;
         this.service = service;
     }
-    
+
     /**
      * Get all the entities by JPQL
      * 
      * @return all the entities
      */
     public List<T> readAll() {
+        log.traceEntry();
+
         try (EntityManager em = service.createEntityManager()) {
             String jpql = "SELECT e FROM " + clazz.getName() + " e";
             return em.createQuery(jpql, clazz).getResultList();
@@ -53,11 +55,29 @@ public abstract class Dao<T, U> {
      * @return the optional entity, possibly empty
      */
     public Optional<T> read(U id) {
+        log.traceEntry();
+
+        EntityTransaction tx = null;
         try (EntityManager em = service.createEntityManager()) {
-            return Optional.ofNullable(em.find(clazz, id));
+            tx = em.getTransaction();
+            tx.begin();
+            var user = em.find(clazz, id);
+            tx.commit();
+            return Optional.ofNullable(user);
+        } catch (Exception e) {
+            try {
+                if (tx != null && tx.isActive()) {
+                    tx.rollback();
+                }
+            } catch (Exception ex) {
+                e.addSuppressed(ex);
+            }
+
+            log.error("Can't read entity", e);
+            return Optional.empty();
         }
     }
-    
+
     /**
      * Persist the passed entity
      * 
@@ -65,6 +85,8 @@ public abstract class Dao<T, U> {
      * @return true if persisted
      */
     public boolean create(T entity) {
+        log.traceEntry();
+
         EntityTransaction tx = null;
         try (EntityManager em = service.createEntityManager()) {
             tx = em.getTransaction();
@@ -79,7 +101,7 @@ public abstract class Dao<T, U> {
                     tx.rollback();
                 }
             } catch (Exception e) {
-                log.error("Can't rollback transaction", e);
+                ex.addSuppressed(e);
             }
             log.error("Can't persist entity", ex);
             return false;
@@ -93,6 +115,8 @@ public abstract class Dao<T, U> {
      * @return true if it is a managed entity instance in the persistence context
      */
     public boolean contains(T entity) {
+        log.traceEntry();
+
         try (EntityManager em = service.createEntityManager()) {
             em.refresh(entity);
             return em.contains(entity);
@@ -109,6 +133,8 @@ public abstract class Dao<T, U> {
      * @return true if the merging succeed
      */
     public boolean update(T entity) {
+        log.traceEntry();
+
         EntityTransaction tx = null;
 
         try (EntityManager em = service.createEntityManager()) {
@@ -137,6 +163,8 @@ public abstract class Dao<T, U> {
      * @return true if removed correctly
      */
     public boolean delete(U id) {
+        log.traceEntry();
+
         EntityTransaction tx = null;
 
         try (EntityManager em = service.createEntityManager()) {
