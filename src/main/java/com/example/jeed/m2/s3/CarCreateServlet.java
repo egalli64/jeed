@@ -10,9 +10,9 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.jeed.dao.Car;
-import com.example.jeed.dao.CarDao;
-import com.example.jeed.dao.DBInfoService;
+import com.example.jeed.dao.legacy.Car;
+import com.example.jeed.dao.legacy.CarDao;
+import com.example.jeed.dao.legacy.DBInfoService;
 import com.example.jeed.listener.ContextListener;
 
 import jakarta.servlet.ServletException;

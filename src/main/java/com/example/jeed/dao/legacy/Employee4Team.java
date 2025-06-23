@@ -1,4 +1,9 @@
-package com.example.jeed.dao;
+/*
+ * Introduction to Hibernate - JEE ORM
+ * 
+ * https://github.com/egalli64/jeed
+ */
+package com.example.jeed.dao.legacy;
 
 import java.util.Set;
 

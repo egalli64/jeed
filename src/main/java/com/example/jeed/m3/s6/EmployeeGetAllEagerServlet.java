@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.jeed.dao.Employee4Team;
-import com.example.jeed.dao.Employee4TeamDao;
+import com.example.jeed.dao.legacy.Employee4Team;
+import com.example.jeed.dao.legacy.Employee4TeamDao;
 import com.example.jeed.listener.ContextListener;
 
 /**

@@ -17,8 +17,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Hibernate;
 
-import com.example.jeed.dao.EntityManagerService;
-import com.example.jeed.dao.Region;
+import com.example.jeed.dao.legacy.EntityManagerService;
+import com.example.jeed.dao.legacy.Region;
 import com.example.jeed.listener.ContextListener;
 
 import jakarta.persistence.EntityManager;

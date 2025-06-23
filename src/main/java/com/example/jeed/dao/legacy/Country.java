@@ -1,9 +1,9 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.dao;
+package com.example.jeed.dao.legacy;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

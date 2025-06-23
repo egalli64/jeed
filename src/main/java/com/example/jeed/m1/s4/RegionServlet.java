@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.example.jeed.dao.Region;
+import com.example.jeed.dao.legacy.Region;
 import com.example.jeed.m1.s3.ProgContextListener;
 import com.example.jeed.m1.s3.ProgSessionService;
 

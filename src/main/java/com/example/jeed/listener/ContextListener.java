@@ -13,17 +13,17 @@ import jakarta.servlet.annotation.WebListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.jeed.dao.CarDao;
-import com.example.jeed.dao.CountryDao;
-import com.example.jeed.dao.DBInfoService;
-import com.example.jeed.dao.Employee4CarDao;
-import com.example.jeed.dao.Employee4TeamDao;
-import com.example.jeed.dao.EmployeeDao;
-import com.example.jeed.dao.EntityManagerService;
-import com.example.jeed.dao.Region4CountryDao;
-import com.example.jeed.dao.RegionDao;
-import com.example.jeed.dao.RegionEager4CountryDao;
-import com.example.jeed.dao.TeamDao;
+import com.example.jeed.dao.legacy.CarDao;
+import com.example.jeed.dao.legacy.CountryDao;
+import com.example.jeed.dao.legacy.DBInfoService;
+import com.example.jeed.dao.legacy.Employee4CarDao;
+import com.example.jeed.dao.legacy.Employee4TeamDao;
+import com.example.jeed.dao.legacy.EmployeeDao;
+import com.example.jeed.dao.legacy.EntityManagerService;
+import com.example.jeed.dao.legacy.Region4CountryDao;
+import com.example.jeed.dao.legacy.RegionDao;
+import com.example.jeed.dao.legacy.RegionEager4CountryDao;
+import com.example.jeed.dao.legacy.TeamDao;
 import com.example.jeed.svc.EmployeeCarService;
 
 /**

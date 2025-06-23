@@ -16,7 +16,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import com.example.jeed.dao.Region;
+import com.example.jeed.dao.legacy.Region;
 
 /**
  * Hibernate Programmatic Session Manager

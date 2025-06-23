@@ -18,8 +18,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Hibernate;
 
-import com.example.jeed.dao.Team;
-import com.example.jeed.dao.TeamDao;
+import com.example.jeed.dao.legacy.Team;
+import com.example.jeed.dao.legacy.TeamDao;
 import com.example.jeed.listener.ContextListener;
 
 /**

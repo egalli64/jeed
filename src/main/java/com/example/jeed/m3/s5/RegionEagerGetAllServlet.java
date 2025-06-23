@@ -16,8 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.jeed.dao.RegionEager4Country;
-import com.example.jeed.dao.RegionEager4CountryDao;
+import com.example.jeed.dao.legacy.RegionEager4Country;
+import com.example.jeed.dao.legacy.RegionEager4CountryDao;
 import com.example.jeed.listener.ContextListener;
 
 /**
