@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.example.jeed.dao.Car;
 import com.example.jeed.dao.CarDao;
-import com.example.jeed.dao.ContextListener;
+import com.example.jeed.listener.ContextListener;
 
 /**
  * Get a single entity using OneToOne JPA annotation
