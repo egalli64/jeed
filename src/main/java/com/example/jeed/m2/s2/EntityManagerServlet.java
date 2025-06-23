@@ -10,8 +10,8 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.example.jeed.dao.legacy.EntityManagerService;
 import com.example.jeed.listener.ContextListener;
+import com.example.jeed.util.EntityManagerService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.servlet.ServletException;

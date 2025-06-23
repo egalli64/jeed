@@ -3,7 +3,7 @@
  * 
  * https://github.com/egalli64/jeed
  */
-package com.example.jeed.dao.legacy;
+package com.example.jeed.util;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +24,12 @@ public final class EntityManagerService {
 
     public EntityManagerService() {
         log.traceEntry("EMF for {}", PERSISTENCE_UNIT);
-        this.factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        try {
+            this.factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        } catch (Exception e) {
+            log.error("Can't create Entity Manager Factory", e);
+            throw e;
+        }
     }
 
     /**
@@ -33,6 +38,7 @@ public final class EntityManagerService {
      * @return an entity manager
      */
     public EntityManager createEntityManager() {
+        log.traceEntry();
         return factory.createEntityManager();
     }
 
@@ -42,6 +48,7 @@ public final class EntityManagerService {
      * @return reference to the persistence unit utility
      */
     public PersistenceUnitUtil getPersistenceUnitUtil() {
+        log.traceEntry();
         return factory.getPersistenceUnitUtil();
     }
 

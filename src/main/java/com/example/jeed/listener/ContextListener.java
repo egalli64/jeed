@@ -19,12 +19,12 @@ import com.example.jeed.dao.legacy.DBInfoService;
 import com.example.jeed.dao.legacy.Employee4CarDao;
 import com.example.jeed.dao.legacy.Employee4TeamDao;
 import com.example.jeed.dao.legacy.EmployeeDao;
-import com.example.jeed.dao.legacy.EntityManagerService;
 import com.example.jeed.dao.legacy.Region4CountryDao;
 import com.example.jeed.dao.legacy.RegionDao;
 import com.example.jeed.dao.legacy.RegionEager4CountryDao;
 import com.example.jeed.dao.legacy.TeamDao;
 import com.example.jeed.svc.EmployeeCarService;
+import com.example.jeed.util.EntityManagerService;
 
 /**
  * Services and DAOs available to the servlets

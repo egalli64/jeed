@@ -5,6 +5,8 @@
  */
 package com.example.jeed.dao.legacy;
 
+import com.example.jeed.util.EntityManagerService;
+
 public class CarDao extends Dao<Car, Integer> {
     /**
      * Ctor

@@ -7,6 +7,8 @@ package com.example.jeed.dao.legacy;
 
 import java.util.List;
 
+import com.example.jeed.util.EntityManagerService;
+
 import jakarta.persistence.EntityManager;
 
 /**

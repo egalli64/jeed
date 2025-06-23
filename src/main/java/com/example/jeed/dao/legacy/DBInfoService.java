@@ -10,6 +10,8 @@ import java.sql.SQLException;
 
 import org.hibernate.Session;
 
+import com.example.jeed.util.EntityManagerService;
+
 import jakarta.persistence.EntityManager;
 
 /**
