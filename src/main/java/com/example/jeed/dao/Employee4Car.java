@@ -1,5 +1,5 @@
 /*
- * Introduction to Jakarta Enterprise Edition - JPA on Hibernate
+ * Introduction to Hibernate - JEE ORM
  * 
  * https://github.com/egalli64/jeed
  */
@@ -7,6 +7,8 @@ package com.example.jeed.dao;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -21,6 +23,7 @@ import jakarta.persistence.Table;
 @Table(name = "EMPLOYEE")
 public class Employee4Car {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "EMPLOYEE_ID")
     private Integer id;
 
