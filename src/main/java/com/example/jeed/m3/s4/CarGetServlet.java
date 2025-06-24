@@ -34,7 +34,7 @@ public class CarGetServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        dao = (CarDao) getServletContext().getAttribute(ContextListener.CAR_DAO);
+        dao = (CarDao) getServletContext().getAttribute(ContextListener.CAR_DAO_LEGACY);
     }
 
     @Override
